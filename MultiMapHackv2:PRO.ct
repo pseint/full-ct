@@ -1,0 +1,5647 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<nonTable nonEngineTableVersion="42">
+  <nonEntries>
+    <nonEntry>
+      <ID>0</ID>
+      <Description>"[== Master Enable / Disable All Cheats - War3 / Dota 1 ==]"</Description>
+      <LastState/>
+      <Color>00FF00</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{============================================================
+  MASTER TOGGLE - War3 / Dota 1 MultiHack
+  Controlado por Lua UI
+  ============================================================}
+
+[ENABLE]
+// Master enabled - Lua se encarga de activar entries individuales
+
+[DISABLE]
+// Master disabled
+</AssemblerScript>
+    </nonEntry>
+    <nonEntry>
+      <ID>1</ID>
+      <Description>"Minimap Hack - Para Atinad dentro del juego o inicia el Dota"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>define(address,"Game.dll"+361390)
+define(bytes,55 8B EC 83 E4 F8)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(code,$2048)
+
+label(j1)
+label(j2)
+label(j3)
+label(j4)
+label(j5)
+label(j6)
+
+code:
+    push ebp
+    mov ebp,esp
+    and esp,-08
+    sub esp,74
+    mov eax,[Game.dll+AAE140]
+    xor eax,esp
+    mov [esp+70],eax
+    push ebx
+    push esi
+    push edi
+    mov edi,ecx
+    xor ebx,ebx
+    cmp [edi+00000624],ebx
+    je Game.dll+362171
+    mov ecx,[Game.dll+AB65F4]
+    movzx eax,word ptr [ecx+28]
+    mov esi,[ecx+34]
+    push eax
+    mov [esp+24],ecx
+    call Game.dll+3A1650
+    mov [esp+34],eax
+    movzx eax,byte ptr [eax+30]
+    lea ecx,[ebx+0D]
+    mov [esp+28],eax
+    call Game.dll+4C34D0
+    mov ecx,[eax+10]
+    mov eax,[ecx]
+    cmp eax,ebx
+    je j6
+    test [eax+04],00000200
+    je j6
+    lea ecx,[ebx+01]
+    jmp j5
+    j6:
+    xor ecx,ecx
+    j5:
+    mov eax,1
+    sar eax,cl
+    xor edx,edx
+    cmp eax,ebx
+    sete dl
+    add [edi+00000814],edx
+    cmp eax,ebx
+    je j4
+    call Game.dll+53F160
+    test eax,eax
+    je j3
+    test byte ptr [esi+24],01
+    je j3
+    j4:
+    mov [esp+30],ebx
+    jmp Game.dll+36144A
+    j3:
+    cmp [esi+14],ebx
+    jne j2
+    cmp [esi+10],ebx
+    jne j2
+    mov ecx,00000001
+    jmp j1
+    j2:
+    xor ecx,ecx
+    j1:
+    mov eax,0 // mov eax,1 para normalizar
+    shr eax,cl
+    cmp eax,ebx
+    mov [esp+30],eax
+    jne Game.dll+361472
+    cmp [edi+00000814],00000264
+    jne Game.dll+361472
+    mov ecx,0000000D
+    mov [edi+00000814],ebx
+    call Game.dll+4C34D0
+    mov eax,[eax+10]
+    mov eax,[eax]
+    or [eax+04],00000200
+    mov ecx,[edi+00000228]
+    mov edx,[edi+0000022C]
+    mov eax,[edi+00000224]
+    mov [esp+50],ecx
+    mov ecx,[edi+00000230]
+    mov [esp+4C],edx
+    mov edx,[edi+000007BC]
+    mov [esp+58],eax
+    mov eax,[edi+000007C0]
+    mov [esp+54],ecx
+    mov ecx,[edi+000007C4]
+    mov [esp+48],edx
+    mov edx,[edi+000007D8]
+    lea ebx,[edi+0000023C]
+    mov [esp+24],eax
+    mov [esp+38],ecx
+    mov [esp+2C],edx
+    xor esi,esi
+    mov [esp+10],ebx
+    cmp esi,[esp+28]
+    jne Game.dll+3614DF
+    mov eax,[esp+48]
+    mov [ebx],eax
+    jmp Game.dll+3615CD
+    cmp dword ptr [edi+00000638],00
+    je Game.dll+3614F8
+    mov ecx,esi
+    call Game.dll+314B50
+    mov ecx,[eax]
+    mov [ebx],ecx
+    jmp Game.dll+3615CD
+    mov ecx,[esp+34]
+    add ecx,000000F0
+    call Game.dll+473170
+    test eax,eax
+    je Game.dll+3615AE
+    mov ecx,[esp+34]
+    add ecx,000000E0
+    call Game.dll+473170
+    test eax,eax
+    jne Game.dll+3615AE
+    mov ecx,[esp+20]
+    push esi
+    call Game.dll+3A1650
+    mov [esp+44],eax
+    xor ebx,ebx
+    mov ecx,[esp+20]
+    push ebx
+    call Game.dll+3A1650
+    mov ecx,[esp+44]
+    mov [esp+14],eax
+    call Game.dll+41B420
+    lea ecx,[eax+38]
+    call Game.dll+473170
+    mov edx,00000001
+    mov ecx,ebx
+    shl edx,cl
+    test edx,eax
+    je Game.dll+361580
+    mov ecx,[esp+14]
+    call Game.dll+41B420
+    lea ecx,[eax+38]
+    call Game.dll+473170
+    mov edx,00000001
+    mov ecx,esi
+    shl edx,cl
+    test edx,eax
+    jne Game.dll+361588
+    add ebx,01
+    cmp ebx,0C
+    jb Game.dll+361536
+    cmp ebx,0C
+    jne Game.dll+36159B
+    mov ecx,[esp+10]
+    mov eax,[esp+38]
+    mov [ecx],eax
+    mov ebx,ecx
+    jmp Game.dll+3615CD
+    mov ecx,ebx
+    call Game.dll+314B50
+    mov edx,[eax]
+    mov eax,[esp+10]
+    mov [eax],edx
+    mov ebx,eax
+    jmp Game.dll+3615CD
+    mov ecx,[esp+28]
+    push esi
+    push ecx
+    mov ecx,[esp+28]
+    call Game.dll+3A3400
+    test eax,eax
+    lea eax,[esp+24]
+    jne Game.dll+3615C9
+    lea eax,[esp+38]
+    mov edx,[eax]
+    mov [ebx],edx
+    add esi,01
+    add ebx,04
+    cmp esi,0C
+    mov [esp+10],ebx
+    jb Game.dll+3614CE
+    cmp esi,10
+    jae Game.dll+361615
+    lea ebx,[edi+esi*4+0000023C]
+    lea esp,[esp+00]
+    cmp dword ptr [edi+00000638],00
+    je Game.dll+361602
+    mov ecx,esi
+    call Game.dll+314B50
+    jmp Game.dll+361606
+    lea eax,[esp+2C]
+    mov eax,[eax]
+    mov [ebx],eax
+    add esi,01
+    add ebx,04
+    cmp esi,10
+    jb Game.dll+3615F0
+    cmp dword ptr [edi+00000638],00
+    lea eax,[edi+000007DC]
+    jne Game.dll+361628
+    lea eax,[esp+2C]
+    mov ecx,[eax]
+    mov edx,[esp+20]
+    mov [edi+0000026C],ecx
+    mov eax,[edx+000003C0]
+    xor edx,edx
+    lea ecx,[edx+01]
+    mov word ptr [esp+74],0004
+    mov word ptr [esp+76],0006
+    mov word ptr [esp+78],0007
+    mov [esp+44],eax
+    call Game.dll+300710
+    mov eax,[eax+000003BC]
+    push 00
+    mov ecx,eax
+    call Game.dll+39B6E0
+    mov ecx,[eax+04]
+    mov [esp+24],eax
+    mov [esp+40],ecx
+    xor eax,eax
+    lea esp,[esp+00000000]
+    mov edx,[edi+000002E4]
+    mov [eax+edx],00000000
+    add eax,04
+    cmp eax,40
+    jb Game.dll+361680
+    test ecx,ecx
+    mov [esp+10],00000000
+    jbe Game.dll+361CA4
+    mov esi,[Game.dll+AB7788]
+    jmp Game.dll+3616B0
+    lea ecx,[ecx+00]
+    mov eax,[esp+24]
+    mov ecx,[eax+08]
+    mov edx,[esp+10]
+    mov ebx,[ecx+edx*4]
+    test ebx,ebx
+    je Game.dll+361C8F
+    mov eax,[ebx+0C]
+    mov ecx,eax
+    shr ecx,1F
+    mov [esp+14],ecx
+    jne Game.dll+3616EB
+    cmp eax,[esi+1C]
+    jae Game.dll+361C8F
+    mov edx,[esi+0C]
+    cmp dword ptr [edx+eax*8],-02
+    je Game.dll+36170D
+    jmp Game.dll+361C8F
+    mov ecx,eax
+    and ecx,7FFFFFFF
+    cmp ecx,[esi+3C]
+    jae Game.dll+361C8F
+    mov edx,[esi+2C]
+    cmp dword ptr [edx+ecx*8],-02
+    jne Game.dll+361C8F
+    mov ecx,[esp+14]
+    test ecx,ecx
+    je Game.dll+36171F
+    mov ecx,[esi+2C]
+    and eax,7FFFFFFF
+    mov ecx,[ecx+eax*8+04]
+    jmp Game.dll+361726
+    mov edx,[esi+0C]
+    mov ecx,[edx+eax*8+04]
+    mov eax,[ecx+18]
+    sub eax,[ebx+10]
+    neg eax
+    sbb eax,eax
+    not eax
+    and eax,ecx
+    je Game.dll+361C8F
+    xor ecx,ecx
+    cmp [eax+0C],2B61676C
+    setne cl
+    sub ecx,01
+    and ecx,eax
+    mov eax,ecx
+    je Game.dll+361C8F
+    cmp dword ptr [eax+20],00
+    jne Game.dll+361C8F
+    test byte ptr [ebx+20],02
+    je Game.dll+361C8F
+    mov ecx,ebx
+    call Game.dll+277300
+    test eax,eax
+    jne Game.dll+361C89
+    test [ebx+5C],00040000
+    jne Game.dll+361C89
+    test [ebx+00000280],00000200
+    jne Game.dll+361C89
+    test byte ptr [ebx+60],01
+    jne Game.dll+361C89
+    mov eax,ebx
+    call Game.dll+33AA90
+    test eax,eax
+    jne Game.dll+361C89
+    mov [esp+18],eax
+    mov [esp+1C],eax
+    mov eax,[ebx]
+    lea edx,[esp+18]
+    push edx
+    mov edx,[eax+000000B8]
+    mov ecx,ebx
+    call edx
+    mov ecx,eax
+    call Game.dll+474460
+    mov eax,[esp+18]
+    mov ecx,[esp+1C]
+    sar eax,02
+    sar ecx,02
+    cmp eax,[esp+50]
+    mov [esp+18],eax
+    mov [esp+1C],ecx
+    jl Game.dll+361C89
+    cmp eax,[esp+58]
+    jg Game.dll+361C89
+    cmp ecx,[esp+4C]
+    jl Game.dll+361C89
+    cmp ecx,[esp+54]
+    jg Game.dll+361C89
+    push 01
+    mov ecx,ebx
+    call Game.dll+26DE50
+    cmp dword ptr [esp+30],00
+    mov [esp+2C],eax
+    jne Game.dll+361827
+    test [ebx+5C],01000000
+    je Game.dll+361859
+    test eax,eax
+    je Game.dll+361839
+    cmp dword ptr [esp+44],00
+    je Game.dll+361839
+    mov ecx,00000001
+    jmp Game.dll+36183B
+    xor ecx,ecx
+    mov edx,[ebx]
+    mov edx,[edx+00000100]
+    add ecx,eax
+    movzx eax,word ptr [esp+ecx*2+74]
+    push eax
+    push 00
+    mov ecx,ebx
+    call edx
+    test eax,eax
+    je Game.dll+361C89
+    mov eax,[ebx]
+    mov edx,[eax+000000EC]
+    mov ecx,ebx
+    call edx
+    mov esi,eax
+    cmp esi,[esp+28]
+    je Game.dll+361894
+    cmp dword ptr [esp+30],00
+    je Game.dll+361894
+    mov ecx,ebx
+    call Game.dll+2AD5D0
+    test eax,eax
+    je Game.dll+361894
+    mov ecx,[esp+28]
+    mov eax,00000001
+    shl eax,cl
+    test [ebx+2C],ax
+    je Game.dll+361C89
+    mov eax,ebx
+    call Game.dll+33AA60
+    test eax,eax
+    je Game.dll+36195E
+    push 00
+    lea ecx,[esp+6C]
+    push ecx
+    mov ecx,ebx
+    call Game.dll+2781F0
+    fld1
+    lea edx,[edi+00000750]
+    fstp dword ptr [esp+70]
+    push edx
+    lea edx,[esp+6C]
+    lea ecx,[esp+60]
+    call Game.dll+C880
+    mov eax,[ebx+68]
+    mov eax,[eax+18]
+    lea ecx,[ebx+68]
+    lea edx,[esp+48]
+    push edx
+    call eax
+    fld dword ptr [esp+48]
+    fld dword ptr [Game.dll+AAE470]
+    fucompp
+    fnstsw ax
+    test ah,44
+    jnp Game.dll+3618F2
+    fld1
+    jmp Game.dll+3618F4
+    fldz
+    mov ecx,[edi+000002E4]
+    fstp dword ptr [esp+64]
+    mov ebx,[ecx+esi*4]
+    lea eax,[ecx+esi*4]
+    lea edx,[ebx+01]
+    mov [eax],edx
+    mov eax,[edi+000002F0]
+    cmp ebx,[eax+esi*4]
+    lea eax,[eax+esi*4]
+    jne Game.dll+361935
+    add dword ptr [eax],08
+    mov ecx,[edi+000002F0]
+    mov edx,[ecx+esi*4]
+    mov eax,esi
+    shl eax,04
+    push edx
+    lea ecx,[eax+edi+000002F4]
+    call Game.dll+35C6D0
+    shl esi,04
+    mov edx,[esi+edi+000002FC]
+    lea ecx,[ebx+ebx*2]
+    lea eax,[edx+ecx*4]
+    mov ecx,[esp+5C]
+    mov edx,[esp+60]
+    mov [eax],ecx
+    mov ecx,[esp+64]
+    mov [eax+04],edx
+    mov [eax+08],ecx
+    jmp Game.dll+361C89
+    test byte ptr [ebx+60],01
+    lea eax,[edi+esi*4+0000023C]
+    je Game.dll+361971
+    lea eax,[edi+00000278]
+    mov esi,[eax]
+    mov edx,[ebx+68]
+    mov edx,[edx+18]
+    lea ecx,[ebx+68]
+    lea eax,[esp+34]
+    push eax
+    call edx
+    fld dword ptr [esp+34]
+    fld dword ptr [Game.dll+AAE470]
+    fucompp
+    fnstsw ax
+    test ah,44
+    jnp Game.dll+3619A3
+    cmp dword ptr [Game.dll+AB59CC],00
+    je Game.dll+3619A3
+    mov esi,[esp+38]
+    mov ecx,[esp+2C]
+    mov eax,[esp+18]
+    sub eax,[edi+00000228]
+    add ecx,01
+    mov edx,00000001
+    shl edx,cl
+    test eax,eax
+    mov [esp+0C],eax
+    fild dword ptr [esp+0C]
+    mov [esp+3C],edx
+    jnl Game.dll+3619D1
+    fadd dword ptr [Game.dll+875AB8]
+    fmul dword ptr [edi+0000021C]
+    mov ecx,[esp+1C]
+    sub ecx,[edi+0000022C]
+    test ecx,ecx
+    fstp dword ptr [esp+14]
+    fld dword ptr [esp+14]
+    mov [esp+0C],ecx
+    fld qword ptr [Game.dll+93A098]
+    fadd st(1),st(0)
+    fxch st(1)
+    fstp dword ptr [esp+20]
+    fild dword ptr [esp+0C]
+    jnl Game.dll+361A09
+    fadd dword ptr [Game.dll+875AB8]
+    fmul dword ptr [edi+00000220]
+    lea eax,[edx+edx]
+    mov [esp+0C],eax
+    mov ecx,00000101
+    sub ecx,eax
+    fstp dword ptr [esp+14]
+    mov eax,[esp+20]
+    fadd dword ptr [esp+14]
+    shr eax,0E
+    movzx eax,al
+    add eax,[edi+00000214]
+    fstp dword ptr [esp+14]
+    sub eax,edx
+    mov edx,[esp+14]
+    shr edx,0E
+    movzx ebx,dl
+    mov edx,00000100
+    sub edx,ebx
+    sub edx,[edi+00000218]
+    xor ebx,ebx
+    sub edx,[esp+3C]
+    test eax,eax
+    setle bl
+    sub ebx,01
+    and ebx,eax
+    lea eax,[ecx-01]
+    cmp ebx,eax
+    jl Game.dll+361A6B
+    mov ebx,eax
+    xor eax,eax
+    test edx,edx
+    setle al
+    sub eax,01
+    and eax,edx
+    mov edx,000000FF
+    sub edx,[edi+00000218]
+    sub edx,[esp+0C]
+    cmp eax,edx
+    jb Game.dll+361A8C
+    mov eax,edx
+    mov edx,[edi+000001D8]
+    shl eax,08
+    add eax,ebx
+    lea eax,[edx+eax*4]
+    mov edx,eax
+    add eax,04
+    mov [edx],esi
+    mov edx,eax
+    add eax,04
+    add ecx,ecx
+    mov [edx],esi
+    mov edx,eax
+    add ecx,ecx
+    add eax,04
+    cmp dword ptr [esp+2C],00
+    mov [edx],esi
+    je Game.dll+361C3F
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov [eax+04],esi
+    add eax,04
+    add eax,ecx
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov [eax+04],esi
+    add eax,04
+    add eax,ecx
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov [eax+04],esi
+    add eax,04
+    add eax,ecx
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    add eax,04
+    mov [edx],esi
+    mov edx,eax
+    add eax,04
+    mov [edx],esi
+    mov edx,eax
+    add eax,04
+    mov [edx],esi
+    mov [eax],esi
+    add eax,ecx
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov [eax+04],esi
+    add eax,04
+    add eax,ecx
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov [eax+04],esi
+    add eax,04
+    add eax,ecx
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    add eax,04
+    mov [edx],esi
+    mov edx,eax
+    add eax,04
+    mov [edx],esi
+    mov edx,eax
+    add eax,04
+    mov [edx],esi
+    mov [eax],esi
+    add eax,ecx
+    mov ecx,eax
+    mov [ecx],esi
+    add eax,04
+    mov ecx,eax
+    add eax,04
+    mov [ecx],esi
+    mov ecx,eax
+    add eax,04
+    mov [ecx],esi
+    mov ecx,eax
+    add eax,04
+    mov [ecx],esi
+    jmp Game.dll+361C76
+    mov [eax],esi
+    add eax,ecx
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov [eax+04],esi
+    add eax,04
+    add eax,ecx
+    mov edx,eax
+    add eax,04
+    mov [edx],esi
+    mov edx,eax
+    add eax,04
+    mov [edx],esi
+    mov edx,eax
+    add eax,04
+    mov [edx],esi
+    mov [eax],esi
+    add eax,ecx
+    mov ecx,eax
+    mov [ecx],esi
+    add eax,04
+    mov ecx,eax
+    add eax,04
+    mov [ecx],esi
+    mov [eax],esi
+    mov [eax+04],esi
+    mov esi,[Game.dll+AB7788]
+    mov eax,[esp+10]
+    add eax,01
+    cmp eax,[esp+40]
+    mov [esp+10],eax
+    jb Game.dll+3616B0
+    xor edx,edx
+    lea ecx,[edx+01]
+    call Game.dll+300710
+    mov ecx,[eax+000003BC]
+    call Game.dll+38C6B0
+    mov ecx,[esp+28]
+    mov edx,[eax+04]
+    mov esi,00000001
+    shl esi,cl
+    mov [esp+40],eax
+    mov [esp+14],edx
+    movzx ecx,si
+    mov [esp+3C],ecx
+    xor ecx,ecx
+    test edx,edx
+    mov [esp+10],ecx
+    jbe Game.dll+362171
+    mov edx,[Game.dll+AB7788]
+    jmp Game.dll+361CF4
+    lea esp,[esp+00]
+    mov eax,[esp+40]
+    mov eax,[eax+08]
+    mov esi,[eax+ecx*4]
+    test esi,esi
+    je Game.dll+36215C
+    mov eax,[esi+0C]
+    mov ecx,eax
+    shr ecx,1F
+    mov [esp+0C],ecx
+    jne Game.dll+361D27
+    cmp eax,[edx+1C]
+    jae Game.dll+36215C
+    mov ebx,[edx+0C]
+    cmp dword ptr [ebx+eax*8],-02
+    je Game.dll+361D49
+    jmp Game.dll+36215C
+    mov ecx,eax
+    and ecx,7FFFFFFF
+    cmp ecx,[edx+3C]
+    jae Game.dll+36215C
+    mov ebx,[edx+2C]
+    cmp dword ptr [ebx+ecx*8],-02
+    jne Game.dll+36215C
+    mov ecx,[esp+0C]
+    xor ebx,ebx
+    cmp ecx,ebx
+    je Game.dll+361D59
+    mov ecx,[edx+2C]
+    and eax,7FFFFFFF
+    jmp Game.dll+361D5C
+    mov ecx,[edx+0C]
+    mov ecx,[ecx+eax*8+04]
+    mov eax,[ecx+18]
+    sub eax,[esi+10]
+    neg eax
+    sbb eax,eax
+    not eax
+    and eax,ecx
+    je Game.dll+36215C
+    xor ecx,ecx
+    cmp [eax+0C],2B61676C
+    setne cl
+    sub ecx,01
+    and ecx,eax
+    mov eax,ecx
+    je Game.dll+36215C
+    cmp [eax+20],ebx
+    jne Game.dll+36215C
+    movzx eax,word ptr [esi+48]
+    test eax,00000400
+    ja Game.dll+36215C
+    test eax,00000100
+    ja Game.dll+36215C
+    test eax,00000200
+    ja Game.dll+36215C
+    lea edx,[esp+18]
+    push edx
+    lea ecx,[esi+30]
+    mov [esp+1C],ebx
+    mov [esp+20],ebx
+    call Game.dll+474460
+    mov eax,[esp+18]
+    mov edx,[esp+1C]
+    sar eax,02
+    sar edx,02
+    cmp eax,[esp+50]
+    mov [esp+18],eax
+    mov [esp+1C],edx
+    jl Game.dll+362156
+    cmp eax,[esp+58]
+    jg Game.dll+362156
+    cmp edx,[esp+4C]
+    jl Game.dll+362156
+    cmp edx,[esp+54]
+    jg Game.dll+362156
+    cmp [esp+30],ebx
+    je Game.dll+361E46
+    mov ecx,esi
+    call Game.dll+2C6220
+    mov bx,ax
+    mov ecx,esi
+    not bx
+    call Game.dll+2C6200
+    mov cx,ax
+    mov eax,[esp+3C]
+    and cx,bx
+    and cx,ax
+    cmp cx,ax
+    jne Game.dll+362156
+    mov edx,[esp+1C]
+    mov eax,[esp+18]
+    sub eax,[edi+00000228]
+    movzx ecx,byte ptr [esi+48]
+    test eax,eax
+    mov [esp+0C],eax
+    lea ecx,[edi+ecx*4+0000023C]
+    fild dword ptr [esp+0C]
+    jnl Game.dll+361E69
+    fadd dword ptr [Game.dll+875AB8]
+    fmul dword ptr [edi+0000021C]
+    sub edx,[edi+0000022C]
+    test edx,edx
+    fstp dword ptr [esp+0C]
+    fld dword ptr [esp+0C]
+    mov [esp+0C],edx
+    fld qword ptr [Game.dll+93A098]
+    fadd st(1),st(0)
+    fxch st(1)
+    fstp dword ptr [esp+24]
+    fild dword ptr [esp+0C]
+    jnl Game.dll+361E9D
+    fadd dword ptr [Game.dll+875AB8]
+    fmul dword ptr [edi+00000220]
+    mov edx,[esp+24]
+    shr edx,0E
+    movzx eax,dl
+    mov edx,[edi+00000214]
+    fstp dword ptr [esp+0C]
+    fadd dword ptr [esp+0C]
+    lea eax,[eax+edx-04]
+    mov esi,000000FC
+    fstp dword ptr [esp+0C]
+    mov edx,[esp+0C]
+    shr edx,0E
+    movzx edx,dl
+    sub esi,edx
+    sub esi,[edi+00000218]
+    xor edx,edx
+    test eax,eax
+    setle dl
+    sub edx,01
+    and edx,eax
+    cmp edx,000000F8
+    jl Game.dll+361EF3
+    mov edx,000000F8
+    xor eax,eax
+    test esi,esi
+    setle al
+    sub eax,01
+    and eax,esi
+    cmp eax,000000F8
+    jl Game.dll+361F0B
+    mov eax,000000F8
+    mov esi,[ecx]
+    shl eax,08
+    add eax,edx
+    mov edx,[edi+000001D8]
+    lea eax,[edx+eax*4]
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov edx,[ecx]
+    mov [eax+04],edx
+    mov esi,[ecx]
+    add eax,04
+    add eax,000003E4
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov edx,[ecx]
+    mov [eax+04],edx
+    mov esi,[ecx]
+    add eax,04
+    add eax,000003E4
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    add eax,04
+    mov [edx],esi
+    mov esi,[ecx]
+    mov edx,eax
+    add eax,04
+    mov [edx],esi
+    mov esi,[ecx]
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov edx,[ecx]
+    mov [eax+04],edx
+    mov esi,[ecx]
+    add eax,04
+    add eax,000003E4
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov edx,[ecx]
+    mov [eax+04],edx
+    mov esi,[ecx]
+    add eax,04
+    add eax,000003E4
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov edx,[ecx]
+    add eax,04
+    mov [eax],edx
+    mov esi,[ecx]
+    add eax,000003E4
+    mov edx,eax
+    add eax,04
+    mov [edx],esi
+    mov esi,[ecx]
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov edx,[ecx]
+    mov [eax+04],edx
+    mov esi,[ecx]
+    add eax,04
+    add eax,000003E4
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov edx,[ecx]
+    mov [eax+04],edx
+    mov esi,[ecx]
+    add eax,04
+    add eax,000003E4
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    mov [edx],esi
+    mov esi,[ecx]
+    add eax,04
+    mov edx,eax
+    add eax,04
+    mov [edx],esi
+    mov esi,[ecx]
+    mov edx,eax
+    add eax,04
+    mov [edx],esi
+    mov edx,eax
+    add eax,04
+    mov esi,[ecx]
+    mov [edx],esi
+    mov edx,[ecx]
+    mov [eax],edx
+    mov ecx,[ecx]
+    mov [eax+04],ecx
+    mov edx,[Game.dll+AB7788]
+    mov ecx,[esp+10]
+    add ecx,01
+    cmp ecx,[esp+14]
+    mov [esp+10],ecx
+    jb Game.dll+361CF0
+    mov ecx,[esp+7C]
+    pop edi
+    pop esi
+    pop ebx
+    xor ecx,esp
+    call Game.dll+7E1059
+    mov esp,ebp
+    pop ebp
+    ret
+
+address:
+    jmp code
+    nop
+
+[DISABLE]
+
+address:
+  db bytes
+dealloc(code)
+
+</AssemblerScript>
+    </nonEntry>
+    <nonEntry>
+      <ID>2</ID>
+      <Description>"Reveal Illusions"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : war3.exe
+  Version:
+  Date   : 2021-07-27
+  Author : 
+
+  This script does blah blah blah
+}
+
+define(address,"Game.dll"+282A10)
+define(bytes,56 8B F1 F7 46 5C 00 00 00 40 75 04 33 C0 5E C3 8B 0D F4 65 3E 03 0F B7 41 28 57 50 E8 1F EC 11 00 0F B7 B8 E0 02 00 00 8B 06 8B 90 EC 00 00 00 8B CE FF D2 8B C8 BA 01 00 00 00 D3 E2 0F B7 C7 23 D0 F7 DA 1B D2 F7 DA 5F 8B C2 5E C3)
+
+[ENABLE]
+alloc(newmem,$1000)
+label(l1)
+
+newmem:
+push esi
+mov esi,ecx
+test [esi+5C],40000000
+jne l1
+xor eax,eax
+pop esi
+ret
+l1:
+mov ecx,[Game.dll+AB65F4]
+movzx eax,word ptr [ecx+28]
+push edi
+push eax
+call Game.dll+3A1650
+movzx edi,word ptr [eax+000002E0]
+mov eax,[esi]
+mov edx,[eax+000000EC]
+mov ecx,esi
+call edx
+mov ecx,eax
+mov edx,00000001
+shl edx,cl
+movzx eax,di
+and edx,eax
+neg edx
+sbb edx,edx
+neg edx
+pop edi
+mov eax,edx
+pop esi
+inc eax
+ret
+
+address:
+  jmp newmem
+
+[DISABLE]
+
+address:
+  db bytes
+
+dealloc(newmem)
+</AssemblerScript>
+    </nonEntry>
+    <nonEntry>
+      <ID>3</ID>
+      <Description>"Reveal Invisibles - Disabled"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : war3.exe
+  Version:
+  Date   : 2021-07-27
+  Author : 
+
+  This script does blah blah blah
+}
+
+define(address,"Game.dll"+399A84)
+define(bytes,50 8B CE E8 24 52 ED FF 39 6C 24 14 74 39 39 AF 28 03 00 00 74 27 39 6C 24 44 74 2B 66 8B 44 24 10 66 85 87 F4 01 00 00 74 1D 8B 8F 98 01 00 00 BA 01 00 00 00 D3 E2 66 85 56 2C 74 0A C7 44 24 44 01 00 00 00 EB 04 89 6C 24 44 0B 5C 24 44 8B CE 53 E8 E5 A0 EE FF 3B DD)
+
+[ENABLE]
+assert(address,bytes)
+alloc(newmem,$1000)
+
+newmem:
+    push eax
+    mov ecx,esi
+    call Game.dll+26ECB0
+    cmp [esp+14],ebp
+    je Game.dll+399ACB
+    cmp [edi+00000328],ebp
+    jmp Game.dll+399AC1
+    cmp [esp+44],ebp
+    je Game.dll+399ACB
+    mov ax,[esp+10]
+    test [edi+000001F4],ax
+    je Game.dll+399ACB
+    mov ecx,[edi+00000198]
+    mov edx,00000001
+    shl edx,cl
+    test [esi+2C],dx
+    je Game.dll+399ACB
+    mov [esp+44],00000001
+    jmp Game.dll+399ACF
+    mov [esp+44],ebp
+    or ebx,[esp+44]
+    mov ecx,esi
+    push ebx
+    call Game.dll+283BC0
+    cmp ebx,ebp
+
+
+address:
+    jmp newmem
+
+[DISABLE]
+address:
+  db bytes
+
+dealloc(newmem)
+
+</AssemblerScript>
+    </nonEntry>
+    <nonEntry>
+      <ID>4</ID>
+      <Description>"Map Hack Show Runes"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : war3.exe
+  Version:
+  Date   : 2021-07-27
+  Author : 
+
+  This script does blah blah blah
+}
+
+define(address,"Game.dll"+3A14D3)
+define(bytes,8B D0 C1 EA 02 83 E2 01 75 15 39 97 C0 03 00 00 75 04 A8 02 74 12 8B 44 24 24 66 09 18 EB 09 8B 44 24 20 0B F3 66 89 30 83 C5 02 03 DB 83 6C 24 1C 01)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000)
+
+newmem:
+    mov edx,eax
+    shr edx,02
+    and edx,01
+    jmp Game.dll+3A14F2
+    cmp [edi+000003C0],edx
+    jne Game.dll+3A14E9
+    test al,02
+    je Game.dll+3A14FB
+    mov eax,[esp+24]
+    or [eax],bx
+    jmp Game.dll+3A14FB
+    mov eax,[esp+20]
+    or esi,ebx
+    mov [eax],si
+    add ebp,02
+    add ebx,ebx
+    sub dword ptr [esp+1C],01
+
+address:
+  jmp newmem
+
+[DISABLE]
+
+address:
+  db bytes
+
+dealloc(newmem)
+</AssemblerScript>
+    </nonEntry>
+    <nonEntry>
+      <ID>5</ID>
+      <Description>"Map Hack Show Units Heros"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : war3.exe
+  Version:
+  Date   : 2021-07-27
+  Author : 
+
+  This script does blah blah blah
+}
+
+define(address,"Game.dll"+3A158E)
+define(bytes,8B 54 24 20 0F B7 32 0F B7 CE 0F B7 D0 23 CA 75 32 8B 4C 24 14 50 8B 44 24 14)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000)
+
+
+newmem:
+    mov edx,[esp+20]
+    movzx esi,word ptr [edx]
+    movzx ecx,si
+    movzx edx,ax
+    //and ecx,edx
+    jne Game.dll+3A15D1
+    mov ecx,[esp+14]
+    push eax
+    mov eax,[esp+14]
+    jmp Game.dll+3A15A8
+
+address:
+    jmp newmem
+
+[DISABLE]
+
+address:
+  db bytes
+
+
+dealloc(newmem)
+</AssemblerScript>
+    </nonEntry>
+    <nonEntry>
+      <ID>6</ID>
+      <Description>"Text Print"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(TextPrint,2048)
+registerSymbol(TextPrint)
+
+TextPrint:
+  push ebp
+  mov ebp,esp
+  xor eax,eax
+  push FFFFFFFF
+  push [ebp+C]
+  push [ebp+8]
+  push eax
+  push eax
+  mov ecx,["game.dll"+AB4F80]
+  //mov ecx,[ecx]
+  call "game.dll"+2F8E40
+  leave
+  ret 8
+
+[DISABLE]
+unregisterSymbol(TextPrint)
+dealloc(TextPrint)
+</AssemblerScript>
+    </nonEntry>
+    <nonEntry>
+      <ID>7</ID>
+      <Description>"Roshan Notifier - Disconected for RGC Map No Found"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$lua}
+
+function textPrint(txt,duration)
+    executeCodeEx(0,100,getAddress("TextPrint"),{3,txt or ""},{1,duration or 7.0})
+end
+
+function CBRoshanSpawn(param)
+    if roshan_notifier_counter ~= 0 then
+        textPrint("|c0096FF96Byakugan MapHack|r:")
+        textPrint("        ¡|c006969FFRoshan is alive|r!")
+    end
+    roshan_notifier_counter = roshan_notifier_counter + 1
+end
+
+{$asm}
+define(roshanSpawnAddress,"Game.dll"+403784)
+define(roshanSpawnBytes,01 78 28 83 7C 24 10 00)
+
+loadlibrary(luaclient-i386.dll)
+luacall(openLuaServer('CELuaServer'))
+
+[ENABLE]
+alloc(newmem,$512)
+label(roshanSpawnReturn)
+
+newmem:
+  add [eax+28],edi
+
+  pushad
+  cmp [eax+28],1
+  jne roshanSpawnIf1
+  cmp [eax+14],(int)1848651852//'L00n'
+  jne roshanSpawnIf1
+
+  push 0
+  push CBRoshanSpawn
+  call CELUA_ExecuteFunction
+roshanSpawnIf1:
+  popad
+
+  cmp dword ptr [esp+10],00
+  jmp roshanSpawnReturn
+CBRoshanSpawn:
+  db 'return CBRoshanSpawn(parameter)',0
+
+roshanSpawnAddress:
+    jmp newmem
+    nop 3
+roshanSpawnReturn:
+
+[DISABLE]
+roshanSpawnAddress:
+    db roshanSpawnBytes
+
+dealloc(newmem)
+</AssemblerScript>
+    </nonEntry>
+    <nonEntry>
+      <ID>8</ID>
+      <Description>"Reveal Invisibles Wards"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>define(base,Game.dll+399900)
+[ENABLE]
+label(L1)
+label(L2)
+alloc(newmem,$2024)
+newmem:
+    sub esp,30
+    push ebx
+    push ebp
+    push esi
+    mov esi,[esp+40]
+    mov edx,[esi]
+    push edi
+    lea eax,[esp+2C]
+    mov edi,ecx
+    xor ebp,ebp
+    push eax
+    mov eax,[edx+000000B8]
+    mov ecx,esi
+    mov [esp+30],ebp
+    mov [esp+34],ebp
+    call eax
+    mov ecx,eax
+    call Game.dll+474460
+    sar [esp+2C],02
+    sar [esp+30],02
+    mov ecx,esi
+    call Game.dll+26BA80
+    mov edx,[esi]
+    xor ebx,ebx
+    cmp eax,ebp
+    mov [esp+14],eax
+    mov eax,[edx+000000F0]
+    push 01
+    mov ecx,esi
+    setne bl
+    call eax
+    lea ecx,[edi+000001F8]
+    push ecx
+    lea edx,[esp+14]
+    mov [esp+48],eax
+    push edx
+    lea eax,[esp+20]
+    push eax
+    lea ecx,[esp+38]
+    push ecx
+    mov ecx,[edi+00000178]
+    mov [esp+20],ebp
+    mov [esp+28],ebp
+    call Game.dll+3A1520
+    movzx edx,word ptr [edi+000001F4]
+    mov eax,[esp+10]
+    push edx
+    push eax
+    mov ecx,esi
+    call Game.dll+2AB710
+    mov edx,[esi]
+    mov eax,[edx+000001BC]
+    mov ecx,esi
+    call eax
+    test eax,eax
+    //jne L1//Game.dll+3999C7
+    db 75 1D
+    cmp [edi+00000328],ebp
+    //je L1//Game.dll+3999C7
+    db 75 15
+    mov cx,[edi+000001F4]
+    and cx,[esp+18]
+    neg cx
+    sbb ecx,ecx
+    neg ecx
+    and ebx,ecx
+L1:
+    cmp ebx,ebp
+    mov [esp+1C],ebp
+    //jne L2//Game.dll+3999DB
+    db 75 0C
+    cmp [edi+00000328],ebp
+    jne Game.dll+399A8C
+L2:
+    mov edx,[edi+00000198]
+    //jmp Game.dll+3999E1 // END OF SCRIPT
+    mov ecx,[edi+00000178]
+    lea eax,[edi+edx*2+00000218]
+    movzx eax,word ptr [eax]
+    push ebp
+    push eax
+    push esi
+    call Game.dll+3A15F0
+    //and ebx,eax
+    or ebx,eax
+    jmp Game.dll+3999FB // END OF SCRIPT
+    mov [esp+1C],eax
+    jne Game.dll+399A09
+    cmp [edi+00000328],ebp
+    jne Game.dll+399A15
+    mov edx,[esi]
+    mov eax,[edx+000001A8]
+    mov ecx,esi
+    call eax
+    push 01
+    lea ecx,[esp+38]
+    push ecx
+    mov ecx,esi
+    call Game.dll+2781F0
+    mov ecx,esi
+    call Game.dll+283A50
+    mov edx,[esi]
+    mov eax,[edx+000001A0]
+    mov ecx,esi
+    call eax
+    mov ecx,esi
+    call Game.dll+2830E0
+    cmp [esp+44],ebp
+    jne Game.dll+399A8C
+    cmp ebx,ebp
+    jne Game.dll+399A4F
+    cmp [edi+00000328],ebp
+    jne Game.dll+399A8C
+    mov ecx,[edi+00000198]
+    push ecx
+    mov ecx,esi
+    call Game.dll+26F9E0
+    test eax,eax
+    jne Game.dll+399A73
+    mov edx,[edi+00000198]
+    push edx
+    mov ecx,esi
+    call Game.dll+284CD0
+    test eax,eax
+    je Game.dll+399A8C
+    push 01
+    lea edx,[edi+0000018C]
+    lea ecx,[esp+38]
+    call Game.dll+F650
+    jmp 0D330000
+    push edx
+    in eax,dx
+    db -01
+    cmp [esp+14],ebp
+    je Game.dll+399ACB
+    cmp [edi+00000328],ebp
+    je Game.dll+399AC1
+    cmp [esp+44],ebp
+    je Game.dll+399ACB
+    mov ax,[esp+10]
+    test [edi+000001F4],ax
+    je Game.dll+399ACB
+    mov ecx,[edi+00000198]
+    mov edx,00000001
+    shl edx,cl
+    test [esi+2C],dx
+    je Game.dll+399ACB
+    mov [esp+44],00000001
+    jmp Game.dll+399ACF
+    mov [esp+44],ebp
+    or ebx,[esp+44]
+    mov ecx,esi
+    push ebx
+    call Game.dll+283BC0
+    cmp ebx,ebp
+    je Game.dll+399CF4
+    mov ecx,esi
+    call Game.dll+26F490
+    cmp dword ptr [edi+00000300],-01
+    je Game.dll+399C70
+    cmp [edi+000002FC],ebp
+    je Game.dll+399C70
+    mov eax,[esi]
+    mov edx,[eax+000000E0]
+    push ebp
+    push -01
+    push ebp
+    lea ecx,[esp+40]
+    push ecx
+    mov ecx,esi
+    call edx
+    fld dword ptr [edi+00000310]
+    fsub dword ptr [esp+34]
+    mov eax,[esi]
+    mov edx,[eax+00000168]
+    lea ecx,[esp+28]
+    fstp dword ptr [esp+24]
+    push ecx
+    fld dword ptr [edi+00000314]
+    mov ecx,esi
+    fsub dword ptr [esp+3C]
+    fstp dword ptr [esp+24]
+    call edx
+    fld dword ptr [eax]
+    fstp dword ptr [esp+28]
+    fld dword ptr [esp+20]
+    fld dword ptr [esp+24]
+    fmul st(0),st(0)
+    fld st(1)
+    fmulp st(2),st(0)
+    faddp
+    fldz
+    fmul st(0),st(0)
+    faddp
+    fstp dword ptr [esp+24]
+    fld dword ptr [esp+24]
+    call Game.dll+7E15E6
+    fstp dword ptr [esp+24]
+    fld dword ptr [esp+24]
+    mov eax,[esi]
+    fsub dword ptr [esp+28]
+    mov edx,[eax+000001B0]
+    mov ecx,esi
+    fstp dword ptr [esp+28]
+    call edx
+    test eax,eax
+    je Game.dll+399C64
+    cmp [esp+1C],ebp
+    jne Game.dll+399BA2
+    cmp [esp+44],ebp
+    je Game.dll+399C64
+    fld dword ptr [esp+28]
+    fmul st(0),st(0)
+    fld dword ptr [edi+00000308]
+    fcompp
+    fnstsw ax
+    test ah,01
+    jne Game.dll+399C64
+    mov ebx,[esp+14]
+    push ecx
+    mov ecx,[edi+0000030C]
+    mov eax,esp
+    mov [eax],ecx
+    xor edx,edx
+    mov ecx,ebx
+    call Game.dll+4D3220
+    fld dword ptr [edi+00000238]
+    mov edx,[edi+00000140]
+    push esi
+    push ebp
+    push edx
+    push ecx
+    mov ecx,[edi+00000170]
+    fstp dword ptr [esp]
+    push ebx
+    call Game.dll+60FCE0
+    test eax,eax
+    je Game.dll+399C4E
+    push esi
+    lea ecx,[edi+00000620]
+    call Game.dll+A4730
+    mov ecx,eax
+    call Game.dll+2A560
+    mov edx,[edi+00000180]
+    cmp edx,ebp
+    jne Game.dll+399C1B
+    cmp [edi+0000017C],ebp
+    je Game.dll+399C29
+    mov eax,[edi+0000017C]
+    push eax
+    mov ecx,esi
+    call Game.dll+37D0D0
+    cmp [esp+44],ebp
+    jne Game.dll+399CF4
+    mov ecx,[edi+00000198]
+    mov edx,00000001
+    shl edx,cl
+    or [esi+2C],dx
+    pop edi
+    pop esi
+    pop ebp
+    pop ebx
+    add esp,30
+    ret 0004
+    mov eax,[esi]
+    mov edx,[eax+000000B4]
+    mov ecx,esi
+    call edx
+    pop edi
+    pop esi
+    pop ebp
+    pop ebx
+    add esp,30
+    ret 0004
+    mov eax,[esi]
+    mov edx,[eax+000000B4]
+    mov ecx,esi
+    call edx
+    mov eax,[edi+00000140]
+    fld dword ptr [edi+00000238]
+    push esi
+    push ebp
+    push eax
+    push ecx
+    mov ecx,[esp+24]
+    fstp dword ptr [esp]
+    push ecx
+    mov ecx,[edi+0000016C]
+    call Game.dll+60FCE0
+    test eax,eax
+    je Game.dll+399CF4
+    cmp [esp+44],ebp
+    jne Game.dll+399CAE
+    mov ecx,[edi+00000198]
+    mov edx,00000001
+    shl edx,cl
+    or [esi+2C],dx
+    push esi
+    lea ecx,[edi+00000640]
+    call Game.dll+28E580
+    mov ecx,eax
+    call Game.dll+29770
+    push esi
+    lea ecx,[edi+00000620]
+    call Game.dll+A4730
+    mov ecx,eax
+    call Game.dll+2A560
+    mov edx,[edi+00000180]
+    cmp edx,ebp
+    jne Game.dll+399CE6
+    cmp [edi+0000017C],ebp
+    je Game.dll+399CF4
+    mov eax,[edi+0000017C]
+    push eax
+    mov ecx,esi
+    call Game.dll+37D0D0
+    pop edi
+    pop esi
+    pop ebp
+    pop ebx
+    add esp,30
+    ret 0004
+
+base:
+    jmp newmem
+
+[DISABLE]
+base:
+    sub esp,30
+    push ebx
+    push ebp
+    push esi
+    mov esi,[esp+40]
+    mov edx,[esi]
+    push edi
+    lea eax,[esp+2C]
+    mov edi,ecx
+
+dealloc(newmem,)
+</AssemblerScript>
+    </nonEntry>
+    <nonEntry>
+      <ID>9</ID>
+      <Description>"AntiDebugger"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(myIsDebuggerPresent,$128)
+registerSymbol(myIsDebuggerPresent)
+
+myIsDebuggerPresent:
+    xor eax,eax
+    add eax,(int)20
+    add eax,(int)20
+    add eax,(int)8
+    mov eax,fs:[eax]
+    inc eax
+    inc eax
+    movzx eax,byte ptr [eax]
+    ret 4
+
+[DISABLE]
+unregisterSymbol(myIsDebuggerPresent)
+dealloc(myIsDebuggerPresent)
+</AssemblerScript>
+    </nonEntry>
+    <nonEntry>
+      <ID>10</ID>
+      <Description>"ExitProcess"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(myExitProcess,$124)
+registerSymbol(myExitProcess)
+myExitProcess:
+    push 0
+    call ExitProcess
+    ret
+
+[DISABLE]
+unregisterSymbol(myExitProcess)
+dealloc(myExitProcess)
+
+</AssemblerScript>
+    </nonEntry>
+    <nonEntry>
+      <ID>11</ID>
+      <Description>"Share Fog - Disabled"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : war3.exe
+  Version: 
+  Date   : 2021-10-07
+  Author : 
+
+  This script does blah blah blah
+}
+
+define(address1,"Game.dll"+356455)
+define(bytes1,8B 7D 2C 8B 6D 30)
+define(return1,"Game.dll"+3564BB)
+
+define(address2,"Game.dll"+74C9B0)
+define(bytes2,8B 85 9C 09 00 00)
+define(return2,"Game.dll"+74C9F6)
+
+[ENABLE]
+
+assert(address1,bytes1)
+assert(address2,bytes2)
+alloc(newmem1,$1000)
+alloc(newmem2,$1000)
+
+newmem2:
+    //mov eax,[ebp+0000099C]
+    //mov ecx,[eax+60]
+    //sub ecx,01
+    //cmp ecx,esi
+    //db 72 02//jb Game.dll+74C9C2
+    //mov ecx,esi
+    //xor edx,edx
+    //test ecx,ecx
+    //setl dl
+    //sub edx,01
+    //and edx,ecx
+    //mov ecx,[eax+6C]
+    //sub ecx,01
+    //cmp ecx,ebx
+    //mov ebp,edx
+    //db 72 02//jb Game.dll+74C9DC
+    //mov ecx,ebx
+    //xor edx,edx
+    //test ecx,ecx
+    //setl dl
+    //sub edx,01
+    //and edx,ecx
+    //mov ecx,[eax+68]
+    //shl edx,cl
+    //add edx,ebp
+    //mov ecx,edx
+    ////mov edx,[esp+28]
+    db 8B 85 9C 09 00 00 8B 48 60 83 E9 01 3B CE 72 02 8B CE 33 D2 85 C9 0F 9C C2 83 EA 01 23 D1 8B 48 6C 83 E9 01 3B CB 8B EA 72 02 8B CB 33 D2 85 C9 0F 9C C2 83 EA 01 23 D1 8B 48 68 D3 E2 03 D5                8B CA
+    db 68 FF 00 00 00
+    jmp return2
+
+newmem1:
+    mov edi,[ebp+2C]
+    mov ebp,[ebp+30]
+    add eax,eax
+    add edi,eax
+    add ebp,eax
+    mov eax,[esi+000001D8]
+    add ebx,ecx
+    lea edx,[eax+ebx*4+03]
+    mov [esp+28],edx
+    mov edx,[esp+3C]
+    xor al,al
+    cmp edx,ecx
+    mov [esp+24],00010000
+    mov byte ptr [esp+12],00
+    mov [esp+2C],edx
+    jng Game.dll+356543
+    mov ebx,[esp+24]
+    cmp ebx,00010000
+    jl Game.dll+356519
+    mov eax,ebx
+    shr eax,10
+    mov [esp+24],eax
+    imul eax,eax,FFFF0000
+    add ebx,eax
+    lea ecx,[ecx+00]
+    mov ax,[ebp+00]
+    mov edx,[esp+20]
+    or ax,dx//and ax,dx
+    jmp return1
+
+address2:
+    jmp newmem2
+    nop
+
+address1:
+  jmp newmem1
+  nop
+
+[DISABLE]
+
+address1:
+    db bytes1
+
+address2:
+    db bytes2
+
+dealloc(newmem1)
+dealloc(newmem2)
+
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>18</Key>
+            <Key>86</Key>
+          </Keys>
+          <ID>0</ID>
+          <ActivateSound>Activate</ActivateSound>
+          <DeactivateSound>Deactivate</DeactivateSound>
+        </Hotkey>
+      </Hotkeys>
+    </nonEntry>
+    <nonEntry>
+      <ID>12</ID>
+      <Description>"Show Enemy Signals"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>define(address,"Game.dll"+43EE14)
+define(bytes,8B 45 20 89 44 24 10)
+define(return,Game.dll+43EEB3)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000)
+
+newmem:
+    mov eax,[ebp+20]
+    mov [esp+10],eax
+    fld dword ptr [esp+10]
+    fld dword ptr [Game.dll+AAE528]
+    fcompp
+    fnstsw ax
+    test ah,41
+    lea eax,[esp+10]
+    db 74 05 //je Game.dll+43EE37
+    mov eax,Game.dll+AAE528
+    mov ecx,[eax]
+    movzx eax,word ptr [esi+28]
+    mov [esp+10],ecx
+    push eax
+    mov ecx,esi
+    call Game.dll+3A1650
+    mov ebx,eax
+    test ebx,ebx
+    je Game.dll+43EE03
+    movzx edx,byte ptr [ebp+15]
+    push edx
+    mov ecx,esi
+    call Game.dll+3A1650
+    mov edi,eax
+    test edi,edi
+    je Game.dll+43EE03
+    movzx eax,byte ptr [edi+30]
+    movzx ecx,byte ptr [ebx+30]
+    push eax
+    push ecx
+    mov ecx,esi
+    call Game.dll+3A3400
+    test eax,eax
+    db 74 15 //je Game.dll+43EE8B
+    movzx eax,byte ptr [ebx+30]
+    movzx ecx,byte ptr [edi+30]
+    push eax
+    push ecx
+    mov ecx,esi
+    call Game.dll+3A3400
+    test eax,eax
+    db 75 26 //jne Game.dll+43EEB1
+    lea ecx,[edi+000000F0]
+    call Game.dll+473170
+    cmp eax,eax
+    jne Game.dll+43EF5E
+    lea ecx,[ebx+000000F0]
+    call Game.dll+473170
+    cmp eax,eax
+    jne Game.dll+43EF5E
+    xor edx,edx
+    jmp return
+
+address:
+    jmp newmem
+    nop 2
+
+[DISABLE]
+
+address:
+  db bytes
+
+dealloc(newmem)
+</AssemblerScript>
+    </nonEntry>
+    <nonEntry>
+      <ID>13</ID>
+      <Description>"Show Skills / Cooldowns - Ingame"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>define(address1,"Game.dll"+34F2C0)
+define(bytes1,E9 CB D4 56 F2)
+define(address2,"Game.dll"+34F280)
+define(bytes2,E9 FB D3 F9 F1)
+define(address3,"Game.dll"+28E1D0)
+define(bytes3,E9 CB E6 05 F2)
+define(address4,"Game.dll"+2026A0)
+define(bytes4,83 7C 24 04 00)
+
+[ENABLE]
+
+alloc(newmem1,$1000)
+label(newmem2)
+label(newmem3)
+label(newmem4)
+
+label(J1)
+label(J2)
+label(J3)
+label(J4)
+label(J5)
+label(J6)
+label(J7)
+label(J8)
+label(J9)
+
+newmem1:
+    //readMem(address1,5)
+    //jmp DotAAllstarsHelper688v15.ShowSkillPanelForAllUnits+140
+    jmp DotAAllstarsHelper688v15.dll+4C790
+    jne J1
+    xor eax,eax
+    pop edi
+    ret
+J1:
+    mov eax,[edx+000001BC]
+    test eax,eax
+    push esi
+    jle J2
+    mov esi,[eax+08]
+    jmp J3
+J2:
+    mov esi,[Game.dll+92ED9C]
+J3:
+    call Game.dll+285DC0
+    test eax,eax
+    push esi
+    mov ecx,edi
+    call Game.dll+277570
+    pop esi
+    mov eax,00000001
+    pop edi
+    ret
+
+
+newmem2:
+    //readMem(address2,5)
+    //jmp DotAAllstarsHelper688v15.ShowSkillPanelForAllUnits+30
+    jmp DotAAllstarsHelper688v15.dll+4C680
+    jne J4
+    xor eax,eax
+    pop edi
+    ret
+J4:
+    mov eax,[edx+000001BC]
+    test eax,eax
+    push esi
+    jle J5
+    mov esi,[eax+08]
+    jmp J6
+J5:
+    mov esi,[Game.dll+92ED9C]
+J6:
+    call Game.dll+285DC0
+    test eax,eax
+    xchg ebx,ebx
+    push esi
+    mov ecx,edi
+    call Game.dll+2774C0
+    pop esi
+    mov eax,00000001
+    pop edi
+    ret
+
+newmem3:
+    //readMem(address3,5)
+    //jmp DotAAllstarsHelper688v15.ShowSkillPanelForAllUnits+250
+    jmp DotAAllstarsHelper688v15.dll+4C8A0
+    stosd
+    outsd
+    call Game.dll+28E1C0
+    test eax,eax
+    jno J8
+    movzx eax,word ptr [esi+28]
+    push eax
+    mov ecx,esi
+    call Game.dll+3A1650
+    lea ecx,[eax+000000F0]
+    call Game.dll+473170
+    test eax,eax
+    jne J8
+    call Game.dll+53F160
+    test eax,eax
+    je J7
+    mov eax,[esi+34]
+    test byte ptr [eax+24],01
+    jne J8
+J7:
+    xor eax,eax
+    pop esi
+    ret
+J8:
+    mov eax,00000001
+    pop esi
+    ret
+
+
+newmem4:
+    cmp dword ptr [esp+04],00
+    push esi
+    mov esi,ecx
+    jne Game.dll+202842
+    mov eax,[esi+30]
+    test eax,eax
+    push edi
+    mov edi,[Game.dll+AB65F4]
+    jne J9
+    call Game.dll+472890
+J9:
+    movzx ecx,word ptr [edi+28]
+    mov edx,[eax]
+    push ecx
+    mov ecx,eax
+    mov eax,[edx+000000EC]
+    call eax
+    push eax
+    mov ecx,edi
+    call Game.dll+3A3530
+    test eax,eax
+    xchg ebx,ebx
+    xchg ebx,ebx
+    xchg ebx,ebx
+    mov edi,[esi+30]
+    test edi,edi
+    jmp Game.dll+2026E7
+
+address1:
+    jmp newmem1
+
+address2:
+    jmp newmem2
+
+address3:
+    jmp newmem3
+
+address4:
+    jmp newmem4
+
+DotAAllstarsHelper688v15.dll+4C6D4: //DotAAllstarsHelper688v15.ShowSkillPanelForAllUnits+84:
+    db 90 90
+
+[DISABLE]
+address1:
+    //db bytes1
+    //jmp DotAAllstarsHelper688v15.ShowSkillPanelForAllUnits+140
+    //readMem(newmem1,5)
+    jmp DotAAllstarsHelper688v15.dll+4C790
+
+address2:
+    //db bytes2
+    //jmp DotAAllstarsHelper688v15.ShowSkillPanelForAllUnits+30
+    //readMem(newmem2,5)
+    jmp DotAAllstarsHelper688v15.dll+4C680
+
+address3:
+    //db bytes3
+    //jmp DotAAllstarsHelper688v15.ShowSkillPanelForAllUnits+250
+    //readMem(newmem3,5)
+    jmp DotAAllstarsHelper688v15.dll+4C8A0
+
+address4:
+    db bytes4
+
+DotAAllstarsHelper688v15.dll+4C6D4: //DotAAllstarsHelper688v15.ShowSkillPanelForAllUnits+84:
+    db 74 1A
+
+dealloc(newmem1)
+</AssemblerScript>
+    </nonEntry>
+    <nonEntry>
+      <ID>14</ID>
+      <Description>"Player ID"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>Game.dll+AB632C</Address>
+    </nonEntry>
+  </nonEntries>
+  <UserdefinedSymbols/>
+  <LuaScript>--  WARCRAFT III MULTIHACK PRO v2  —  UI MATERIAL 2026 (v7 - DEFINITIVO)
+--  Script Lua NATIVO para Cheat Engine 7.4+
+--   x FIX RECTANGULOS NEGROS: Pen.Style=psClear en TODO el dibujado de botones
+--   x CHECKBOX MATERIAL custom (dibujado propio -&gt; texto SIEMPRE visible/color tema)
+--   x CONSOLA LUA: oculta al inicio (cbShowOnPrint=false + hide + OnShow=hide)
+--   x HOTKEY ADMIN OCULTO: Ctrl+Alt+Shift+L alterna la consola Lua
+--   x GRADIENTE SUAVE dithering + botones redondeados planos
+--   x 6 temas + fondo gamer Gen-Z 2026 nativo + particulas optimizadas + layout responsive
+--   x Sin crashes (alive/pcall/cleanup/timers por sesion)
+-- ============================================================================
+
+if getCEVersion() &lt; 7.4 then
+  showMessage("Requiere Cheat Engine 7.4+")
+  return
+end
+
+_G.__REFS = _G.__REFS or { hotkeys = {}, timers = {}, forms = {} }
+local REFS = _G.__REFS
+
+-- ============================================================================
+--  CONSOLA LUA: ocultarla por completo y evitar que aparezca sola
+--  (API oficial de CE: getLuaEngine, cbShowOnPrint, hide/show)
+-- ============================================================================
+local consoleVisible = false
+local function setupConsoleHidden()
+  pcall(function()
+    local le = getLuaEngine()
+    if le then
+      pcall(function() le.cbShowOnPrint.Checked = false end)  -- no aparece al imprimir
+      pcall(function() le.hide() end)                          -- oculta ahora
+      pcall(function() le.OnShow = function(sender) pcall(function() sender.hide() end); return true end end)
+    end
+  end)
+end
+-- alterna la consola (admin)
+function toggleLuaConsole()
+  local le = nil
+  pcall(function() le = getLuaEngine() end)
+  if not le then return end
+  consoleVisible = not consoleVisible
+  pcall(function()
+    if consoleVisible then
+      le.OnShow = nil          -- quitar el bloqueo para poder mostrarla
+      le.show()
+      le.BringToFront()
+    else
+      le.hide()
+      le.OnShow = function(sender) pcall(function() sender.hide() end); return true end
+    end
+  end)
+end
+
+-- ============================================================================
+--  HELPERS DE COLOR
+-- ============================================================================
+local function rgb(r, g, b)
+  r = math.floor(r+0.5); g = math.floor(g+0.5); b = math.floor(b+0.5)
+  return (b * 0x10000) + (g * 0x100) + r
+end
+local function comps(c)
+  return c % 256, math.floor(c / 256) % 256, math.floor(c / 65536) % 256
+end
+local function lerp(a, b, t) return a + (b - a) * t end
+local function clamp255(v)
+  if v &lt; 0 then return 0 elseif v &gt; 255 then return 255 else return math.floor(v + 0.5) end
+end
+local function colorLerp(c1, c2, t)
+  local r1, g1, b1 = comps(c1); local r2, g2, b2 = comps(c2)
+  return rgb(lerp(r1,r2,t), lerp(g1,g2,t), lerp(b1,b2,t))
+end
+local function darken(c, a)
+  local r, g, b = comps(c); return rgb(lerp(r,0,a), lerp(g,0,a), lerp(b,0,a))
+end
+local function lighten(c, a)
+  local r, g, b = comps(c); return rgb(lerp(r,255,a), lerp(g,255,a), lerp(b,255,a))
+end
+local function textW(canvas, s)
+  local ok, v = pcall(function() return canvas.getTextWidth(s) end)
+  if ok and type(v) == "number" then return v end
+  return #s * 6
+end
+local function textH(canvas, s)
+  local ok, v = pcall(function() return canvas.getTextHeight(s) end)
+  if ok and type(v) == "number" then return v end
+  return 16
+end
+
+-- ============================================================================
+--  TEMAS
+-- ============================================================================
+local THEMES = {
+  { name = "Cyber Neon 2026",
+    bg1 = rgb(8, 10, 20),  bg2 = rgb(15, 20, 45),
+    grad1 = rgb(0, 255, 255), grad2 = rgb(255, 0, 255),
+    textBright = rgb(255, 255, 255), textDim = rgb(180, 180, 220), textFaint = rgb(120, 120, 160),
+    particles = { rgb(0, 255, 255), rgb(255, 0, 255), rgb(0, 255, 0), rgb(255, 255, 0) },
+    palette = {
+      primary = { rgb(0, 255, 150),  rgb(100, 255, 200) },
+      danger  = { rgb(255, 40, 80),  rgb(255, 100, 130) },
+      purple  = { rgb(180, 0, 255),  rgb(220, 100, 255) },
+      cyan    = { rgb(0, 200, 255),  rgb(100, 230, 255) },
+      amber   = { rgb(255, 180, 0),  rgb(255, 220, 100) },
+      pink    = { rgb(255, 0, 180),  rgb(255, 120, 220) },
+      green   = { rgb(0, 200, 0),    rgb(100, 255, 100) },
+    } },
+  { name = "Blood Moon",
+    bg1 = rgb(20,8,11),  bg2 = rgb(40,14,18),
+    grad1 = rgb(220,38,38), grad2 = rgb(249,115,22),
+    textBright = rgb(255,238,232), textDim = rgb(220,165,158), textFaint = rgb(160,108,100),
+    particles = { rgb(239,68,68), rgb(249,115,22), rgb(236,72,153), rgb(252,165,165) },
+    palette = {
+      primary = { rgb(34,197,94),  rgb(74,222,128) },
+      danger  = { rgb(220,38,38),  rgb(248,113,113) },
+      purple  = { rgb(139,92,246), rgb(167,139,250) },
+      cyan    = { rgb(14,165,233), rgb(56,189,248) },
+      amber   = { rgb(245,158,11), rgb(251,191,36) },
+      pink    = { rgb(236,72,153), rgb(244,114,182) },
+      green   = { rgb(22,163,74),  rgb(74,222,128) },
+    } },
+  { name = "Toxic",
+    bg1 = rgb(6,20,10),  bg2 = rgb(13,34,17),
+    grad1 = rgb(22,163,74), grad2 = rgb(132,204,22),
+    textBright = rgb(238,255,238), textDim = rgb(160,215,170), textFaint = rgb(108,158,118),
+    particles = { rgb(34,197,94), rgb(132,204,22), rgb(253,224,71), rgb(74,222,128) },
+    palette = {
+      primary = { rgb(132,204,22), rgb(190,242,100) },
+      danger  = { rgb(220,38,38),  rgb(248,113,113) },
+      purple  = { rgb(124,58,237), rgb(168,85,247) },
+      cyan    = { rgb(6,182,212),  rgb(34,211,238) },
+      amber   = { rgb(253,224,71), rgb(254,240,138) },
+      pink    = { rgb(236,72,153), rgb(244,114,182) },
+      green   = { rgb(22,163,74),  rgb(74,222,128) },
+    } },
+  { name = "Galaxy",
+    bg1 = rgb(18,10,38),  bg2 = rgb(32,16,64),
+    grad1 = rgb(236,72,153), grad2 = rgb(139,92,246),
+    textBright = rgb(244,238,255), textDim = rgb(188,178,226), textFaint = rgb(132,122,172),
+    particles = { rgb(236,72,153), rgb(139,92,246), rgb(59,130,246), rgb(244,114,182) },
+    palette = {
+      primary = { rgb(34,197,94),  rgb(74,222,128) },
+      danger  = { rgb(239,68,68),  rgb(248,113,113) },
+      purple  = { rgb(139,92,246), rgb(167,139,250) },
+      cyan    = { rgb(56,189,248), rgb(125,211,252) },
+      amber   = { rgb(245,158,11), rgb(251,191,36) },
+      pink    = { rgb(236,72,153), rgb(244,114,182) },
+      green   = { rgb(22,163,74),  rgb(74,222,128) },
+    } },
+  { name = "Ice",
+    bg1 = rgb(8,16,28),  bg2 = rgb(15,31,50),
+    grad1 = rgb(6,182,212), grad2 = rgb(59,130,246),
+    textBright = rgb(236,248,255), textDim = rgb(165,200,225), textFaint = rgb(112,148,172),
+    particles = { rgb(6,182,212), rgb(59,130,246), rgb(226,232,240), rgb(34,211,238) },
+    palette = {
+      primary = { rgb(34,197,94),  rgb(74,222,128) },
+      danger  = { rgb(239,68,68),  rgb(248,113,113) },
+      purple  = { rgb(124,58,237), rgb(168,85,247) },
+      cyan    = { rgb(6,182,212),  rgb(34,211,238) },
+      amber   = { rgb(245,158,11), rgb(251,191,36) },
+      pink    = { rgb(236,72,153), rgb(244,114,182) },
+      green   = { rgb(22,163,74),  rgb(74,222,128) },
+    } },
+  { name = "Gold",
+    bg1 = rgb(26,18,6),  bg2 = rgb(44,30,10),
+    grad1 = rgb(245,158,11), grad2 = rgb(234,179,8),
+    textBright = rgb(255,250,232), textDim = rgb(218,196,142), textFaint = rgb(158,142,96),
+    particles = { rgb(245,158,11), rgb(234,179,8), rgb(249,115,22), rgb(253,224,71) },
+    palette = {
+      primary = { rgb(34,197,94),  rgb(74,222,128) },
+      danger  = { rgb(239,68,68),  rgb(248,113,113) },
+      purple  = { rgb(124,58,237), rgb(168,85,247) },
+      cyan    = { rgb(6,182,212),  rgb(34,211,238) },
+      amber   = { rgb(245,158,11), rgb(251,191,36) },
+      pink    = { rgb(236,72,153), rgb(244,114,182) },
+      green   = { rgb(22,163,74),  rgb(74,222,128) },
+    } },
+}
+
+-- ============================================================================
+--  ESTADO GLOBAL
+-- ============================================================================
+local state = {
+  inGame = false, wasInGame = false, cheatsActive = false,
+  clientHibernated = false, hotkeysRegistered = false,
+  mainForm = nil, content = nil, contentBg = nil, paintBg = nil, titleBar = nil,
+  sepPaint = nil, lblSub = nil, lblHelp = nil,
+  optimizerBg = nil, optBgPhase = 0,
+  cbAuto = nil, cbHiber = nil, cbAutoMeta = nil, cbHiberMeta = nil,
+  btnMetas = {}, chkMetas = {}, gridButtons = {}, themeBtnMeta = nil, particles = {},
+  bgBitmap = nil, bgDirty = true,
+  themeIndex = 1, theme = THEMES[1],
+  layoutReady = false,
+  sessionTimers = {},
+}
+
+-- ============================================================================
+--  MOTOR DE ANIMACION
+-- ============================================================================
+local function easeOutCubic(t) return 1 - ((1 - t) ^ 3) end
+local function easeOutQuart(t) return 1 - ((1 - t) ^ 4) end
+local function easeOutBack(t)
+  local c1, c3 = 1.70158, 2.70158
+  return 1 + c3 * ((t - 1) ^ 3) + c1 * ((t - 1) ^ 2)
+end
+
+local function destroySessionTimers()
+  for _, t in ipairs(state.sessionTimers) do
+    pcall(function() if t and t.destroy then t.destroy() end end)
+  end
+  state.sessionTimers = {}
+end
+local function addSessionTimer(t)
+  table.insert(state.sessionTimers, t)
+  return t
+end
+
+local Anim = {}
+function Anim.tween(opts)
+  opts = opts or {}
+  local duration = opts.duration or 300
+  local interval = opts.interval or 16
+  local easing   = opts.easing or easeOutCubic
+  local onUpdate = opts.onUpdate or function() end
+  local onDone   = opts.onDone
+  local owner    = opts.owner
+  local steps    = math.max(1, math.floor(duration / interval))
+  local i = 0
+  local timer = createTimer(nil)
+  timer.Interval = interval
+  timer.Enabled  = false
+  timer.OnTimer = function()
+    i = i + 1
+    local t = math.min(i / steps, 1)
+    onUpdate(easing(t), t)
+    if i &gt;= steps then
+      onUpdate(easing(1), 1)
+      timer.destroy()
+      if owner and owner.tween == timer then owner.tween = nil end
+      if onDone then onDone() end
+    end
+  end
+  if owner and owner.tween then pcall(function() owner.tween.destroy() end) end
+  if owner then owner.tween = timer end
+  addSessionTimer(timer)
+  timer.Enabled = true
+  return timer
+end
+function Anim.delay(ms, fn)
+  local t = createTimer(nil)
+  t.Interval = ms; t.Enabled = false
+  t.OnTimer = function() t.destroy(); if fn then fn() end end
+  t.Enabled = true
+  addSessionTimer(t)
+  return t
+end
+
+-- ============================================================================
+--  GRADIENTE SUAVE (dithering)
+-- ============================================================================
+local function paintGradientDithered(canvas, x, y, w, h, c1, c2, vertical)
+  if w &lt; 1 or h &lt; 1 then return end
+  local r1, g1, b1 = comps(c1); local r2, g2, b2 = comps(c2)
+  local steps = vertical and h or w
+  if steps &lt; 1 then steps = 1 end
+  local er, eg, eb = 0, 0, 0
+  canvas.Pen.Style = "psClear"
+  for i = 0, steps - 1 do
+    local tt = (steps == 1) and 0 or (i / (steps - 1))
+    local fr = lerp(r1, r2, tt) + er
+    local fg = lerp(g1, g2, tt) + eg
+    local fb = lerp(b1, b2, tt) + eb
+    local ir = clamp255(fr); er = fr - ir
+    local ig = clamp255(fg); eg = fg - ig
+    local ib = clamp255(fb); eb = fb - ib
+    canvas.Brush.Color = rgb(ir, ig, ib)
+    if vertical then canvas.FillRect(x, y + i, x + w, y + i + 1)
+    else canvas.FillRect(x + i, y, x + i + 1, y + h) end
+  end
+  canvas.Pen.Style = "psSolid"
+end
+
+local function rebuildBgBitmap(W, H)
+  -- SAFE14: delega a rebuildFormBgBitmap (la nueva implementacion usa formBgBitmap)
+  -- Esta funcion se mantiene por compatibilidad con codigo viejo
+  -- que todavia llama a rebuildBgBitmap (ver lineas 2900+).
+  rebuildFormBgBitmap(W, H)
+end
+
+-- ============================================================================
+--  CYBER-VISUALS 2026
+-- ============================================================================
+local function drawCyberGrid(canvas, x, y, w, h, th)
+  if w &lt; 2 or h &lt; 2 then return end
+  local cv = canvas
+  local horizon = h * 0.6
+  
+  -- Horizon Glow
+  cv.Pen.Style = "psClear"
+  cv.Brush.Style = "bsSolid"
+  cv.Brush.Color = th.grad1
+  cv.FillRect(0, horizon - 2, w, horizon + 2)
+  
+  -- PERSPECTIVE GRID
+  cv.Pen.Style = "psSolid"
+  cv.Pen.Width = 1
+  
+  -- Horizontal lines (converging)
+  for i = 0, 15 do
+    local py = horizon + (h - horizon) * (i / 15)
+    cv.Pen.Color = colorLerp(th.bg2, th.grad2, i/15)
+    cv.MoveTo(0, py)
+    cv.LineTo(w, py)
+  end
+  
+  -- Vertical lines (perspective)
+  local lines = 20
+  for i = 0, lines do
+    local px = (w / lines) * i
+    cv.Pen.Color = colorLerp(th.bg2, th.grad2, 0.5)
+    cv.MoveTo(px, horizon)
+    -- vanishing point center
+    local targetX = (w / 2) + (px - w / 2) * 0.1
+    cv.LineTo(targetX, horizon) -- conceptually it goes to horizon
+    -- actually we want lines from horizon to bottom
+    cv.MoveTo(px, horizon)
+    cv.LineTo(px - (w/2 - px)*2, h) -- basic perspective
+  end
+  
+  -- FIX Perspective lines
+  cv.Pen.Width = 1
+  for i = -10, 20 do
+    local startX = (w / 10) * i
+    cv.Pen.Color = colorLerp(th.bg2, th.grad2, 0.5)
+    cv.MoveTo(w/2, horizon)
+    cv.LineTo(startX, h)
+  end
+  
+  cv.Pen.Style = "psSolid"
+  cv.Brush.Style = "bsSolid"
+end
+
+
+-- ============================================================================
+--  FONDO GAMER GEN Z 2026 (100% NATIVO / SIN IMAGEN EXTERNA)
+--  Dibujo por Canvas: compatible con TForm, TPanel, PaintBox y optimizer.
+-- ============================================================================
+local function drawGamerGenZ2026Backdrop(canvas, W, H, th, phase, compact)
+  if not canvas or W &lt; 2 or H &lt; 2 then return end
+  phase = phase or 0
+  local cv = canvas
+
+  paintGradientDithered(cv, 0, 0, W, H, th.bg1, th.bg2, true)
+
+  -- Glow diagonal neon tipo poster gamer
+  cv.Pen.Style = "psClear"
+  cv.Brush.Style = "bsSolid"
+  for i = 1, 5 do
+    local a = i / 5
+    cv.Brush.Color = colorLerp(th.grad1, th.bg2, 0.62 + a * 0.07)
+    local x1 = math.floor(W * (0.06 + a * 0.035))
+    local y1 = math.floor(H * (0.10 + a * 0.045))
+    cv.FillRect(x1, y1, math.min(W, x1 + math.floor(W * 0.015) + 1), H)
+    cv.Brush.Color = colorLerp(th.grad2, th.bg2, 0.66 + a * 0.06)
+    local x2 = math.floor(W * (0.78 + a * 0.018))
+    cv.FillRect(x2, 0, math.min(W, x2 + math.floor(W * 0.012) + 1), math.floor(H * (0.88 - a * 0.04)))
+  end
+
+  -- Sol/portal 2026 detras del logo/avatar
+  local cx = math.floor(W * (compact and 0.79 or 0.74))
+  local cy = math.floor(H * (compact and 0.24 or 0.28))
+  local rr = math.max(34, math.floor(math.min(W, H) * (compact and 0.13 or 0.18)))
+  for i = 9, 1, -1 do
+    local t = i / 9
+    cv.Brush.Color = colorLerp(th.grad2, th.bg2, 0.36 + (1 - t) * 0.45)
+    cv.Ellipse(cx - rr*t, cy - rr*t, cx + rr*t, cy + rr*t)
+  end
+  cv.Pen.Style = "psSolid"
+  cv.Pen.Width = 2
+  cv.Pen.Color = th.grad1
+  cv.Brush.Style = "bsClear"
+  cv.Ellipse(cx - rr, cy - rr, cx + rr, cy + rr)
+  cv.Pen.Color = th.grad2
+  cv.Ellipse(cx - rr + 8, cy - rr + 8, cx + rr - 8, cy + rr - 8)
+
+  -- Avatar gamer minimalista con headset (no usa assets externos)
+  local headR = math.max(16, math.floor(rr * 0.34))
+  cv.Brush.Style = "bsSolid"
+  cv.Brush.Color = colorLerp(th.textBright, th.grad1, 0.28)
+  cv.Pen.Style = "psClear"
+  cv.Ellipse(cx - headR, cy - headR, cx + headR, cy + headR)
+  cv.Brush.Color = colorLerp(th.bg1, th.grad2, 0.25)
+  cv.Ellipse(cx - headR + 5, cy - headR + 5, cx + headR - 5, cy + headR - 5)
+  -- Visor
+  cv.Brush.Color = th.grad1
+  cv.FillRect(cx - math.floor(headR*0.62), cy - 4, cx + math.floor(headR*0.62), cy + 5)
+  cv.Brush.Color = th.grad2
+  cv.FillRect(cx - math.floor(headR*0.46), cy - 2, cx + math.floor(headR*0.46), cy + 3)
+  -- Headset
+  cv.Pen.Style = "psSolid"
+  cv.Pen.Width = 3
+  cv.Pen.Color = th.textBright
+  cv.MoveTo(cx - headR - 6, cy)
+  cv.LineTo(cx - headR - 6, cy + headR)
+  cv.MoveTo(cx + headR + 6, cy)
+  cv.LineTo(cx + headR + 6, cy + headR)
+  cv.Pen.Color = th.grad1
+  cv.MoveTo(cx + headR + 6, cy + math.floor(headR*0.75))
+  cv.LineTo(cx + headR + 22, cy + math.floor(headR*1.03))
+
+  -- Cyber grid inferior / compatible con responsividad
+  drawCyberGrid(cv, 0, math.floor(H * 0.48), W, math.floor(H * 0.52), th)
+
+  -- Texto decorativo 2026 (se adapta al ancho)
+  cv.Brush.Style = "bsClear"
+  cv.Font.Name = "Segoe UI"
+  cv.Font.Style = "fsBold"
+  cv.Font.Size = compact and 10 or math.max(11, math.floor(math.min(W, H) / 34))
+  cv.Font.Color = colorLerp(th.textBright, th.grad1, 0.20)
+  local tag = compact and "GEN-Z 2026" or "GEN-Z GAMER 2026"
+  cv.TextOut(math.max(12, math.floor(W * 0.04)), math.max(8, math.floor(H * 0.10)), tag)
+  cv.Font.Size = compact and 8 or 9
+  cv.Font.Color = th.textFaint
+  cv.TextOut(math.max(12, math.floor(W * 0.04)), math.max(26, math.floor(H * 0.10) + 22), "native canvas • responsive • no external assets")
+
+  -- Rayos / formas Gen Z
+  cv.Pen.Width = 2
+  cv.Pen.Color = th.grad2
+  local bx = math.floor(W * (0.12 + 0.02 * math.sin(phase)))
+  local by = math.floor(H * 0.70)
+  cv.MoveTo(bx, by)
+  cv.LineTo(bx + 18, by - 34)
+  cv.LineTo(bx + 8, by - 34)
+  cv.LineTo(bx + 30, by - 74)
+  cv.Pen.Color = th.grad1
+  local xx = math.floor(W * 0.90)
+  local yy = math.floor(H * 0.72)
+  cv.MoveTo(xx - 10, yy - 10); cv.LineTo(xx + 10, yy + 10)
+  cv.MoveTo(xx + 10, yy - 10); cv.LineTo(xx - 10, yy + 10)
+
+  cv.Pen.Width = 1
+  cv.Pen.Style = "psSolid"
+  cv.Brush.Style = "bsSolid"
+end
+
+local function drawGamerParticles(canvas, W, H)
+  if not canvas or W &lt; 2 or H &lt; 2 then return end
+  local cv = canvas
+  cv.Pen.Style = "psClear"
+  cv.Brush.Style = "bsSolid"
+  for i, p in ipairs(state.particles or {}) do
+    local pulse = 0.35 + 0.35 * math.sin(p.ph)
+    local px = p.x * W
+    local py = p.y * H
+    local rr = p.r * (1.3 + pulse)
+    local particleColor = colorLerp(p.col, state.theme.bg2, 0.28 + pulse * 0.22)
+    cv.Brush.Color = particleColor
+    if (p.kind or 1) == 2 then
+      cv.Pen.Style = "psSolid"
+      cv.Pen.Color = particleColor
+      cv.Pen.Width = 1
+      cv.MoveTo(px - rr, py); cv.LineTo(px + rr, py)
+      cv.MoveTo(px, py - rr); cv.LineTo(px, py + rr)
+      cv.Pen.Style = "psClear"
+    elseif (p.kind or 1) == 3 then
+      cv.FillRect(px - rr, py - rr, px + rr, py + rr)
+    else
+      cv.Ellipse(px - rr, py - rr, px + rr, py + rr)
+    end
+
+    -- Conexiones ligeras solo cada 4 particulas: efecto profesional sin sobrecargar CE
+    if i % 4 == 0 then
+      local q = state.particles[i + 1]
+      if q then
+        local qx, qy = q.x * W, q.y * H
+        local dx, dy = px - qx, py - qy
+        local d2 = dx*dx + dy*dy
+        if d2 &lt; 9000 then
+          cv.Pen.Style = "psSolid"
+          cv.Pen.Width = 1
+          cv.Pen.Color = colorLerp(p.col, state.theme.bg2, 0.58)
+          cv.MoveTo(px, py); cv.LineTo(qx, qy)
+          cv.Pen.Style = "psClear"
+        end
+      end
+    end
+  end
+  cv.Pen.Style = "psSolid"
+  cv.Brush.Style = "bsSolid"
+end
+
+-- ============================================================================
+--  PARTICULAS
+-- ============================================================================
+local function spawnParticles()
+  -- GENZ2026: particulas canvas nativas, livianas y compatibles con TForm/TPanel/PaintBox.
+  local cols = state.theme.particles
+  local arr = {}
+  local count = 64
+  for i = 1, count do
+    arr[i] = {
+      x = math.random(), y = math.random(),
+      vx = (math.random() - 0.5) * 0.00026,
+      vy = -(math.random() * 0.00022 + 0.00004),
+      r = math.random() * 4.8 + 1.8,
+      col = cols[math.random(#cols)],
+      ph = math.random() * math.pi * 2,
+      sp = math.random() * 0.09 + 0.035,
+      kind = math.random(1, 3),
+    }
+  end
+  state.particles = arr
+end
+
+
+
+-- SAFE33: crear TPanels para particulas (legacy, ahora se usa canvas)
+function createParticleShapes()
+  if not state.particles then return end
+  for i, p in ipairs(state.particles) do
+    p.shape = nil
+  end
+end
+
+-- SAFE34: destruir TPanels de particulas
+function destroyParticleShapes()
+  if not state.particles then return end
+  for _, p in ipairs(state.particles) do
+    if p.shape then
+      pcall(function() p.shape.destroy() end)
+      p.shape = nil
+    end
+  end
+end
+
+
+local function startParticleEngine()
+  if REFS._pEngine and type(REFS._pEngine) == "userdata" then return end
+  -- SAFE16: las particulas se dibujan en bgPanel (NO form, NO PaintBox).
+  -- El timer repaint SOLO el bgPanel, que esta al fondo del z-order,
+  -- asi nunca afecta a los hijos (botones, labels).
+  spawnParticles()
+  createParticleShapes()
+  local last = os.clock()
+  local t = createTimer(nil)
+  t.Interval = 40
+  t.Enabled = false
+  t.OnTimer = function()
+    if not (state.mainForm and state.mainForm.Visible) then return end
+    if not state.content then return end
+    local now = os.clock()
+    local dt = (now - last) * 1000; last = now
+    if dt &gt; 120 then dt = 40 end
+    for _, p in ipairs(state.particles or {}) do
+      p.x = p.x + p.vx * dt
+      p.y = p.y + p.vy * dt
+      p.ph = p.ph + p.sp * (dt / 16)
+      if p.x &lt; -0.05 then p.x = 1.05 elseif p.x &gt; 1.05 then p.x = -0.05 end
+      if p.y &lt; -0.05 then p.y = 1.05 elseif p.y &gt; 1.05 then p.y = -0.05 end
+    end
+    -- SAFE29: repaint SOLO particleBg (NO el form, asi no interfiere con hijos)
+    if state.particleBg then
+      pcall(function() state.particleBg.Invalidate() end)
+    end
+    if state.contentBg then
+      pcall(function() state.contentBg.Invalidate() end)
+    end
+    if state.optimizerBg then
+      state.optBgPhase = (state.optBgPhase or 0) + 0.05
+      pcall(function() state.optimizerBg.Invalidate() end)
+    end
+  end
+  t.Enabled = true
+  REFS._pEngine = t
+  table.insert(REFS.timers, t)
+end
+
+-- ============================================================================
+--  COMPONENTES
+-- ============================================================================
+local function createGradientBar(parent, height, captionFn, opts)
+  opts = opts or {}
+  local pb = createPaintBox(parent)
+  pb.Align = alTop
+  pb.Height = height or 52
+  pb.OnPaint = function()
+    local W, H = pb.Width, pb.Height
+    if W &lt; 2 or H &lt; 2 then return end
+    local th = state.theme
+    paintGradientDithered(pb.Canvas, 0, 0, W, H, th.grad1, th.grad2, false)
+    pb.Canvas.Pen.Style = "psClear"
+    pb.Canvas.Brush.Color = lighten(th.grad2, 0.45)
+    pb.Canvas.FillRect(0, H - 2, W, H)
+    pb.Canvas.Brush.Style = "bsClear"
+    pb.Canvas.Font.Color = th.textBright
+    pb.Canvas.Font.Name = "Segoe UI"
+    pb.Canvas.Font.Size = opts.fontSize or 14
+    pb.Canvas.Font.Style = "fsBold"
+    local txt = type(captionFn) == "function" and captionFn() or captionFn
+    pb.Canvas.TextOut(opts.x or 16, opts.y or math.floor((H - textH(pb.Canvas, txt)) / 2), txt)
+    pb.Canvas.Brush.Style = "bsSolid"
+    pb.Canvas.Pen.Style = "psSolid"
+  end
+  return pb
+end
+
+-- BOTON MATERIAL: TPanel con OnPaint propio. Pen.Style=psClear SIEMPRE
+-- (evita bordes negros en RoundRect). Color vibrante plano. Texto centrado.
+local CORNER = 16
+local function createMaterialButton(parent, text, onClick, colorKey)
+  local panel = createPanel(parent)
+  panel.BevelOuter = bvNone
+  panel.BevelInner = bvNone
+  panel.ParentBackground = false
+  panel.ParentColor = false
+  panel.Caption = ""
+  panel.Color = state.theme.bg1
+  pcall(function() panel.Cursor = -21 end)
+
+  local pal = state.theme.palette[colorKey] or state.theme.palette.purple
+  local meta = {
+    key = colorKey, caption = text,
+    base = pal[1], hover = pal[2], press = darken(pal[1], 0.22),
+    cur = pal[1], ctrl = panel, alive = true, tween = nil,
+  }
+
+  panel.OnPaint = function()
+    if not meta.alive then return end
+    local W, H = panel.Width, panel.Height
+    if W &lt; 6 or H &lt; 6 then return end
+    local th = state.theme
+    local cv = panel.Canvas
+    -- CRUCIAL: Pen siempre clear para que RoundRect NO dibuje borde negro
+    cv.Pen.Style = "psClear"
+    cv.Brush.Style = "bsSolid"
+    -- cuerpo redondeado plano (color vibrante, llena todo el panel)
+    cv.Brush.Color = meta.cur
+    pcall(function() cv.RoundRect(0, 0, W, H, CORNER, CORNER) end)
+    -- texto centrado (sin fondo)
+    cv.Brush.Style = "bsClear"
+    cv.Font.Name = "Segoe UI"
+    cv.Font.Size = 10
+    cv.Font.Style = "fsBold"
+    cv.Font.Color = th.textBright
+    local cap = meta.caption or ""
+    local tw = textW(cv, cap)
+    local th2 = textH(cv, cap)
+    cv.TextOut(math.floor((W - tw) / 2), math.floor((H - th2) / 2), cap)
+    cv.Brush.Style = "bsSolid"
+    cv.Pen.Style = "psSolid"
+  end
+
+  local function repaintBtn()
+    if meta.alive then pcall(function() panel.repaint() end) end
+  end
+
+  panel.OnMouseEnter = function()
+    if not meta.alive then return end
+    Anim.tween{ owner = meta, duration = 140, easing = easeOutCubic,
+      onUpdate = function(e) meta.cur = colorLerp(meta.base, meta.hover, e); repaintBtn() end }
+  end
+  panel.OnMouseLeave = function()
+    if not meta.alive then return end
+    Anim.tween{ owner = meta, duration = 200, easing = easeOutQuart,
+      onUpdate = function(e) meta.cur = colorLerp(meta.hover, meta.base, e); repaintBtn() end }
+  end
+  panel.OnMouseDown = function() if meta.alive then meta.cur = meta.press; repaintBtn() end end
+  panel.OnMouseUp = function() if meta.alive then meta.cur = meta.hover; repaintBtn() end end
+  panel.OnClick = function()
+    if not meta.alive then return end
+    meta.cur = meta.press; repaintBtn()
+    Anim.tween{ owner = meta, duration = 220, easing = easeOutBack,
+      onUpdate = function(e) meta.cur = colorLerp(meta.press, meta.hover, e); repaintBtn() end }
+    if onClick then onClick() end
+  end
+
+  table.insert(state.btnMetas, meta)
+  return panel
+end
+
+-- CHECKBOX MATERIAL: dibujado propio (caja + check + texto) -&gt; color SIEMPRE visible
+local CB_BOX = 22
+local function createMaterialCheckbox(parent, caption, onChange)
+  local panel = createPanel(parent)
+  panel.BevelOuter = bvNone
+  panel.BevelInner = bvNone
+  panel.ParentBackground = false
+  panel.ParentColor = false
+  panel.Caption = ""
+  panel.Color = state.theme.bg1
+  pcall(function() panel.Cursor = -21 end)
+
+  local meta = { caption = caption, checked = true, ctrl = panel, alive = true }
+
+  panel.OnPaint = function()
+    if not meta.alive then return end
+    local W, H = panel.Width, panel.Height
+    if W &lt; 10 or H &lt; 10 then return end
+    local th = state.theme
+    local cv = panel.Canvas
+    local bx = 2
+    local by = math.floor((H - CB_BOX) / 2)
+    cv.Pen.Style = "psClear"
+    cv.Brush.Style = "bsSolid"
+    -- caja redondeada
+    if meta.checked then
+      cv.Brush.Color = th.palette.primary[2]
+      pcall(function() cv.RoundRect(bx, by, bx + CB_BOX, by + CB_BOX, 6, 6) end)
+      -- check blanco
+      cv.Pen.Style = "psSolid"
+      cv.Pen.Color = th.textBright
+      cv.Pen.Width = 3
+      pcall(function()
+        cv.MoveTo(bx + 5, by + 12)
+        cv.LineTo(bx + 9, by + 16)
+        cv.LineTo(bx + 18, by + 6)
+      end)
+      cv.Pen.Width = 1
+    else
+      cv.Brush.Color = lighten(th.bg2, 0.12)
+      pcall(function() cv.RoundRect(bx, by, bx + CB_BOX, by + CB_BOX, 6, 6) end)
+      cv.Pen.Style = "psSolid"
+      cv.Pen.Color = th.textFaint
+      cv.Pen.Width = 2
+      pcall(function() cv.RoundRect(bx, by, bx + CB_BOX, by + CB_BOX, 6, 6) end)
+      cv.Pen.Width = 1
+    end
+    cv.Pen.Style = "psClear"
+    -- texto (fuera de la caja), color del tema
+    cv.Brush.Style = "bsClear"
+    cv.Font.Name = "Segoe UI"
+    cv.Font.Size = 10
+    cv.Font.Color = th.textBright
+    cv.TextOut(bx + CB_BOX + 10, math.floor((H - textH(cv, meta.caption)) / 2), meta.caption)
+    cv.Brush.Style = "bsSolid"
+    cv.Pen.Style = "psSolid"
+  end
+
+  panel.OnMouseEnter = function() if meta.alive then pcall(function() panel.repaint() end) end end
+  panel.OnMouseLeave = function() if meta.alive then pcall(function() panel.repaint() end) end end
+  panel.OnClick = function()
+    if not meta.alive then return end
+    meta.checked = not meta.checked
+    pcall(function() panel.repaint() end)
+    if onChange then onChange(meta.checked) end
+  end
+
+  table.insert(state.chkMetas, meta)
+  return panel
+end
+
+function notifyToast(text, color)
+  color = color or state.theme.grad2
+  local f = createForm()
+  f.BorderStyle = bsNone
+  f.FormStyle = fsStayOnTop
+  f.Position = poScreenCenter
+  f.Width = 280; f.Height = 52
+  local mf = getMainForm()
+  local sw = (mf and mf.Left or 0) + (mf and mf.Width or 800)
+  f.Left = math.max(40, sw - f.Width - 30)
+  f.Top  = math.max(40, (mf and mf.Top or 0) + 110)
+  f.AlphaBlend = true; f.AlphaBlendValue = 0
+  f.Color = state.theme.bg2
+
+  local accent = createPaintBox(f)
+  accent.Align = alLeft; accent.Width = 6
+  accent.OnPaint = function()
+    paintGradientDithered(accent.Canvas, 0, 0, accent.Width, accent.Height, lighten(color, 0.3), color, true)
+  end
+
+  local lbl = createLabel(f)
+  lbl.Caption = text
+  lbl.Left = 18; lbl.Top = 16; lbl.Width = 254; lbl.Height = 22
+  lbl.Font.Name = "Segoe UI"; lbl.Font.Size = 11; lbl.Font.Style = "fsBold"
+  lbl.Font.Color = state.theme.textBright
+
+  f.show()
+  Anim.tween{ duration = 180, easing = easeOutCubic,
+    onUpdate = function(e) f.AlphaBlendValue = math.floor(255 * e) end,
+    onDone = function()
+      Anim.delay(1100, function()
+        Anim.tween{ duration = 340, easing = easeOutQuart,
+          onUpdate = function(e) f.AlphaBlendValue = math.floor(255 * (1 - e)) end,
+          onDone = function() f.destroy() end }
+      end)
+    end }
+  table.insert(REFS.forms, f)
+  return f
+end
+
+-- ============================================================================
+--  APLICAR TEMA
+-- ============================================================================
+function applyTheme()
+  local th = state.theme
+  if not state.mainForm then return end
+  pcall(function() state.mainForm.Color = th.bg1 end)
+  if state.content then pcall(function() state.content.Color = th.bg1 end) end
+  for _, m in ipairs(state.btnMetas) do
+    local p = th.palette[m.key]
+    if p then
+      m.base = p[1]; m.hover = p[2]; m.press = darken(p[1], 0.22); m.cur = p[1]
+      if m.alive and m.ctrl then
+        pcall(function() m.ctrl.Color = th.bg1 end)
+        pcall(function() m.ctrl.repaint() end)
+      end
+    end
+  end
+  for _, m in ipairs(state.chkMetas) do
+    if m.alive and m.ctrl then
+      pcall(function() m.ctrl.Color = th.bg1 end)
+      pcall(function() m.ctrl.repaint() end)
+    end
+  end
+  if state.themeBtnMeta and state.themeBtnMeta.alive and state.themeBtnMeta.ctrl then
+    state.themeBtnMeta.caption = "🎨  " .. th.name
+    pcall(function() state.themeBtnMeta.ctrl.repaint() end)
+  end
+  pcall(function() if state.lblSub then state.lblSub.Font.Color = state.inGame and th.palette.primary[2] or th.textDim end end)
+  pcall(function() if state.lblHelp then state.lblHelp.Font.Color = th.textFaint end end)
+  state.bgDirty = true
+  spawnParticles()
+  if state.paintBg  then pcall(function() state.paintBg.repaint() end) end
+  if state.contentBg then pcall(function() state.contentBg.Invalidate() end) end
+  if state.optimizerBg then pcall(function() state.optimizerBg.Invalidate() end) end
+  if state.titleBar then pcall(function() state.titleBar.repaint() end) end
+  if state.sepPaint then pcall(function() state.sepPaint.repaint() end) end
+end
+
+function cycleTheme()
+  state.themeIndex = (state.themeIndex % #THEMES) + 1
+  state.theme = THEMES[state.themeIndex]
+  applyTheme()
+  notifyToast("Tema: " .. state.theme.name, state.theme.grad2)
+  syncOptimizerTheme()  -- SAFE34: sincronizar optimizer
+end
+
+-- ============================================================================
+--  PROCESOS / HIBERNACION  (PORT COMPLETO de main.cpp -&gt; Lua avanzado)
+--
+--  REPLICA EXACTA de la logica de ProcessThreadsDatas / main.cpp:
+--    1) Enumerar modulos del proceso (CreateToolhelp32Snapshot + MODULEENTRY32)
+--       -&gt; en Lua de CE usamos getModuleList(pid) / enumModules(pid)
+--    2) Enumerar TODOS los hilos del sistema y filtrar por th32OwnerProcessID
+--       -&gt; en Lua usamos getThreadList(pid)
+--    3) Por cada hilo: obtener Win32StartAddress con
+--       NtQueryInformationThread( ThreadQuerySetWin32StartAddress = 9 )
+--       -&gt; cargamos ntdll.NtQueryInformationThread con executeCodeEx
+--    4) Mapear StartAddress -&gt; modulo dueño (rango base..base+size)
+--    5) Suspender SOLO los hilos cuyo modulo dueño este en la whitelist:
+--          Atinad.exe, MSVCR120.dll, MSVCR100.dll  (igual que main.cpp)
+--       y opcionalmente cualquier *.dll hija del Launcher (configurable).
+--    6) Trackear los TID suspendidos (igual a listThreadsSuspends del C++)
+--       para poder reanudarlos uno a uno y consistentemente.
+--    7) Si un hilo ya estaba suspendido (SuspendThread devuelve &gt;0),
+--       lo respetamos: lo dejamos suspendido y lo marcamos como ya hibernado.
+-- ============================================================================
+
+-- Constantes Win32 portadas desde windows.h / winnt.h / tlhelp32.h
+local THREAD_SUSPEND_RESUME      = 0x0002
+local THREAD_QUERY_INFORMATION   = 0x0040
+local THREAD_ALL_ACCESS          = 0x001F03FF
+local ThreadQuerySetWin32StartAddress = 9  -- enum THREADINFOCLASS
+
+-- Modulos cuyos hilos hijos deben ser suspendidos (whitelist del main.cpp)
+local SUSPEND_MODULE_WHITELIST = {
+  ["atinad.exe"]   = true,
+  ["msvcr120.dll"] = true,
+  ["msvcr100.dll"] = true,
+  -- ["wpfgfx_v0400.dll"] = true,  -- comentado en main.cpp original
+}
+
+-- Clientes a hibernar (igual al main.cpp: rgc.exe / Atinad.exe / Launcher.exe)
+local CLIENT_NAMES = { "rgc.exe", "Atinad.exe", "Launcher.exe" }
+
+-- Cache de TIDs suspendidos por proceso -&gt; equivale a listThreadsSuspends
+-- state.suspendedThreadsByPid[pid] = { tid1, tid2, ... }
+state.suspendedThreadsByPid = state.suspendedThreadsByPid or {}
+
+-- ---------------------------------------------------------------------------
+--  Helper: lower-case seguro de un string
+-- ---------------------------------------------------------------------------
+local function lc(s) return (type(s) == "string") and s:lower() or "" end
+
+-- ---------------------------------------------------------------------------
+--  getProcessID(name)  --  equivale a Process32First/Next + match por nombre
+--    Soporta "rgc" o "rgc.exe", case-insensitive. Coincidencia parcial.
+-- ---------------------------------------------------------------------------
+function getProcessID(name)
+  if type(name) ~= "string" or name == "" then return nil end
+  local target = lc(name)
+  -- 1) intento nativo de CE (mas rapido y exacto)
+  local ok, pid = pcall(getProcessIDFromProcessName, name)
+  if ok and type(pid) == "number" and pid &gt; 0 then return pid end
+  -- 2) fallback: barrer getProcessList()
+  local ok2, plist = pcall(getProcessList)
+  if not ok2 or type(plist) ~= "table" then return nil end
+  for k, v in pairs(plist) do
+    -- getProcessList puede devolver { pid = "name" } o { "pid-name", ... }
+    local pidNum, pname
+    if type(k) == "number" and type(v) == "string" then
+      pidNum, pname = k, v
+    elseif type(v) == "string" then
+      local p, n = v:match("^(%x+)%-(.+)$")
+      if p and n then pidNum, pname = tonumber(p, 16), n end
+    end
+    if pidNum and pname and lc(pname):find(target, 1, true) then
+      return pidNum
+    end
+  end
+  return nil
+end
+
+-- ---------------------------------------------------------------------------
+--  getProcessModules(pid)  --  enumera modulos del proceso destino
+--  Devuelve lista: { { name=, baseAddress=, size= }, ... }
+--  Usa enumModules(pid) si esta disponible (CE 7.x), si no getModuleList.
+-- ---------------------------------------------------------------------------
+function getProcessModules(pid)
+  local out = {}
+  -- prefer enumModules(pid) (mas info, sin necesidad de openProcess permanente)
+  local ok, mods = pcall(enumModules, pid)
+  if ok and type(mods) == "table" and #mods &gt; 0 then
+    for _, m in ipairs(mods) do
+      table.insert(out, {
+        name        = m.Name or m.name or "",
+        baseAddress = m.Address or m.address or m.AddressOfEntryPoint or 0,
+        size        = m.Size or m.size or 0,
+      })
+    end
+    return out
+  end
+  -- fallback: getModuleList() del proceso actualmente abierto
+  -- (requiere openProcess(pid) primero)
+  local prev = getOpenedProcessID and getOpenedProcessID() or 0
+  pcall(openProcess, pid)
+  local ok2, mods2 = pcall(getModuleList)
+  if ok2 and type(mods2) == "table" then
+    for _, m in ipairs(mods2) do
+      table.insert(out, {
+        name        = m.Name or "",
+        baseAddress = m.Address or 0,
+        size        = m.Size or 0,
+      })
+    end
+  end
+  if prev and prev ~= 0 then pcall(openProcess, prev) end
+  return out
+end
+
+-- ---------------------------------------------------------------------------
+--  getThreadStartAddress(tid)
+--  Equivalente a:
+--      hThread = OpenThread(THREAD_QUERY_INFORMATION, FALSE, tid)
+--      NtQueryInformationThread(hThread,
+--          ThreadQuerySetWin32StartAddress, &amp;addr, sizeof(addr), NULL)
+--      CloseHandle(hThread)
+--  Implementado con CE: openThread + executeCodeEx a ntdll
+--  Devuelve la direccion (entero) o nil si no se pudo.
+-- ---------------------------------------------------------------------------
+-- Cargamos ntdll.NtQueryInformationThread del PROPIO Cheat Engine (no del
+-- proceso destino), porque openThread() en Lua devuelve un HANDLE valido solo
+-- en el contexto del proceso CE. Por eso usamos executeCodeLocalEx
+-- (ejecucion en el espacio de CE, no del proceso abierto).
+local _ntq_addr = nil
+local function getNtQueryInformationThreadAddrLocal()
+  if _ntq_addr then return _ntq_addr end
+  -- 1) intento via LoadLibrary local en CE
+  local ok1, h = pcall(loadLibrary, "ntdll.dll")
+  if ok1 and type(h) == "number" and h ~= 0 then
+    local ok2, p = pcall(getProcAddress, h, "NtQueryInformationThread")
+    if ok2 and type(p) == "number" and p ~= 0 then _ntq_addr = p; return p end
+  end
+  -- 2) fallback: getAddress local (CE lo resuelve en su propio ntdll)
+  local ok3, a = pcall(getAddress, "ntdll.NtQueryInformationThread", true)
+  if ok3 and type(a) == "number" and a ~= 0 then _ntq_addr = a; return a end
+  return nil
+end
+
+-- Buffer local persistente para recibir el StartAddress
+local _ntq_buf = nil
+local function getNtqBuffer()
+  if _ntq_buf then return _ntq_buf end
+  -- allocateMemory en el proceso CE local (segundo parametro true = local)
+  local ok, m = pcall(allocateMemory, 32, nil, true)
+  if ok and m then _ntq_buf = m; return m end
+  -- fallback simple
+  local ok2, m2 = pcall(allocateMemory, 32)
+  if ok2 and m2 then _ntq_buf = m2; return m2 end
+  return nil
+end
+
+function getThreadStartAddress(tid)
+  local hThread = openThread(tid)
+  if not hThread or hThread == 0 then return nil end
+
+  local fn = getNtQueryInformationThreadAddrLocal()
+  local buf = getNtqBuffer()
+  if not fn or not buf then closeHandle(hThread); return nil end
+
+  -- limpiamos los primeros 8 bytes
+  pcall(writeQword, buf, 0)
+
+  -- En CE de 64 bits el handle/puntero es 8 bytes; en 32 bits, 4.
+  local ceIs64 = false
+  pcall(function() if process and process ~= 0 then end end)
+  -- CE expone __ceIs64? usamos truco: targetIs64Bit es del proceso abierto.
+  -- Para el proceso local usamos getCEVersion + heuristica: si la direccion
+  -- de fn supera 0xFFFFFFFF, estamos en 64-bit.
+  if fn &gt; 0xFFFFFFFF then ceIs64 = true end
+  local ptrSize = ceIs64 and 8 or 4
+
+  local status = nil
+  -- executeCodeLocalEx invoca en el ESPACIO DE CHEAT ENGINE (local).
+  local okCall = pcall(function()
+    status = executeCodeLocalEx(fn,
+      hThread,
+      ThreadQuerySetWin32StartAddress,
+      buf,
+      ptrSize,
+      0)
+  end)
+  -- Algunas versiones de CE solo exponen executeCodeLocal (sin Ex)
+  if not okCall or status == nil then
+    pcall(function()
+      status = executeCodeLocal(fn,
+        hThread,
+        ThreadQuerySetWin32StartAddress,
+        buf,
+        ptrSize,
+        0)
+    end)
+  end
+
+  local addr = nil
+  if status == 0 then
+    if ptrSize == 8 then
+      addr = readQword(buf)
+    else
+      addr = readInteger(buf)
+      if addr and addr &lt; 0 then addr = addr + 0x100000000 end
+    end
+  end
+
+  closeHandle(hThread)
+  return addr
+end
+
+-- ---------------------------------------------------------------------------
+--  resolveModuleOfAddress(addr, modules)
+--    Equivale al loop:
+--      if startAddr &gt;= mod.base and startAddr &lt; mod.base+mod.size then ...
+-- ---------------------------------------------------------------------------
+function resolveModuleOfAddress(addr, modules)
+  if not addr or addr == 0 then return nil end
+  for _, m in ipairs(modules) do
+    local b = m.baseAddress or 0
+    local s = m.size or 0
+    if b &gt; 0 and addr &gt;= b and addr &lt; (b + s) then
+      return m.name
+    end
+  end
+  return nil
+end
+
+-- ---------------------------------------------------------------------------
+--  listProcessThreadsAndModules(pid)
+--    Replica ListProcessThreadsAndModules del main.cpp.
+--    Devuelve:
+--      threads = {
+--        { tid=, startAddr=, moduleName=, inWhitelist=bool }, ...
+--      },
+--      whitelistedCount = N
+-- ---------------------------------------------------------------------------
+function listProcessThreadsAndModules(pid)
+  local result = { threads = {}, whitelistedCount = 0, modules = {} }
+  if not pid then return result end
+
+  local modules = getProcessModules(pid)
+  result.modules = modules
+
+  local ok, tids = pcall(getThreadList, pid)
+  if not ok or type(tids) ~= "table" then return result end
+
+  for _, tid in ipairs(tids) do
+    local startAddr = getThreadStartAddress(tid)
+    local modName   = resolveModuleOfAddress(startAddr, modules) or "N/A"
+    local inWL      = SUSPEND_MODULE_WHITELIST[lc(modName)] == true
+    table.insert(result.threads, {
+      tid = tid, startAddr = startAddr, moduleName = modName, inWhitelist = inWL,
+    })
+    if inWL then result.whitelistedCount = result.whitelistedCount + 1 end
+  end
+  return result
+end
+
+-- ---------------------------------------------------------------------------
+--  hibernateClient(clientName)
+--    Equivalente a la SECCION de SuspendThread del main.cpp:
+--      * abre el proceso por nombre
+--      * filtra hilos hijos cuyo modulo dueño este en la whitelist
+--      * SuspendThread() en cada uno
+--      * si SuspendThread devuelve &gt;0 (ya estaba suspendido), lo respeta
+--        y lo registra igualmente en listThreadsSuspends
+--    Devuelve: ok(bool), countSuspended(int), totalWhitelisted(int)
+-- ---------------------------------------------------------------------------
+function hibernateClient(clientName)
+  local pid = getProcessID(clientName)
+  if not pid then return false, 0, 0 end
+
+  local info = listProcessThreadsAndModules(pid)
+  if info.whitelistedCount == 0 then
+    -- fallback: si no pudimos resolver modulos (p.ej. NtQuery fallo en este
+    -- sistema), nos comportamos como el codigo anterior: suspendemos TODOS
+    -- los hilos del proceso, igual que hacia la version inicial.
+    local ok, tids = pcall(getThreadList, pid)
+    if not ok or type(tids) ~= "table" then return false, 0, 0 end
+    local list = state.suspendedThreadsByPid[pid] or {}
+    local cnt = 0
+    for _, tid in ipairs(tids) do
+      local h = openThread(tid)
+      if h ~= 0 then
+        local prev = suspendThread(h)
+        if prev ~= 0xFFFFFFFF and prev ~= -1 then
+          table.insert(list, tid); cnt = cnt + 1
+        end
+        closeHandle(h)
+      end
+    end
+    state.suspendedThreadsByPid[pid] = list
+    return cnt &gt; 0, cnt, #tids
+  end
+
+  local list = state.suspendedThreadsByPid[pid] or {}
+  local cnt = 0
+  for _, t in ipairs(info.threads) do
+    if t.inWhitelist then
+      local h = openThread(t.tid)
+      if h ~= 0 then
+        local prev = suspendThread(h)
+        if prev ~= 0xFFFFFFFF and prev ~= -1 then
+          table.insert(list, t.tid); cnt = cnt + 1
+        end
+        closeHandle(h)
+      end
+    end
+  end
+  state.suspendedThreadsByPid[pid] = list
+  return cnt &gt; 0, cnt, info.whitelistedCount
+end
+
+-- ---------------------------------------------------------------------------
+--  resumeClient(clientName)
+--    Equivalente al loop ResumeThread del main.cpp.
+--    Reanuda preferentemente los TIDs que NOSOTROS suspendimos (tracking).
+--    Si no hay tracking (p.ej. cargo el script tras suspender), barre todos
+--    los hilos del proceso como red de seguridad.
+-- ---------------------------------------------------------------------------
+function resumeClient(clientName)
+  local pid = getProcessID(clientName)
+  if not pid then return false, 0 end
+
+  local tracked = state.suspendedThreadsByPid[pid]
+  local cnt = 0
+
+  if tracked and #tracked &gt; 0 then
+    for _, tid in ipairs(tracked) do
+      local h = openThread(tid)
+      if h ~= 0 then
+        -- ResumeThread hasta que el contador llegue a 0
+        for _ = 1, 8 do
+          local r = resumeThread(h)
+          if r == 0 or r == 0xFFFFFFFF or r == -1 then break end
+        end
+        closeHandle(h)
+        cnt = cnt + 1
+      end
+    end
+    state.suspendedThreadsByPid[pid] = nil
+    return cnt &gt; 0, cnt
+  end
+
+  -- Fallback: reanudar TODOS los hilos del proceso (igual a tu version inicial)
+  local ok, tids = pcall(getThreadList, pid)
+  if not ok or type(tids) ~= "table" then return false, 0 end
+  for _, tid in ipairs(tids) do
+    local h = openThread(tid)
+    if h ~= 0 then
+      for _ = 1, 8 do
+        local r = resumeThread(h)
+        if r == 0 or r == 0xFFFFFFFF or r == -1 then break end
+      end
+      closeHandle(h); cnt = cnt + 1
+    end
+  end
+  return cnt &gt; 0, cnt
+end
+
+-- ---------------------------------------------------------------------------
+--  hibernateAllClients()  --  equivale al main() que itera rgc/Atinad/Launcher
+-- ---------------------------------------------------------------------------
+function hibernateAllClients()
+  local found, missing = 0, {}
+  local totalSuspended = 0
+  for _, c in ipairs(CLIENT_NAMES) do
+    local ok, n, _ = hibernateClient(c)
+    if ok then
+      found = found + 1
+      totalSuspended = totalSuspended + (n or 0)
+    else
+      table.insert(missing, c)
+    end
+  end
+  state.clientHibernated  = (found &gt; 0)
+  state.lastSuspendedQty  = totalSuspended
+  return found, missing, totalSuspended
+end
+
+-- ---------------------------------------------------------------------------
+--  resumeAllClients()
+-- ---------------------------------------------------------------------------
+function resumeAllClients()
+  local found, totalResumed = 0, 0
+  for _, c in ipairs(CLIENT_NAMES) do
+    local ok, n = resumeClient(c)
+    if ok then found = found + 1; totalResumed = totalResumed + (n or 0) end
+  end
+  state.clientHibernated = false
+  state.lastResumedQty   = totalResumed
+  return found, totalResumed
+end
+
+-- ---------------------------------------------------------------------------
+--  isAnyClientRunning()  --  para avisos al usuario
+-- ---------------------------------------------------------------------------
+function isAnyClientRunning()
+  for _, c in ipairs(CLIENT_NAMES) do
+    if getProcessID(c) then return true, c end
+  end
+  return false, nil
+end
+
+-- ============================================================================
+--  DETECCION DE PARTIDA
+-- ============================================================================
+function isWar3InGame()
+  local gameDll = getAddressSafe("Game.dll")
+  if not gameDll then return false end
+  local ptr = readPointer(gameDll + 0xAB65F4)
+  if ptr and ptr ~= 0 then
+    local v = readSmallInteger(ptr + 0x28)
+    if v and v &gt; 0 then return true end
+  end
+  local ptr2 = readPointer(gameDll + 0xAAE140)
+  if ptr2 and ptr2 ~= 0 then return true end
+  local units = readPointer(gameDll + 0xACE5E0)
+  if units and units ~= 0 then
+    local u = readPointer(units + 0xC)
+    if u and u ~= 0 then return true end
+  end
+  return false
+end
+
+-- ============================================================================
+--  CONTROL DE CHEATS
+-- ============================================================================
+function getCheatByDescription(desc)
+  local al = getAddressList()
+  for i = 0, al.Count - 1 do
+    local ce = al[i]
+    local d = ce.Description
+    if type(d) == "string" and d:find(desc) then return ce end
+  end
+  return nil
+end
+function activateCheat(name)
+  local ce = getCheatByDescription(name)
+  if ce then ce.Active = true; return true end
+  return false
+end
+function deactivateCheat(name)
+  local ce = getCheatByDescription(name)
+  if ce then ce.Active = false; return true end
+  return false
+end
+function toggleCheat(keyword)
+  local ce = getCheatByDescription(keyword)
+  if ce then
+    ce.Active = not ce.Active
+    notifyToast(keyword .. ": " .. (ce.Active and "ON" or "OFF"),
+      ce.Active and state.theme.palette.primary[2] or state.theme.textFaint)
+  else
+    notifyToast(keyword .. " no encontrado", state.theme.palette.danger[2])
+  end
+end
+function activateAllCheats()
+  for _, k in ipairs({ "Minimap", "Illusions", "Wards", "Runes",
+    "Units Heros", "Signals", "Skills" }) do activateCheat(k) end
+  state.cheatsActive = true
+end
+function deactivateAllCheats()
+  for _, k in ipairs({ "Minimap", "Illusions", "Wards", "Runes",
+    "Units Heros", "Signals", "Skills" }) do deactivateCheat(k) end
+  state.cheatsActive = false
+end
+
+-- ============================================================================
+--  DIALOGO MODERNO
+-- ============================================================================
+function createModernDialog(title, message, buttons, callback)
+  local form = createForm()
+  form.Visible = false
+  form.Caption = title
+  form.Width = 480; form.Height = 280
+  form.Position = poScreenCenter
+  form.BorderStyle = bsNone
+  form.Color = state.theme.bg2
+  form.AlphaBlend = true; form.AlphaBlendValue = 0
+
+  createGradientBar(form, 52, "  ⚔ " .. title, { fontSize = 12 })
+
+  local lblMsg = createLabel(form)
+  lblMsg.Caption = message
+  lblMsg.Left = 24; lblMsg.Top = 70; lblMsg.Width = 432; lblMsg.Height = 96
+  lblMsg.Font.Color = state.theme.textDim
+  lblMsg.Font.Size = 10; lblMsg.Font.Name = "Segoe UI"
+  lblMsg.WordWrap = true
+
+  local btnY, btnW, sp = 200, 130, 16
+  local total = (#buttons * btnW) + ((#buttons - 1) * sp)
+  local startX = (form.Width - total) / 2
+  for i, bi in ipairs(buttons) do
+    local b = createMaterialButton(form, bi.caption, function()
+      Anim.tween{ duration = 160, easing = easeOutQuart,
+        onUpdate = function(e) form.AlphaBlendValue = math.floor(255 * (1 - e)) end,
+        onDone = function() form.destroy(); if callback then callback(bi.id) end end }
+    end, bi.primary and "primary" or "purple")
+    b.Left = startX + (i - 1) * (btnW + sp)
+    b.Top = btnY; b.Width = btnW; b.Height = 38
+  end
+
+  form.show()
+  Anim.tween{ duration = 260, easing = easeOutCubic,
+    onUpdate = function(e) form.AlphaBlendValue = math.floor(255 * e) end }
+  table.insert(REFS.forms, form)
+  -- SAFE39: crear particulas REALES en content (al final, despues del show)
+  if state.content then
+    createRealParticles()
+  end
+  return form
+end
+
+-- ============================================================================
+--  GUI PRINCIPAL
+-- ============================================================================
+function showMainGUI()
+  if state.mainForm and state.mainForm.Visible then
+    state.mainForm.BringToFront()
+    return
+  end
+
+  destroySessionTimers()
+  for _, m in ipairs(state.btnMetas) do m.alive = false end
+  for _, m in ipairs(state.chkMetas) do m.alive = false end
+  state.btnMetas = {}
+  state.chkMetas = {}
+  state.gridButtons = {}
+
+  local form = createForm()
+  state.mainForm = form
+  form.Caption = "Warcraft III MultiHack PRO v2"
+  form.Width = 600; form.Height = 600
+  form.Position = poScreenCenter
+  form.BorderStyle = bsSizeable
+  form.Color = state.theme.bg1
+  form.AlphaBlend = true; form.AlphaBlendValue = 0
+  form.ShowInTaskbar = true
+  pcall(function() form.Constraints.MinWidth = 460 end)
+  pcall(function() form.Constraints.MinHeight = 520 end)
+  pcall(function() form.DoubleBuffered = true end)
+  form.OnClose = function()
+    for _, m in ipairs(state.btnMetas) do m.alive = false end
+    for _, m in ipairs(state.chkMetas) do m.alive = false end
+    destroySessionTimers()
+    state.mainForm = nil; state.content = nil; state.contentBg = nil; state.paintBg = nil
+    state.titleBar = nil; state.sepPaint = nil; state.layoutReady = false
+    state.btnMetas = {}; state.chkMetas = {}; state.gridButtons = {}; state.themeBtnMeta = nil
+    state.lblSub = nil; state.cbAuto = nil; state.cbHiber = nil
+    state.cbAutoMeta = nil; state.cbHiberMeta = nil; state.lblHelp = nil
+    return caFree
+  end
+
+  -- SAFE16: bgPanel es un TPanel (NO PaintBox/TImage) que se posiciona
+  -- al FONDO del z-order. Dibuja el gradiente + particulas en SU propio OnPaint.
+  -- Repaint del bgPanel NO afecta a los hijos (botones, labels).
+  -- SAFE29: PaintBox con Anchors (NO Align=alClient) para particulas visibles
+  -- Anchors redimensiona la PaintBox con el form pero NO interfiere con los hijos
+  -- SAFE31: PaintBox con Anchors + OnPaint para particulas (DEFINITIVO)
+  -- FIX BUG REAL: faltaba particleBg.OnPaint = function() ... end
+  -- Por eso las particulas nunca se dibujaban.
+  local particleBg = createPaintBox(form)
+  particleBg.Left = 0
+  particleBg.Top = 0
+  particleBg.Width = form.ClientWidth
+  particleBg.Height = form.ClientHeight
+  pcall(function() particleBg.Anchors = "[akLeft, akTop, akRight, akBottom]" end)
+  particleBg.SendToBack()  -- CRITICO: al fondo del z-order
+  state.particleBg = particleBg
+
+  -- CRITICO: definir OnPaint para que dibuje gradient + particulas
+  particleBg.OnPaint = function()
+    pcall(function()
+      local W, H = particleBg.Width, particleBg.Height
+      if W &lt; 2 or H &lt; 2 then return end
+      local cv = particleBg.Canvas
+      drawGamerGenZ2026Backdrop(cv, W, H, state.theme, os.clock(), false)
+      drawGamerParticles(cv, W, H)
+    end)
+  end
+
+  -- SAFE31: bgPanel obsoleto eliminado (reemplazado por particleBg)
+
+  -- SAFE28: form.OnPaint DIBUJA TAMBIEN las particulas
+  -- form.OnPaint se ejecuta ANTES que los hijos del form,
+  -- asi las particulas aparecen DEBAJO de los botones.
+  -- Si bgPanel.OnPaint no dispara correctamente, form.OnPaint SI lo hara.
+  form.OnPaint = function()
+    pcall(function()
+      local W, H = form.ClientWidth, form.ClientHeight
+      if W &lt; 2 or H &lt; 2 then return end
+      local cv = form.Canvas
+      -- Gradiente vertical (fondo del form)
+      paintGradientDithered(cv, 0, 0, W, H, state.theme.bg1, state.theme.bg2, true)
+      -- Particulas (DEBAJO de los hijos del form)
+      cv.Pen.Style = "psClear"
+      cv.Brush.Style = "bsSolid"
+      for _, p in ipairs(state.particles or {}) do
+        local tw = 0.30 + 0.35 * math.sin(p.ph)
+        cv.Brush.Color = colorLerp(p.col, state.theme.bg2, 0.50 - tw * 0.35)
+        local px = p.x * W
+        local py = p.y * H
+        local rr = p.r * 2 + 1
+        cv.Ellipse(px - rr, py - rr, px + rr, py + rr)
+      end
+      cv.Pen.Style = "psSolid"
+      cv.Brush.Style = "bsSolid"
+    end)
+  end
+
+  local content = createPanel(form)
+  state.content = content
+  content.Align = alClient
+  content.BevelOuter = bvNone
+  content.Color = state.theme.bg1   -- fallback si bgPanel no funciona
+  content.ParentBackground = false
+  pcall(function() content.DoubleBuffered = true end)
+
+  -- GENZ2026: fondo real dentro de content. El panel content cubre el form,
+  -- por eso el background debe ser hijo de content y enviado al fondo.
+  local contentBg = createPaintBox(content)
+  state.contentBg = contentBg
+  contentBg.Align = alClient
+  contentBg.SendToBack()
+  contentBg.OnPaint = function()
+    pcall(function()
+      local W, H = contentBg.Width, contentBg.Height
+      if W &lt; 2 or H &lt; 2 then return end
+      drawGamerGenZ2026Backdrop(contentBg.Canvas, W, H, state.theme, os.clock(), false)
+      drawGamerParticles(contentBg.Canvas, W, H)
+    end)
+  end
+
+  
+
+  -- SAFE14 FIX Bug 1 + Critico: form.OnPaint agregado.
+  -- El fondo del panel se dibuja directamente en form.OnPaint (debajo de los hijos).
+  -- Esto resuelve el bug donde paintBg con Align=alClient cubria todos los botones.
+  -- SAFE16: NO usamos form.OnPaint (causa raiz de los bugs UI).
+  -- El fondo visual (gradiente + particulas) se dibuja en un TPanel
+  -- separado que se posiciona al FONDO del z-order con SendToBack().
+  -- Asi nunca interfiere con los hijos (botones, labels, etc).
+
+  local titleBar = createGradientBar(content, 58,
+    function() return "  ⚔  WARCRAFT III MULTIHACK  PRO v2" end, { fontSize = 16 })
+  state.titleBar = titleBar
+
+  local lblSub = createLabel(content)
+  state.lblSub = lblSub
+  lblSub.Caption = "Estado: " .. (state.inGame and "● EN JUEGO" or "○ EN LOBBY")
+  lblSub.Font.Name = "Segoe UI"; lblSub.Font.Size = 10
+  lblSub.Font.Color = state.inGame and state.theme.palette.primary[2] or state.theme.textDim
+
+  local sepPaint = createPaintBox(content)
+  state.sepPaint = sepPaint
+  sepPaint.Height = 2
+  sepPaint.OnPaint = function()
+    paintGradientDithered(sepPaint.Canvas, 0, 0, sepPaint.Width, sepPaint.Height,
+      state.theme.grad1, state.theme.grad2, false)
+  end
+
+  local themeBtn = createMaterialButton(content, "🎨  " .. state.theme.name,
+    function() cycleTheme() end, "purple")
+  themeBtn.Width = 160; themeBtn.Height = 34
+  state.themeBtnMeta = state.btnMetas[#state.btnMetas]
+
+  local function gridBtn(caption, onClick, key)
+    local b = createMaterialButton(content, caption, onClick, key)
+    table.insert(state.gridButtons, b)
+    return b
+  end
+
+  gridBtn("✅  ACTIVAR TODO   (Ctrl+Alt+A)", function()
+    if not state.clientHibernated then
+      local found, missing = hibernateAllClients()
+      if found == 0 and #missing &gt; 0 then
+        notifyToast("Launchers no encontrados: " .. table.concat(missing, ", "), state.theme.palette.amber[2])
+      end
+    end
+    activateAllCheats()
+    notifyToast("Todos los cheats ACTIVADOS", state.theme.palette.primary[2])
+  end, "primary")
+
+  gridBtn("❌  DESACTIVAR TODO  (Ctrl+Alt+D)", function()
+    deactivateAllCheats()
+    notifyToast("Todo DESACTIVADO", state.theme.palette.danger[2])
+  end, "danger")
+
+  local toggles = {
+    { "🧭 Minimap          Ctrl+Alt+M", "Minimap",     "purple" },
+    { "👁  Illusions        Ctrl+Alt+I", "Illusions",   "cyan"   },
+    { "🌫  Invisibles Wards Ctrl+Alt+W", "Wards",       "green"  },
+    { "💎 Runes            Ctrl+Alt+N", "Runes",       "amber"  },
+    { "👥 Units/Heros      Ctrl+Alt+U", "Units Heros", "pink"   },
+    { "📡 Enemy Signals    Ctrl+Alt+S", "Signals",     "purple" },
+    { "🎯 Skills/CD        Ctrl+Alt+K", "Skills",      "cyan"   },
+    { "🌫  Share Fog        Ctrl+Alt+F", "Fog",         "green"  },
+  }
+  for _, t in ipairs(toggles) do gridBtn(t[1], function() toggleCheat(t[2]) end, t[3]) end
+
+  gridBtn("❄  Hibernar Clientes Ctrl+Alt+H", function()
+    local found, missing = hibernateAllClients()
+    if found &gt; 0 then notifyToast("Clientes hibernados (" .. found .. ")", state.theme.grad2)
+    else notifyToast("Ningún launcher encontrado (rgc/Atinad/Launcher)", state.theme.palette.amber[2]) end
+  end, "cyan")
+
+  gridBtn("🔥 Reanudar Clientes Ctrl+Alt+R", function()
+    local found = resumeAllClients()
+    if found &gt; 0 then notifyToast("Clientes reanudados (" .. found .. ")", state.theme.palette.amber[2])
+    else notifyToast("Ningún launcher activo para reanudar", state.theme.palette.amber[2]) end
+  end, "amber")
+
+  -- SAFE33: smart button SIMPLIFICADO
+  --   - Si form NO EXISTE: crea nuevo
+  --   - Si form EXISTE y VISIBLE: oculta via Left=-10000 (sin eventos)
+  --   - Si form EXISTE y OCULTO: muestra restaurando posicion
+  --  "🛠 Optimizer (crear/mostrar/ocultar)"
+  gridBtn("🛠 Optimizar CPU/Delay/Online (Ctrl+Alt+O)", function()
+    local formExists = false
+    if state.optimizerForm then
+      pcall(function()
+        if state.optimizerForm.Handle ~= 0 then
+          formExists = true
+        end
+      end)
+    end
+
+    if not formExists then
+      notifyToast("Creando optimizer...", state.theme.palette.primary[2])
+      showOptimizerDialog()
+    elseif state.optimizerVisible then
+      pcall(function()
+        state.optimizerForm.Left = -10000
+        state.optimizerForm.Top = -10000
+      end)
+      state.optimizerVisible = false
+      notifyToast("Optimizer ocultado", state.theme.palette.amber[2])
+    else
+      pcall(function()
+        state.optimizerForm.Left = 24
+        state.optimizerForm.Top = 70
+        state.optimizerForm.Visible = true
+        state.optimizerForm.BringToFront()
+      end)
+      state.optimizerVisible = true
+
+      -- SAFE34: repoblar combobox con TODOS los procesos
+      pcall(function()
+        if state.optimizerCombobox and state.optimizerCombobox.Items.Count &lt; 3 then
+          local defaults = {"Launcher (RGC/Atinad/Launcher.exe)", "war3.exe", "Ambos (launcher + war3)"}
+          for _, d in ipairs(defaults) do
+            state.optimizerCombobox.Items.Add(d)
+          end
+          local ok, plist = pcall(getProcessList)
+          if ok and plist then
+            for pid, name in pairs(plist) do
+              if type(name) == "string" and name ~= "" then
+                state.optimizerCombobox.Items.Add(name)
+              end
+            end
+          end
+          state.optimizerCombobox.ItemIndex = 0
+        end
+      end)
+      notifyToast("Optimizer mostrado (con procesos)", state.theme.palette.primary[2])
+    end
+  end, "purple")
+
+  -- CHECKBOXES MATERIAL (custom)
+  state.cbAuto = createMaterialCheckbox(content, "Auto-activar al iniciar mapa", nil)
+  state.cbAutoMeta = state.chkMetas[#state.chkMetas]
+  state.cbHiber = createMaterialCheckbox(content, "Hibernar RGC/Atinad al activar", nil)
+  state.cbHiberMeta = state.chkMetas[#state.chkMetas]
+
+  local lblHelp = createLabel(content)
+  state.lblHelp = lblHelp
+  lblHelp.Caption = "HOTKEYS:  Ctrl+Alt+P = Panel  |  Ctrl+Alt+G = Recargar  |  Ctrl+Alt+T = Cambiar Tema\n" ..
+                    "          Ctrl+Alt+H = Hibernar  |  Ctrl+Alt+R = Reanudar  |  Ctrl+Alt+E = Emergencia"
+  lblHelp.Font.Name = "Segoe UI"; lblHelp.Font.Size = 9
+  lblHelp.Font.Color = state.theme.textFaint
+  lblHelp.WordWrap = true
+  lblHelp.Height = 34
+
+  -- ===================== LAYOUT RESPONSIVE =====================
+  local function reflow()
+    if not state.layoutReady then return end
+    local W = content.ClientWidth
+    local H = content.ClientHeight
+    local margin = 18
+    local gap = 12
+    local minBtnW = 205
+    local avail = W - margin * 2
+    if avail &lt; minBtnW then avail = minBtnW end
+
+    themeBtn.Left = W - themeBtn.Width - 14
+    themeBtn.Top  = titleBar.Height + 8
+    lblSub.Left = margin
+    lblSub.Top  = titleBar.Height + 12
+    lblSub.Width = (themeBtn.Left - margin - 14)
+    lblSub.Height = 20
+
+    sepPaint.Left = margin
+    sepPaint.Top = lblSub.Top + lblSub.Height + 6
+    sepPaint.Width = avail
+    sepPaint.Height = 2
+
+    local cols = math.max(1, math.floor((avail + gap) / (minBtnW + gap)))
+    cols = math.min(cols, 4)
+    local btnW = math.floor((avail - gap * (cols - 1)) / cols)
+    local btnH = 46
+    local topStart = sepPaint.Top + sepPaint.Height + 12
+
+    for i, b in ipairs(state.gridButtons) do
+      local idx = i - 1
+      local r = math.floor(idx / cols)
+      local col = idx % cols
+      b.Left  = margin + col * (btnW + gap)
+      b.Top   = topStart + r * (btnH + gap)
+      b.Width = btnW
+      b.Height = btnH
+    end
+
+    local rows = math.ceil(#state.gridButtons / cols)
+    local gridBottom = topStart + rows * (btnH + gap)
+    local cbW = math.floor((avail - gap) / 2)
+    state.cbAuto.Left = margin;               state.cbAuto.Top = gridBottom + 4;  state.cbAuto.Width = cbW;  state.cbAuto.Height = 28
+    state.cbHiber.Left = margin + cbW + gap;  state.cbHiber.Top = gridBottom + 4; state.cbHiber.Width = cbW; state.cbHiber.Height = 28
+
+    lblHelp.Left = margin
+    lblHelp.Width = avail
+    lblHelp.Top = H - lblHelp.Height - 12
+  end
+
+  local bgResizeTimer
+  local function onResize()
+    reflow()
+    if bgResizeTimer then bgResizeTimer.destroy() end
+    bgResizeTimer = createTimer(nil)
+    bgResizeTimer.Interval = 120
+    bgResizeTimer.Enabled = false
+    bgResizeTimer.OnTimer = function()
+      bgResizeTimer.destroy(); bgResizeTimer = nil
+      state.formBgDirty = true
+      pcall(function() if state.contentBg then state.contentBg.Invalidate() end end)
+      pcall(function() state.mainForm.repaint() end)
+    end
+    bgResizeTimer.Enabled = true
+  end
+  content.OnResize = onResize
+  form.OnResize = onResize
+
+  state.layoutReady = true
+  state.formBgDirty = true
+  spawnParticles()
+  startParticleEngine()
+  applyTheme()
+  reflow()
+  form.show()
+
+  local baseTop = form.Top
+  form.Top = baseTop + 24
+  Anim.tween{ duration = 320, easing = easeOutCubic,
+    onUpdate = function(e)
+      form.AlphaBlendValue = math.floor(255 * e)
+      form.Top = math.floor(baseTop + 24 - 24 * e)
+    end,
+    onDone = function() form.Top = baseTop end }
+  form.BringToFront()
+  table.insert(REFS.forms, form)
+
+  -- SAFE36: crear particulas (al final para que SendToBack funcione)
+  if not state.particles or #state.particles == 0 then
+    spawnParticles()
+  end
+  createParticleShapes()
+
+  return form
+end
+
+-- ============================================================================
+--  MODULO OPTIMIZADOR + PANEL X-GUARD  (safe39 - FIX BUG spawnParticles)
+--
+--  Evolucion desde safe13:
+--    - Sin codigo duplicado
+--    - Cierre sincronizado via closeEverything()
+--    - Flags anti-recursion (_shuttingDown, _optimizerClosing, _panelDestroying)
+--    - Botones globales: Aplicar TODO + Restaurar defaults
+--
+--  Bugs resueltos (todos los de safe10..safe13):
+--    - Bug 1: UI invisible (paintBg eliminado, fondo en form.OnPaint)
+--    - Bug 2: Optimizer rompe UI (cleanup + repaint forzado)
+--    - Bug 3: Panel no cierra (safe22 close llama destroyPanelInternal)
+--    - Bug 4: Cierre redirigido (showPanelCloseGuard usa closeEverything)
+--    - Bug A: Recursion en optimizer (flag _optimizerClosing)
+--    - Bug B: Controles faltantes (Aplicar TODO + Restaurar defaults)
+--    - Bug C: CE + panel no sincronizados (closeEverything master)
+--    - Bug D: Crashes Lua (pcall + flags idempotentes)
+-- ============================================================================
+-- (Contenido del modulo safe14 - importado desde MODULO_SAFE13.lua)
+--
+--  Bugs resueltos acumulados:
+--    Bug A: Cerrar optimizer cierra todo CE
+--           -&gt; Recursion infinita en closeOptimizer (f.destroy dispara OnClose)
+--           -&gt; Solucion: flag _closingOptimizer + _optimizerOnCloseHandled
+--    Bug B: Faltaban controles en optimizer
+--           -&gt; Anadidos: "Aplicar TODO" + "Reset TODO" + "Auto-apply al iniciar"
+--    Bug C: CE + panel no se cierran juntos
+--           -&gt; Solucion: closeEverything() master function + sync via Anim.delay
+--    Bug D: Crashes en Lua por nil/double-destroy
+--           -&gt; pcall everywhere + flags de estado + idempotencia
+-- ============================================================================
+
+local _optimizerLoaded = false
+local function loadOptimizerModule()
+  if _optimizerLoaded then return end
+  _optimizerLoaded = true
+
+  -- ==========================================================================
+  --  ESTADO GLOBAL
+  -- ==========================================================================
+  state.optimizerForm = nil         -- referencia al form del optimizer (nil si destruido nativamente)
+  state.optimizerVisible = false    -- estado actual de visibilidad (true/false)
+  state.optimizerWasShown = false   -- si fue abierto alguna vez esta sesion
+  state._shuttingDown = false       -- flag global de cierre en curso
+  state._optimizerClosing = false   -- flag anti-recursion del optimizer
+  state._panelDestroying = false    -- flag anti-recursion del panel
+
+  -- ==========================================================================
+  --  closeEverything(reason)
+  --  MASTER SHUTDOWN: cierra panel + optimizer + CE en orden atomico.
+  --  Llamada desde:
+  --    - Ctrl+Alt+E (emergencia)
+  --    - safe22 close (clean/force)
+  --    - showPanelCloseGuard (clean)
+  --    - Cualquier path que requiera cierre total
+  --
+  --  reason: string para debug ("panel", "ce", "emergency", etc)
+  -- ==========================================================================
+  -- SAFE20: getOwnProcessName() - obtiene el nombre del proceso actual
+  -- DINAMICAMENTE desde el propio proceso CE (sin nombres hardcoded).
+  -- Usa GetModuleFileNameA(NULL) que devuelve la ruta del ejecutable
+  -- del proceso que ejecuta el script Lua (CE mismo).
+  function getOwnProcessName()
+    local result = nil
+
+    -- Metodo 1: GetModuleFileNameA(NULL) -&gt; ruta del ejecutable actual
+    pcall(function()
+      local fn_getmod = resolveK32("GetModuleFileNameA")
+      if fn_getmod then
+        -- MAX_PATH = 260 caracteres
+        local buf = allocateMemory(260, nil, true)
+        if buf and buf ~= 0 then
+          -- NULL (0) como primer param = executable file del proceso actual
+          local ret = executeCodeLocalEx(fn_getmod, 0, buf, 260)
+          if ret and type(ret) == "number" and ret &gt; 0 then
+            local path = readString(buf, ret)
+            if path and path ~= "" then
+              -- Extraer solo el nombre del archivo (sin la ruta)
+              local name = path:match("[\\/]([^\\/]+)$") or path
+              result = name
+            end
+          end
+        end
+      end
+    end)
+
+    -- Metodo 2: QueryFullProcessImageNameA (mas robusto)
+    if not result then
+      pcall(function()
+        local fn_getpid = resolveK32("GetCurrentProcessId")
+        local fn_open = resolveK32("OpenProcess")
+        local fn_query = resolveK32("QueryFullProcessImageNameA")
+        local fn_closeh = resolveK32("CloseHandle")
+
+        if fn_getpid and fn_open and fn_query then
+          local pid = executeCodeLocalEx(fn_getpid)
+          -- PROCESS_QUERY_INFORMATION (0x0400) | PROCESS_VM_READ (0x0010)
+          local hProcess = executeCodeLocalEx(fn_open, 0x0410, 0, pid)
+          if hProcess and hProcess ~= 0 then
+            local buf = allocateMemory(260, nil, true)
+            if buf and buf ~= 0 then
+              writeInteger(buf, 260)
+              local ok = executeCodeLocalEx(fn_query, hProcess, 0, buf, buf + 4)
+              if ok ~= 0 then
+                local path = readString(buf, 260)
+                if path and path ~= "" then
+                  local name = path:match("[\\/]([^\\/]+)$") or path
+                  result = name
+                end
+              end
+            end
+            if fn_closeh then
+              pcall(function() executeCodeLocalEx(fn_closeh, hProcess) end)
+            end
+          end
+        end
+      end)
+    end
+
+    return result
+  end
+
+  -- SAFE19: killProcessAggressive - mata el proceso como Task Manager.
+  -- SAFE20: usa getOwnProcessName() para nombre DINAMICO (sin hardcoded)
+    -- SAFE21: killProcessAggressive - 6 ESTRATEGIAS para matar el proceso.
+  -- Ninguno de los metodos anteriores funciono, asi que probamos TODOS.
+  function killProcessAggressive()
+    local ownName = getOwnProcessName()
+    local ownPid = 0
+    pcall(function()
+      local fn = resolveK32("GetCurrentProcessId")
+      if fn then ownPid = executeCodeLocalEx(fn) end
+    end)
+
+    -- ESTRATEGIA 1: ExitProcess via kernel32 (C exit() inmediato)
+    -- Este es el metodo que llama exit() de C. Es INMEDIATO.
+    pcall(function()
+      local fn = resolveK32("ExitProcess")
+      if fn then executeCodeLocalEx(fn, 0) end
+    end)
+
+    -- ESTRATEGIA 2: NtTerminateProcess via ntdll (NT API)
+    -- Esta API nativa de Windows bypassa algunos access checks.
+    -- Nota: NtTerminateProcess(NULL_HANDLE, 0) termina el proceso actual.
+    pcall(function()
+      local ntdll = loadLibrary("ntdll.dll")
+      if ntdll and ntdll ~= 0 then
+        local fn = getProcAddress(ntdll, "NtTerminateProcess")
+        if fn then executeCodeLocalEx(fn, 0, 0) end  -- 0 = pseudo-handle current process
+      end
+    end)
+
+    -- ESTRATEGIA 3: TerminateProcess via kernel32 (Windows API clasica)
+    -- Abre el proceso por PID y lo mata con TerminateProcess.
+    pcall(function()
+      local fn_getpid = resolveK32("GetCurrentProcessId")
+      local fn_open = resolveK32("OpenProcess")
+      local fn_term = resolveK32("TerminateProcess")
+      local fn_closeh = resolveK32("CloseHandle")
+      if fn_getpid and fn_open and fn_term then
+        local pid = executeCodeLocalEx(fn_getpid)
+        if pid and pid &gt; 0 then
+          -- PROCESS_TERMINATE (0x0001) | PROCESS_QUERY_INFORMATION (0x0400)
+          local hProcess = executeCodeLocalEx(fn_open, 0x0401, 0, pid)
+          if hProcess and hProcess ~= 0 then
+            executeCodeLocalEx(fn_term, hProcess, 0)
+            if fn_closeh then pcall(function() executeCodeLocalEx(fn_closeh, hProcess) end) end
+          end
+        end
+      end
+    end)
+
+    -- ESTRATEGIA 4: taskkill /F por PID
+    pcall(function()
+      if ownPid and ownPid &gt; 0 then
+        os.execute('taskkill /F /PID ' .. tostring(ownPid) .. ' /T 2&gt;NUL')
+      end
+    end)
+
+    -- ESTRATEGIA 5: taskkill /F por nombre (dinamico + fallbacks)
+    pcall(function()
+      if ownName and ownName ~= "" then
+        os.execute('taskkill /F /IM "' .. ownName .. '" /T 2&gt;NUL')
+      end
+    end)
+    pcall(function()
+      os.execute('taskkill /F /IM "CheatEngine.exe" /T 2&gt;NUL')
+    end)
+    pcall(function()
+      os.execute('taskkill /F /IM "Cheat Engine.exe" /T 2&gt;NUL')
+    end)
+
+    -- ESTRATEGIA 6: os.exit (ULTIMO RECURSO - Lua standard)
+    pcall(function() os.exit(0) end)
+  end
+  function closeEverything(reason)
+    if state._shuttingDown then return end  -- idempotente
+    state._shuttingDown = true
+    reason = reason or "unknown"
+    -- Marcar cheats/clients como limpios
+    state.cheatsActive = false
+    state.clientHibernated = false
+
+    -- 1) Cleanup (silenciar hooks AA, liberar hilos suspendidos)
+    pcall(deactivateAllCheats)
+    pcall(resumeAllClients)
+
+    -- 2) Destruir forms hijos (panel, optimizer)
+    pcall(closeOptimizerSafely)
+    pcall(destroyPanelInternal)
+
+    -- 3) Intentar cierre graceful de CE (mf.Close)
+    pcall(function()
+      local mf = getMainForm()
+      if mf then mf.Close() end
+    end)
+
+    -- 4) SAFE18: FORZAR terminacion del proceso INMEDIATAMENTE.
+    -- NO usamos Anim.delay porque los timers se destruyen al cerrar forms.
+    -- os.exit(0) SIEMPRE mata el proceso Lua (y por lo tanto CE).
+    -- Si mf.Close() funciono y libero el form, os.exit termina el proceso.
+    -- Si mf.Close() fallo (proceso sigue vivo), os.exit mata el proceso.
+    pcall(function()
+      if closeCE then closeCE() end   -- CE 7.4+ (intenta primero)
+    end)
+    pcall(function()
+      if application and application.terminate then
+        application.terminate()
+      end
+    end)
+    -- SAFE19: MATA EL PROCESO estilo Task Manager (taskkill + TerminateProcess)
+    -- Esto SIEMPRE funciona, igual que el Administrador de Tareas de Windows.
+    killProcessAggressive()
+  end
+
+  -- ==========================================================================
+  --  closeOptimizerSafely()
+  --  Version SEGURA de closeOptimizer. Usa flag anti-recursion.
+  --  Llamada desde:
+  --    - El boton [X] Cerrar del optimizer
+  --    - f.OnClose del optimizer
+  --    - closeEverything()
+  --    - safe22 close (cuando CE cierra con optimizer abierto)
+  -- ==========================================================================
+  function closeOptimizerSafely()
+    -- SAFE26: si state.optimizerHidingOnly esta true, solo ocultar (no destruir)
+    if state._optimizerClosing then return end
+    if state.optimizerHidingOnly then
+      if state.optimizerForm then
+        state.optimizerForm.Visible = false
+        state.optimizerVisible = false
+      end
+      state.optimizerHidingOnly = false
+      return
+    end
+    state._optimizerClosing = true
+
+    -- SAFE24: cleanup SINCRONO (sin Anim.delay) para evitar bugs
+
+    -- 1) Limpiar todos los widgets hijos del content
+    pcall(function()
+      if state._optimizerWidgetsRef then
+        for _, w in ipairs(state._optimizerWidgetsRef) do
+          pcall(function() if w and w.destroy then w.destroy() end end)
+        end
+        state._optimizerWidgetsRef = {}
+      end
+    end)
+
+    -- 2) Destruir el form del optimizer inmediatamente
+    if state.optimizerForm then
+      pcall(function() state.optimizerForm.destroy() end)
+      state.optimizerForm = nil
+    end
+
+    -- 3) Reset flag INMEDIATAMENTE (no Anim.delay que pueda fallar)
+    state._optimizerClosing = false
+  end
+
+  -- ==========================================================================
+  --  destroyPanelInternal()
+  --  Destruye el panel principal limpiamente. Idempotente (seguro llamar 2 veces).
+  -- ==========================================================================
+  function destroyPanelInternal()
+    if state._panelDestroying then return end
+    state._panelDestroying = true
+
+    pcall(function()
+      -- Marcar todos los botones/checkboxes como muertos
+      for _, m in ipairs(state.btnMetas or {}) do m.alive = false end
+      for _, m in ipairs(state.chkMetas or {}) do m.alive = false end
+      -- Destruir timers de sesion
+      pcall(destroySessionTimers)
+      -- Destruir el form si existe
+      if state.mainForm then
+        pcall(function() state.mainForm.destroy() end)
+      end
+      -- Cerrar optimizer si esta abierto
+      pcall(closeOptimizerSafely)
+    end)
+
+    -- Limpiar todas las referencias (evita memory leaks)
+    state.mainForm = nil
+    state.content = nil
+    state.contentBg = nil
+    state.paintBg = nil
+    state.optimizerBg = nil
+    -- particleBg se limpia (ya no usamos bgPanel)
+    state.titleBar = nil
+    state.sepPaint = nil
+    state.layoutReady = false
+    state.btnMetas = {}
+    state.chkMetas = {}
+    state.gridButtons = {}
+    state.themeBtnMeta = nil
+    state.lblSub = nil
+    state.cbAuto = nil
+    state.cbHiber = nil
+    state.cbAutoMeta = nil
+    state.cbHiberMeta = nil
+    state.lblHelp = nil
+    state.closeTitleBtn = nil
+    state.formBgBitmap = nil
+    state.formBgDirty = true
+
+    state._panelDestroying = false
+  end
+
+  -- ==========================================================================
+  --  rebuildFormBgBitmap(W, H)
+  --  Dibuja el fondo directamente sobre el form (DEBAJO de los hijos).
+  --  SAFE13 FIX Bug 1: no usamos PaintBox con Align=alClient.
+  -- ==========================================================================
+  function rebuildFormBgBitmap(W, H)
+    pcall(function()
+      if not state.theme then return end
+      state.formBgBitmap = createBitmap(W, H)
+      local bmp = state.formBgBitmap
+      local cv = bmp.Canvas
+      paintGradientDithered(cv, 0, 0, W, H, state.theme.bg1, state.theme.bg2, true)
+      cv.Pen.Style = "psClear"
+      cv.Brush.Color = state.theme.bg2
+      cv.Brush.Style = "bsSolid"
+      math.randomseed(42)
+      for i = 1, 80 do
+        local x = math.random(0, W - 1)
+        local y = math.random(0, H - 1)
+        cv.Pixels[x][y] = state.theme.bg2
+      end
+    end)
+  end
+
+  -- ==========================================================================
+  --  showPanelCloseGuard()
+  --  FIX Bug 4: Cierre redirigido al MainForm de CE.
+  --  - Si usuario confirma "Limpiar TODO": closeEverything() (cierre atomico)
+  --  - Si cancela: solo oculta
+  --  - Si fuerza: autodestruye el panel (riesgo asumido)
+  -- ==========================================================================
+  function showPanelCloseGuard()
+    if state.panelCloseGuardShown then return end
+    state.panelCloseGuardShown = true
+
+    createModernDialog("Cierre seguro del panel",
+      "El panel no puede cerrarse directamente mientras haya cheats activos\\n" ..
+      "o clientes hibernados (riesgo de deteccion).\\n\\n" ..
+      "ORDEN SEGURO:\\n" ..
+      "  1) Ctrl+Alt+D  (desactivar TODO)\\n" ..
+      "  2) Ctrl+Alt+R  (reanudar launchers)\\n" ..
+      "  3) Volver a intentar cerrar el panel\\n\\n" ..
+      "Si confirmas, se LIMPIARA todo y el cierre se hara en orden:\\n" ..
+      "  panel -&gt; optimizer -&gt; Cheat Engine (cierre sincronizado).",
+      { {id="clean",  caption="(ok) Limpiar TODO y cerrar (sincronizado)", primary=true},
+        {id="hide",   caption="Solo ocultar (Ctrl+Alt+P)", primary=false},
+        {id="force",  caption="(!) Forzar autodestruir el panel (riesgo)", primary=false} },
+      function(choice)
+        state.panelCloseGuardShown = false
+        if choice == "clean" then
+          -- SAFE13 FIX Bug C: cierre sincronizado via closeEverything
+          closeEverything("panel_clean")
+        elseif choice == "hide" then
+          if state.mainForm then state.mainForm.Visible = false end
+          notifyToast("Panel oculto (Ctrl+Alt+P para mostrarlo)",
+                      state.theme.palette.amber[2])
+        elseif choice == "force" then
+          pcall(destroyPanelInternal)
+        end
+      end)
+  end
+
+  -- ==========================================================================
+  --  Panel X-Guard: deshabilita X del panel y maneja Alt+F4
+  --  Idempotente (puede llamarse varias veces sin duplicar handlers).
+  -- ==========================================================================
+  function installPanelXGuard()
+    pcall(function()
+      local mf = state.mainForm
+      if not mf then return end
+      if state.panelXGuardInstalled then return end
+      state.panelXGuardInstalled = true
+
+      -- A) Quitar BorderIcons (sin X del sistema)
+      pcall(function() mf.BorderIcons = {} end)
+
+      -- B) OnCloseQuery: bloquea Alt+F4 cuando hay cheats/clientes
+      pcall(function()
+        mf.OnCloseQuery = function(sender)
+          if state.cheatsActive or state.clientHibernated or isAnyClientRunning() then
+            if not state.panelCloseGuardShown then
+              showPanelCloseGuard()
+            end
+            return false  -- CANCELA el cierre
+          end
+          return true  -- limpio: deja cerrar
+        end
+      end)
+
+      -- C) OnClose: cierre seguro (no autodestruye si hay cheats)
+      pcall(function()
+        local prev = mf.OnClose
+        mf.OnClose = function(sender)
+          if state._shuttingDown then
+            -- Ya estamos en proceso de cierre total, deja pasar
+            pcall(destroyPanelInternal)
+            return "caFree"
+          end
+          if state.cheatsActive or state.clientHibernated or isAnyClientRunning() then
+            if not state.panelCloseGuardShown then
+              showPanelCloseGuard()
+            end
+            return "caNone"  -- BLOQUEA el cierre, el dialogo decide
+          end
+          -- Limpio: destruir y dejar cerrar
+          pcall(destroyPanelInternal)
+          return "caFree"
+        end
+      end)
+    end)
+  end
+
+  -- ==========================================================================
+  --  OPTIMIZER DIALOG (safe13 - REESCRITO)
+  --  FIX Bug A: anti-recursion en close (flag _optimizerClosing)
+  --  FIX Bug B: nuevos controles "Aplicar TODO" + "Reset TODO"
+  --  FIX Bug D: pcall everywhere + idempotencia
+  -- ==========================================================================
+  
+  -- SAFE34: sincronizar tema del optimizer con el panel
+  function syncOptimizerTheme()
+    if not state.optimizerForm then return end
+    if not state.theme then return end
+    pcall(function()
+      state.optimizerForm.Color = state.theme.bg1
+      if state.optimizerBg then state.optimizerBg.Invalidate() end
+      state.optimizerForm.Repaint()
+    end)
+  end
+
+  -- SAFE38: crear particulas como TPaneles REALES dentro de content
+  -- Los TPaneles son hijos de content. Con SendToBack() quedan
+  -- al fondo del z-order de content (DETRAS de los botones).
+  function createRealParticles()
+    if not state.content then return end
+    if not state.particles then
+      spawnParticles()
+    end
+    local W = state.content.ClientWidth
+    local H = state.content.ClientHeight
+    if W &lt; 10 or H &lt; 10 then return end
+
+    for i, p in ipairs(state.particles) do
+      if not p.shape then
+        pcall(function()
+          local sz = math.max(10, math.floor(p.r * 2))
+          -- TPanel (no PaintBox) para estar en el mismo z-order que botones
+          local shape = createPanel(state.content)
+          shape.Width = sz
+          shape.Height = sz
+          shape.BevelOuter = bvNone
+          shape.Color = (type(p.col) == "number") and p.col or state.theme.grad1
+          shape.Left = p.x * W
+          shape.Top = p.y * H
+          shape.SendToBack()  -- CRITICO: detras de los botones
+          p.shape = shape
+        end)
+      end
+    end
+  end
+
+  -- SAFE38: destruir particulas (cleanup)
+  function destroyRealParticles()
+    if not state.particles then return end
+    for _, p in ipairs(state.particles) do
+      if p.shape then
+        pcall(function() p.shape.destroy() end)
+        p.shape = nil
+      end
+    end
+  end
+
+
+  -- SAFE37: layout adaptativo CORRECTO
+  -- Los controles se almacenan en state.optCtrls CUANDO SE CREAN
+  -- (no se buscan por Caption que es fragil)
+  function relayoutOptimizer(f, W, H)
+    if not f then return end
+    local c = state.optCtrls
+    if not c or not c.cmb then return end
+
+    pcall(function()
+      local margin = 15
+      local innerW = W - margin * 2
+
+      -- Title bar (siempre en la parte superior)
+      if c.titleBar then
+        c.titleBar.Left = 0
+        c.titleBar.Top = 0
+        c.titleBar.Width = W
+      end
+      if c.bg then
+        c.bg.Left = 0
+        c.bg.Top = 52
+        c.bg.Width = W
+        c.bg.Height = math.max(1, H - 52)
+        c.bg.SendToBack()
+        if c.titleBar then c.titleBar.BringToFront() end
+      end
+
+      -- Combobox y label "Programa destino:"
+      c.lblTgt.Left = margin
+      c.cmb.Left = margin
+      c.cmb.Width = math.max(180, math.min(320, innerW - 230))
+
+      -- Boton [+] Todos los procesos (derecha arriba)
+      if c.btnAddAll then
+        c.btnAddAll.Left = W - margin - 200
+        c.btnAddAll.Top = 68
+      end
+
+      -- Botones [ALL] Aplicar y [RESET] (derecha)
+      if c.btnApplyAll then
+        c.btnApplyAll.Left = W - margin - 280
+        c.btnApplyAll.Top = 108
+      end
+      if c.btnResetAll then
+        c.btnResetAll.Left = W - margin - 280
+        c.btnResetAll.Top = 148
+      end
+
+      -- Tabs (4 botones en fila, distribuidos segun ancho)
+      local tabY = 200
+      local tabGap = 8
+      local totalGap = tabGap * 3
+      local tabW = math.max(100, math.floor((innerW - totalGap) / 4))
+      if c.tabAffinity then
+        c.tabAffinity.Left = margin
+        c.tabAffinity.Top = tabY
+        c.tabAffinity.Width = tabW
+      end
+      if c.tabDelay then
+        c.tabDelay.Left = margin + tabW + tabGap
+        c.tabDelay.Top = tabY
+        c.tabDelay.Width = tabW
+      end
+      if c.tabOnline then
+        c.tabOnline.Left = margin + (tabW + tabGap) * 2
+        c.tabOnline.Top = tabY
+        c.tabOnline.Width = tabW
+      end
+      if c.tabDiag then
+        c.tabDiag.Left = margin + (tabW + tabGap) * 3
+        c.tabDiag.Top = tabY
+        c.tabDiag.Width = tabW
+      end
+
+      -- Content area (entre tabs y status)
+      if c.content then
+        c.content.Left = margin
+        c.content.Top = tabY + 50
+        c.content.Width = innerW
+        c.content.Height = math.max(180, H - (tabY + 50) - 78)
+      end
+
+      -- Status label (parte inferior)
+      if c.lblStatus then
+        c.lblStatus.Left = margin
+        c.lblStatus.Top = H - 60
+        c.lblStatus.Width = innerW
+      end
+
+      -- Boton cerrar (esquina inferior derecha)
+      if c.btnClose then
+        c.btnClose.Left = W - margin - c.btnClose.Width
+        c.btnClose.Top = H - 48
+      end
+    end)
+  end
+
+
+
+
+function showOptimizerDialog()
+    -- Si ya hay un optimizer abierto, no abrir otro (idempotente)
+    if state.optimizerForm then
+      pcall(function() state.optimizerForm.BringToFront() end)
+      return
+    end
+
+    local targets = {
+      { name = "Launcher (RGC/Atinad/Launcher.exe)", procs = { "rgc.exe", "Atinad.exe", "Launcher.exe" } },
+      { name = "war3.exe",                            procs = { "war3.exe" } },
+      { name = "Ambos (launcher + war3)",             procs = { "rgc.exe", "Atinad.exe", "Launcher.exe", "war3.exe" } },
+    }
+    local function anyTargetRunning(procs)
+      for _, p in ipairs(procs) do
+        if getProcessID(p) then return true, p end
+      end
+      return false, nil
+    end
+    local function applyAffinityToGroup(procs, mask)
+      local applied, missing = {}, {}
+      for _, p in ipairs(procs) do
+        if getProcessID(p) then
+          local ok, info = setCpuAffinity(p, mask)
+          if ok then table.insert(applied, p) else table.insert(missing, p .. " (" .. info .. ")") end
+        end
+      end
+      return applied, missing
+    end
+    local function applyDelayToGroup(procs)
+      local applied, missing = {}, {}
+      for _, p in ipairs(procs) do
+        if getProcessID(p) then
+          local ok, info = lowerDelay(p)
+          if ok then table.insert(applied, p) else table.insert(missing, p .. " (" .. info .. ")") end
+        end
+      end
+      return applied, missing
+    end
+    local function resetProcess(procs)
+      -- Quitar afinidad custom y volver a prioridad normal
+      local n = getCpuCount()
+      local allMask = (1 &lt;&lt; n) - 1
+      local applied = {}
+      for _, p in ipairs(procs) do
+        if getProcessID(p) then
+          pcall(function() setCpuAffinity(p, allMask) end)
+          table.insert(applied, p)
+        end
+      end
+      return applied
+    end
+
+    local f = createForm()
+    state.optimizerForm = f
+    state.optimizerVisible = true   -- SAFE27: visible al crear
+    state.optimizerWasShown = true   -- SAFE27: marcar como mostrado
+    f.Caption = "Optimizar CPU - Delay - Online Rate"
+    f.Width = 780; f.Height = 600
+    f.Position = poScreenCenter
+    f.BorderStyle = bsSizeable
+    f.Color = state.theme.bg1
+    f.AlphaBlend = true; f.AlphaBlendValue = 0
+    f.ShowInTaskbar = true
+    pcall(function() f.DoubleBuffered = true end)
+    table.insert(REFS.forms, f)
+
+    -- Widgets array para cleanup
+    state._optimizerWidgetsRef = {}
+    local function clearWidgets()
+      for _, w in ipairs(state._optimizerWidgetsRef) do
+        pcall(function() if w and w.destroy then w.destroy() end end)
+      end
+      state._optimizerWidgetsRef = {}
+    end
+    local status = function() end
+    local renderTab = nil
+
+    -- SAFE13 FIX Bug A: OnClose con flag anti-recursion
+    -- SAFE33: f.OnClose SIEMPRE bloquea el close (retorna caNone)
+    -- El form NUNCA se destruye via close. Solo se oculta via Left=-10000.
+    -- Esto evita el bug donde el optimizer se cierra automaticamente.
+    f.OnClose = function(sender)
+      -- Bloquear el close: el form sigue vivo pero oculto
+      pcall(function()
+        state.optimizerForm.Left = -10000
+        state.optimizerForm.Top = -10000
+      end)
+      state.optimizerVisible = false
+      return "caNone"  -- NUNCA cerrar, siempre bloquear
+    end
+    -- OnCloseQuery: permitir siempre (no queremos dialogo extra)
+    f.OnCloseQuery = function(sender)
+      return true
+    end
+
+    local optTitleBar = createGradientBar(f, 52, "  [TOOL] OPTIMIZADOR DE CPU / DELAY", { fontSize = 14 })
+
+    -- GENZ2026: fondo optimizer nativo y responsivo (no bloquea controles)
+    local optBg = createPaintBox(f)
+    state.optimizerBg = optBg
+    optBg.Left = 0; optBg.Top = 52
+    optBg.Width = f.ClientWidth; optBg.Height = math.max(1, f.ClientHeight - 52)
+    pcall(function() optBg.Anchors = "[akLeft, akTop, akRight, akBottom]" end)
+    optBg.SendToBack()
+    optTitleBar.BringToFront()
+    optBg.OnPaint = function()
+      pcall(function()
+        local W, H = optBg.Width, optBg.Height
+        if W &lt; 2 or H &lt; 2 then return end
+        drawGamerGenZ2026Backdrop(optBg.Canvas, W, H, state.theme, state.optBgPhase or 0, true)
+        drawGamerParticles(optBg.Canvas, W, H)
+      end)
+    end
+
+    -- SAFE13 FIX Bug B: Selector de proceso destino + boton Aplicar TODO visible siempre
+    local lblTgt = createLabel(f)
+    lblTgt.Caption = "Programa destino:"
+    lblTgt.Left = 24; lblTgt.Top = 70; lblTgt.Width = 200
+    lblTgt.Font.Color = state.theme.textDim
+    lblTgt.Font.Size = 10
+
+    local cmb = nil
+    pcall(function() cmb = createComboBox(f) end)
+    if cmb then
+      cmb.Left = 24; cmb.Top = 88; cmb.Width = 300; cmb.Height = 24
+      pcall(function() cmb.Style = "csDropDownList" end)
+      for _, t in ipairs(targets) do cmb.Items.Add(t.name) end
+      cmb.ItemIndex = 0
+      -- SAFE29: guardar referencia para repoblar al mostrar
+      state.optimizerCombobox = cmb
+    end
+
+    -- Botones globales (siempre visibles)
+    -- SAFE29: boton para agregar TODOS los procesos de Windows al combobox
+    local btnAddAll = createMaterialButton(f, "[+] Todos los procesos", function()
+      if state.optimizerCombobox then
+        local added = 0
+        local ok, plist = pcall(getProcessList)
+        if ok and plist then
+          -- Limpiar y agregar defaults primero
+          state.optimizerCombobox.Items.Clear()
+          for _, t in ipairs(targets) do state.optimizerCombobox.Items.Add(t.name) end
+          -- Agregar todos los procesos de Windows
+          for pid, name in pairs(plist) do
+            if type(name) == "string" and name ~= "" then
+              state.optimizerCombobox.Items.Add(name)
+              added = added + 1
+            end
+          end
+          state.optimizerCombobox.ItemIndex = 0
+          notifyToast("Agregados " .. added .. " procesos al combobox",
+                      state.theme.palette.primary[2])
+        else
+          notifyToast("Error al obtener lista de procesos",
+                      state.theme.palette.danger[2])
+        end
+      end
+    end, "cyan")
+    btnAddAll.Left = 340; btnAddAll.Top = 50
+    btnAddAll.Width = 200; btnAddAll.Height = 28
+
+    local btnApplyAll = createMaterialButton(f, "[ALL] Aplicar TODO (afinidad + delay)", function()
+      local targetIdx = cmb and cmb.ItemIndex or 0
+      local procs = targets[math.max(1, targetIdx+1)].procs
+      local up, pname = anyTargetRunning(procs)
+      if not up then
+        status("[!] Ningun proceso del destino esta corriendo ahora mismo", state.theme.palette.danger[2])
+        return
+      end
+      local cpuCount = getCpuCount()
+      local mask = 1   -- nucleo 0 por default
+      local appliedAff, missingAff = applyAffinityToGroup(procs, mask)
+      local appliedDly, missingDly = applyDelayToGroup(procs)
+      local msg = "[OK] Aplicado a " .. table.concat(appliedAff, ",") ..
+                  " | delay en " .. table.concat(appliedDly, ",") ..
+                  " | mask=0x" .. string.format("%X", mask)
+      if #missingAff &gt; 0 or #missingDly &gt; 0 then
+        msg = msg .. " | parcial: " .. table.concat(missingAff, ";")
+      end
+      status(msg, state.theme.palette.primary[2])
+      notifyToast("Optimizacion completa aplicada", state.theme.palette.primary[2])
+    end, "primary")
+    btnApplyAll.Left = 340; btnApplyAll.Top = 80
+    btnApplyAll.Width = 280; btnApplyAll.Height = 32
+
+    local btnResetAll = createMaterialButton(f, "[RESET] Restaurar defaults", function()
+      local targetIdx = cmb and cmb.ItemIndex or 0
+      local procs = targets[math.max(1, targetIdx+1)].procs
+      local restored = resetProcess(procs)
+      setOnlineRate(60)
+      if #restored &gt; 0 then
+        status("[OK] Defaults restaurados en: " .. table.concat(restored, ", ") ..
+               " (todos los nucleos, prioridad normal, rate=60ms)",
+               state.theme.palette.primary[2])
+        notifyToast("Defaults restaurados", state.theme.palette.primary[2])
+      else
+        status("[!] Ningun proceso del destino esta corriendo", state.theme.palette.amber[2])
+      end
+    end, "amber")
+    btnResetAll.Left = 340; btnResetAll.Top = 116
+    btnResetAll.Width = 280; btnResetAll.Height = 32
+
+    local tabY = 160
+    local tabH = 34
+    local tabW = 170
+    local currentTab = "affinity"
+
+    local function makeTab(label, key, color, x)
+      local b = createMaterialButton(f, label, function()
+        currentTab = key; renderTab()
+      end, color)
+      b.Left = 24 + x; b.Top = tabY; b.Width = tabW; b.Height = tabH
+      return b
+    end
+    local tabAffinity = makeTab("[CFG] Afinidad CPU",   "affinity", "primary", 0*(tabW+8))
+    local tabDelay    = makeTab("[TIME] Bajar Delay",    "delay",    "amber",   1*(tabW+8))
+    local tabOnline   = makeTab("[NET] Online Rate",     "online",   "cyan",    2*(tabW+8))
+    local tabDiag     = makeTab("[FIND] Diagnostico",   "diag",     "purple",  3*(tabW+8))
+
+    local content = createPanel(f)
+    content.Left = 24; content.Top = tabY + tabH + 8
+    content.Width = 732; content.Height = 340
+    content.BevelOuter = bvNone
+    content.Color = state.theme.bg2
+    content.ParentBackground = false
+    pcall(function() content.DoubleBuffered = true end)
+    -- SAFE15 FIX Bug optimizer: NO agregar content a widgets.
+    -- Solo los hijos (labels, buttons, checkboxes) se agregan.
+    -- Asi clearWidgets() no destruye el content panel.
+
+    local lblStatus = createLabel(f)
+    lblStatus.Left = 24; lblStatus.Top = tabY + tabH + 8 + 340 + 6
+    lblStatus.Width = 732; lblStatus.Height = 36
+    lblStatus.Font.Color = state.theme.textFaint
+    lblStatus.Font.Size = 9
+    lblStatus.WordWrap = true
+    lblStatus.Caption = ""
+
+    status = function(msg, color)
+      pcall(function()
+        lblStatus.Caption = msg
+        lblStatus.Font.Color = color or state.theme.textFaint
+      end)
+    end
+
+    -- TAB: AFINIDAD
+    local function renderAffinity()
+      clearWidgets()
+      local cpuCount = getCpuCount()
+      local lbl = createLabel(content)
+      lbl.Caption = "Nucleos logicos detectados: " .. cpuCount ..
+                    " | Marca los nucleos que quieres asignar al programa destino."
+      lbl.Left = 16; lbl.Top = 10; lbl.Width = 700; lbl.Height = 30
+      lbl.Font.Color = state.theme.textDim
+      lbl.Font.Size = 10
+      lbl.WordWrap = true
+      table.insert(state._optimizerWidgetsRef, lbl)
+
+      local chkList = {}
+      local mask = 0
+      local lblMask = nil
+      local colsPerRow = math.min(cpuCount, 8)
+      for i = 0, cpuCount - 1 do
+        local chk = createMaterialCheckbox(content, "Nucleo " .. i, function(checked)
+          if checked then mask = mask | (1 &lt;&lt; i) else mask = mask &amp; ~(1 &lt;&lt; i) end
+          pcall(function() lblMask.Caption = "Mascara actual: 0x" .. string.format("%X", mask) end)
+        end)
+        local col = i % colsPerRow
+        local row = math.floor(i / colsPerRow)
+        chk.Left = 16 + col * 88
+        chk.Top  = 50 + row * 30
+        chk.Width = 84; chk.Height = 24
+        if i == 0 then pcall(function() chk.Checked = true; mask = 1 end) end
+        table.insert(state._optimizerWidgetsRef, chk)
+        table.insert(chkList, chk)
+      end
+
+      local yOffset = 50 + math.ceil(cpuCount/colsPerRow)*30
+      lblMask = createLabel(content)
+      lblMask.Caption = "Mascara actual: 0x1"
+      lblMask.Left = 16; lblMask.Top = yOffset
+      lblMask.Width = 320
+      lblMask.Font.Color = state.theme.textDim
+      lblMask.Font.Size = 10
+      table.insert(state._optimizerWidgetsRef, lblMask)
+
+      local edtMask = nil
+      pcall(function() edtMask = createMemo(content) end)
+      if edtMask then
+        edtMask.Left = 16; edtMask.Top = yOffset + 22
+        edtMask.Width = 120; edtMask.Height = 22
+        edtMask.Text = "1"
+        table.insert(state._optimizerWidgetsRef, edtMask)
+      end
+
+      local btnSetMask = createMaterialButton(content, "Establecer mascara manual", function()
+        if not edtMask then return end
+        local v = tonumber(edtMask.Text)
+        if not v or v &lt; 0 then status("[!] Valor invalido", state.theme.palette.danger[2]); return end
+        mask = v
+        pcall(function() lblMask.Caption = "Mascara actual: 0x" .. string.format("%X", mask) end)
+        status("Mascara puesta a 0x" .. string.format("%X", mask), state.theme.textDim)
+      end, "purple")
+      btnSetMask.Left = 144; btnSetMask.Top = yOffset + 20
+      btnSetMask.Width = 220; btnSetMask.Height = 26
+      table.insert(state._optimizerWidgetsRef, btnSetMask)
+
+      local presets = {
+        { caption = "Preset: solo nucleo 0",   mask = 1 },
+        { caption = "Preset: solo nucleo 2",   mask = 4 },
+        { caption = "Preset: nucleos 0 y 2",   mask = 5 },
+        { caption = "Preset: nucleos 0,1,2,3", mask = 0xF },
+        { caption = "Preset: todos los nucleos", mask = (1 &lt;&lt; cpuCount) - 1 },
+      }
+      local py = yOffset + 60
+      for i, p in ipairs(presets) do
+        local bp = createMaterialButton(content, p.caption, function()
+          mask = p.mask
+          for j, chk in ipairs(chkList) do
+            local bit = (p.mask &gt;&gt; (j-1)) &amp; 1
+            pcall(function() chk.Checked = (bit == 1) end)
+          end
+          pcall(function() lblMask.Caption = "Mascara actual: 0x" .. string.format("%X", mask) end)
+          status("Preset aplicado: 0x" .. string.format("%X", mask), state.theme.textDim)
+        end, "cyan")
+        bp.Left = 16; bp.Top = py + (i-1)*30
+        bp.Width = 300; bp.Height = 24
+        table.insert(state._optimizerWidgetsRef, bp)
+      end
+
+      local btnApply = createMaterialButton(content, "[OK] Aplicar afinidad", function()
+        local targetIdx = cmb and cmb.ItemIndex or 0
+        local procs = targets[math.max(1, targetIdx+1)].procs
+        local up, pname = anyTargetRunning(procs)
+        if not up then
+          status("[!] Ningun proceso del destino esta corriendo ahora mismo", state.theme.palette.danger[2])
+          return
+        end
+        local applied, missing = applyAffinityToGroup(procs, mask)
+        if #applied &gt; 0 then
+          status("[OK] Afinidad aplicada a: " .. table.concat(applied, ", ") ..
+                 " (mask=0x" .. string.format("%X", mask) .. ")",
+                 state.theme.palette.primary[2])
+        else
+          status("[X] No se pudo aplicar: " .. table.concat(missing, "; "), state.theme.palette.danger[2])
+        end
+      end, "primary")
+      btnApply.Left = 380; btnApply.Top = py
+      btnApply.Width = 220; btnApply.Height = 36
+      table.insert(state._optimizerWidgetsRef, btnApply)
+
+      local btnReset = createMaterialButton(content, "[RESET] Todos los nucleos", function()
+        mask = (1 &lt;&lt; cpuCount) - 1
+        for j, chk in ipairs(chkList) do pcall(function() chk.Checked = true end) end
+        pcall(function() lblMask.Caption = "Mascara actual: 0x" .. string.format("%X", mask) end)
+        status("Reset: todos los nucleos seleccionados", state.theme.textDim)
+      end, "purple")
+      btnReset.Left = 380; btnReset.Top = py + 40
+      btnReset.Width = 220; btnReset.Height = 28
+      table.insert(state._optimizerWidgetsRef, btnReset)
+    end
+
+    -- TAB: DELAY
+    local function renderDelay()
+      clearWidgets()
+      local lbl = createLabel(content)
+      lbl.Caption =
+        "REDUCCION DE DELAY (clon del programa de Hiveworkshop)\\n" ..
+        "Sube la prioridad del proceso a HIGH y desactiva el quantum degradation de Windows.\\n" ..
+        "Efecto real: bajada del input lag de 5 a 20 ms."
+      lbl.Left = 16; lbl.Top = 10; lbl.Width = 700; lbl.Height = 70
+      lbl.Font.Color = state.theme.textDim
+      lbl.Font.Size = 10
+      lbl.WordWrap = true
+      table.insert(state._optimizerWidgetsRef, lbl)
+
+      local lblNote = createLabel(content)
+      lblNote.Caption = "[!] RECOMENDADO: aplicarlo al LAUNCHER (que es lo que suele lentear el juego)."
+      lblNote.Left = 16; lblNote.Top = 90; lblNote.Width = 700; lblNote.Height = 28
+      lblNote.Font.Color = state.theme.palette.amber[2]
+      lblNote.Font.Size = 10
+      lblNote.WordWrap = true
+      table.insert(state._optimizerWidgetsRef, lblNote)
+
+      local btnApplyDelay = createMaterialButton(content, "[TIME] Aplicar Bajar Delay", function()
+        local targetIdx = cmb and cmb.ItemIndex or 0
+        local procs = targets[math.max(1, targetIdx+1)].procs
+        local up, pname = anyTargetRunning(procs)
+        if not up then
+          status("[!] Ningun proceso del destino esta corriendo ahora mismo", state.theme.palette.danger[2])
+          return
+        end
+        local applied, missing = applyDelayToGroup(procs)
+        if #applied &gt; 0 then
+          status("[OK] Delay reducido en: " .. table.concat(applied, ", ") ..
+                 " (priority=HIGH, boost OFF)",
+                 state.theme.palette.primary[2])
+        else
+          status("[X] No se pudo aplicar: " .. table.concat(missing, "; "), state.theme.palette.danger[2])
+        end
+      end, "amber")
+      btnApplyDelay.Left = 16; btnApplyDelay.Top = 140
+      btnApplyDelay.Width = 300; btnApplyDelay.Height = 40
+      table.insert(state._optimizerWidgetsRef, btnApplyDelay)
+
+      local btnCheck = createMaterialButton(content, "[?] Ver estado actual", function()
+        local targetIdx = cmb and cmb.ItemIndex or 0
+        local procs = targets[math.max(1, targetIdx+1)].procs
+        local lines = {}
+        for _, p in ipairs(procs) do
+          if getProcessID(p) then
+            local m = getCurrentAffinity(p)
+            table.insert(lines, p .. " OK (mask=0x" .. string.format("%X", m or 0) .. ")")
+          else
+            table.insert(lines, p .. " no corre")
+          end
+        end
+        status(table.concat(lines, " | "), state.theme.textDim)
+      end, "purple")
+      btnCheck.Left = 16; btnCheck.Top = 190
+      btnCheck.Width = 300; btnCheck.Height = 32
+      table.insert(state._optimizerWidgetsRef, btnCheck)
+
+      local lblExplain = createLabel(content)
+      lblExplain.Caption =
+        "Por que funciona?\\n" ..
+        "Windows mete un 'quantum degradation' que anade ~15 ms cada vez que el proceso\\n" ..
+        "es preempted. Subiendo prioridad a HIGH y desactivando el boost de quantum,\\n" ..
+        "el scheduler le da mas slots de CPU al launcher sin抢占 al juego."
+      lblExplain.Left = 340; lblExplain.Top = 140; lblExplain.Width = 360; lblExplain.Height = 120
+      lblExplain.Font.Color = state.theme.textDim
+      lblExplain.Font.Size = 9
+      lblExplain.WordWrap = true
+      table.insert(state._optimizerWidgetsRef, lblExplain)
+    end
+
+    -- TAB: ONLINE RATE
+    local function renderOnline()
+      clearWidgets()
+      local lbl = createLabel(content)
+      lbl.Caption =
+        "ONLINE RATE (ms entre comprobaciones del hack)\\n" ..
+        "No es la latencia de red: es el intervalo del detection timer del propio panel.\\n" ..
+        "Valor recomendado: 50-80 ms (EU/LATAM)."
+      lbl.Left = 16; lbl.Top = 10; lbl.Width = 700; lbl.Height = 60
+      lbl.Font.Color = state.theme.textDim
+      lbl.Font.Size = 10
+      lbl.WordWrap = true
+      table.insert(state._optimizerWidgetsRef, lbl)
+
+      local lblCur = createLabel(content)
+      lblCur.Caption = "Online rate actual: " .. tostring(state.onlineRateMs or 60) .. " ms"
+      lblCur.Left = 16; lblCur.Top = 80; lblCur.Width = 700
+      lblCur.Font.Color = state.theme.textDim
+      lblCur.Font.Size = 10
+      table.insert(state._optimizerWidgetsRef, lblCur)
+
+      local edtRate = nil
+      pcall(function() edtRate = createMemo(content) end)
+      if edtRate then
+        edtRate.Left = 16; edtRate.Top = 110; edtRate.Width = 160; edtRate.Height = 24
+        edtRate.Text = tostring(state.onlineRateMs or 60)
+        table.insert(state._optimizerWidgetsRef, edtRate)
+      end
+
+      local btnApplyRate = createMaterialButton(content, "[OK] Aplicar online rate", function()
+        if not edtRate then return end
+        local ms = tonumber(edtRate.Text)
+        if not ms then status("[!] Valor invalido", state.theme.palette.danger[2]); return end
+        local ok, applied = setOnlineRate(ms)
+        if ok then
+          pcall(function() lblCur.Caption = "Online rate actual: " .. applied .. " ms" end)
+          status("[OK] Online rate aplicado: " .. applied .. " ms", state.theme.palette.primary[2])
+        end
+      end, "cyan")
+      btnApplyRate.Left = 184; btnApplyRate.Top = 108
+      btnApplyRate.Width = 220; btnApplyRate.Height = 30
+      table.insert(state._optimizerWidgetsRef, btnApplyRate)
+
+      local ratePresets = {
+        { name = "EU Competitive",   ms = 50 },
+        { name = "EU/LATAM Casual",  ms = 65 },
+        { name = "LATAM Stable",     ms = 80 },
+        { name = "Custom (20-250)",  ms = nil },
+      }
+      local py = 150
+      for i, pr in ipairs(ratePresets) do
+        local bp = createMaterialButton(content, "Preset: " .. pr.name .. (pr.ms and (" ("..pr.ms.." ms)") or ""), function()
+          if pr.ms then
+            if edtRate then pcall(function() edtRate.Text = tostring(pr.ms) end) end
+            local ok, applied = setOnlineRate(pr.ms)
+            pcall(function() lblCur.Caption = "Online rate actual: " .. applied .. " ms" end)
+            status("[OK] Preset '" .. pr.name .. "' aplicado: " .. applied .. " ms", state.theme.palette.primary[2])
+          else
+            status("Edita el valor manualmente (20-250 ms)", state.theme.textDim)
+          end
+        end, "purple")
+        bp.Left = 16; bp.Top = py + (i-1)*30
+        bp.Width = 320; bp.Height = 24
+        table.insert(state._optimizerWidgetsRef, bp)
+      end
+    end
+
+    -- TAB: DIAGNOSTICO
+    local function renderDiag()
+      clearWidgets()
+      local txt = nil
+      pcall(function() txt = createMemo(content) end)
+      if txt then
+        txt.Left = 16; txt.Top = 10; txt.Width = 700; txt.Height = 280
+        pcall(function() txt.ScrollBars = "ssAutoBoth" end)
+        pcall(function() txt.ReadOnly = true end)
+        txt.Font.Size = 9
+        pcall(function() txt.Font.Name = "Consolas" end)
+        txt.Text = diagnoseCurrent()
+        table.insert(state._optimizerWidgetsRef, txt)
+      end
+
+      local btnRefresh = createMaterialButton(content, "[REFRESH] Refrescar", function()
+        if txt then pcall(function() txt.Text = diagnoseCurrent() end) end
+        status("Diagnostico actualizado", state.theme.textDim)
+      end, "cyan")
+      btnRefresh.Left = 16; btnRefresh.Top = 300
+      btnRefresh.Width = 220; btnRefresh.Height = 26
+      table.insert(state._optimizerWidgetsRef, btnRefresh)
+    end
+
+    renderTab = function()
+      if     currentTab == "affinity" then renderAffinity()
+      elseif currentTab == "delay"    then renderDelay()
+      elseif currentTab == "online"   then renderOnline()
+      elseif currentTab == "diag"     then renderDiag()
+      end
+    end
+
+    -- SAFE13 FIX Bug A: boton Cerrar usa closeOptimizerSafely con flag
+    -- SAFE33: boton cerrar oculta via Left=-10000 (NO dispara eventos)
+    -- Igual que la X nativa del title bar (que ahora tambien bloquea via f.OnClose)
+    -- [X] Ocultar
+    local btnClose = createMaterialButton(f, "[X] Exit", function()
+      if state.optimizerForm then
+        pcall(function()
+          state.optimizerForm.Left = -10000
+          state.optimizerForm.Top = -10000
+        end)
+        state.optimizerVisible = false
+        notifyToast("Optimizer ocultado (click 🛠 para mostrar)",
+                    state.theme.palette.amber[2])
+      end
+    end, "danger")
+    btnClose.Left = f.Width - 130; btnClose.Top = f.Height - 50
+    btnClose.Width = 110; btnClose.Height = 36
+
+    state.optCtrls = {
+      titleBar = optTitleBar, bg = optBg,
+      lblTgt = lblTgt, cmb = cmb, btnAddAll = btnAddAll,
+      btnApplyAll = btnApplyAll, btnResetAll = btnResetAll,
+      tabAffinity = tabAffinity, tabDelay = tabDelay, tabOnline = tabOnline, tabDiag = tabDiag,
+      content = content, lblStatus = lblStatus, btnClose = btnClose
+    }
+
+    f.show()
+    Anim.tween{ duration = 280, easing = easeOutCubic,
+      onUpdate = function(e) f.AlphaBlendValue = math.floor(255 * e) end }
+    renderTab()
+    -- SAFE36: layout adaptativo - hook OnResize
+    pcall(function()
+      f.OnResize = function(sender)
+        relayoutOptimizer(f, f.ClientWidth, f.ClientHeight)
+        pcall(function() if state.optimizerBg then state.optimizerBg.Invalidate() end end)
+      end
+    end)
+
+    -- Llamar layout inicial
+    relayoutOptimizer(f, f.ClientWidth, f.ClientHeight)
+
+  end
+
+  -- ==========================================================================
+  --  Kernel32 API + funciones del optimizer (sin cambios)
+  -- ==========================================================================
+  local IDLE_PRIORITY_CLASS         = 0x00000040
+  local BELOW_NORMAL_PRIORITY_CLASS = 0x00004000
+  local NORMAL_PRIORITY_CLASS       = 0x00000020
+  local ABOVE_NORMAL_PRIORITY_CLASS = 0x00008000
+  local HIGH_PRIORITY_CLASS         = 0x00000080
+  local REALTIME_PRIORITY_CLASS     = 0x00000100
+  local _kernel32_base = nil
+  local _fn_set_affinity = nil
+  local _fn_get_affinity = nil
+  local _fn_set_prio     = nil
+  local _fn_set_boost    = nil
+  local function getKernel32Base()
+    if _kernel32_base then return _kernel32_base end
+    local ok, h = pcall(loadLibrary, "kernel32.dll")
+    if ok and type(h) == "number" and h ~= 0 then _kernel32_base = h; return h end
+    local ok2, a = pcall(getAddress, "kernel32.dll", true)
+    if ok2 and type(a) == "number" and a ~= 0 then _kernel32_base = a; return a end
+    return nil
+  end
+  local function resolveK32(name)
+    local base = getKernel32Base()
+    if not base then return nil end
+    local ok, p = pcall(getProcAddress, base, name)
+    if ok and type(p) == "number" and p ~= 0 then return p end
+    return nil
+  end
+  local function getFnSetAffinity() if not _fn_set_affinity then _fn_set_affinity = resolveK32("SetProcessAffinityMask") end return _fn_set_affinity end
+  local function getFnGetAffinity() if not _fn_get_affinity then _fn_get_affinity = resolveK32("GetProcessAffinityMask") end return _fn_get_affinity end
+  local function getFnSetPrio()     if not _fn_set_prio     then _fn_set_prio     = resolveK32("SetPriorityClass")        end return _fn_set_prio     end
+  local function getFnSetBoost()    if not _fn_set_boost    then _fn_set_boost    = resolveK32("SetProcessPriorityBoost") end return _fn_set_boost    end
+
+  function getCpuCount()
+    local ok, n = pcall(getCPUCount)
+    if ok and type(n) == "number" and n &gt; 0 then return n end
+    local ok2, info = pcall(getSystemInfo)
+    if ok2 and info and type(info.dwNumberOfProcessors) == "number" then
+      return info.dwNumberOfProcessors
+    end
+    return 1
+  end
+
+  function setCpuAffinity(processName, mask)
+    if type(processName) ~= "string" or processName == "" then return false, "nombre vacio" end
+    if type(mask) ~= "number" or mask &lt; 0 then return false, "mascara invalida" end
+    local pid = getProcessID(processName)
+    if not pid then return false, "proceso '" .. processName .. "' no encontrado" end
+    local fn = getFnSetAffinity()
+    if not fn then return false, "SetProcessAffinityMask no resuelto" end
+    local prev = 0
+    pcall(function() prev = getOpenedProcessID() end)
+    pcall(openProcess, pid)
+    local ok = false
+    pcall(function()
+      local ret = executeCodeLocalEx(fn, getOpenedProcessID(), mask)
+      ok = (ret ~= 0)
+    end)
+    if prev and prev ~= 0 then pcall(openProcess, prev) end
+    state.cpuAffinityMask   = mask
+    state.cpuAffinityTarget = processName
+    if ok then
+      return true, "Afinidad aplicada a " .. processName .. " (mask=0x" .. string.format("%X", mask) .. ")"
+    else
+      return false, "kernel rechazo la afinidad"
+    end
+  end
+
+  function getCurrentAffinity(processName)
+    local pid = getProcessID(processName)
+    if not pid then return nil end
+    local fn = getFnGetAffinity()
+    if not fn then return nil end
+    local ok, buf = pcall(allocateMemory, 16, nil, true)
+    if not ok or not buf then return nil end
+    pcall(writeQword, buf, 0)
+    local prev = 0
+    pcall(function() prev = getOpenedProcessID() end)
+    pcall(openProcess, pid)
+    local ret = nil
+    pcall(function() ret = executeCodeLocalEx(fn, getOpenedProcessID(), buf, buf + 8) end)
+    if prev and prev ~= 0 then pcall(openProcess, prev) end
+    if ret == 0 then return nil end
+    return readQword(buf)
+  end
+
+  function lowerDelay(processName)
+    if type(processName) ~= "string" or processName == "" then return false, "nombre vacio" end
+    local pid = getProcessID(processName)
+    if not pid then return false, "proceso '" .. processName .. "' no encontrado" end
+    local fnSetPrio  = getFnSetPrio()
+    local fnSetBoost = getFnSetBoost()
+    if not fnSetPrio then return false, "SetPriorityClass no resuelto" end
+    local prev = 0
+    pcall(function() prev = getOpenedProcessID() end)
+    pcall(openProcess, pid)
+    local okPrio = false
+    local okBoost = true
+    pcall(function()
+      local ret = executeCodeLocalEx(fnSetPrio, getOpenedProcessID(), HIGH_PRIORITY_CLASS)
+      okPrio = (ret ~= 0)
+    end)
+    if fnSetBoost then
+      pcall(function()
+        local ret = executeCodeLocalEx(fnSetBoost, getOpenedProcessID(), 0)
+        okBoost = (ret ~= 0)
+      end)
+    end
+    if prev and prev ~= 0 then pcall(openProcess, prev) end
+    state.delayTarget = processName
+    if okPrio then
+      return true, "Delay reducido en " .. processName .. " (priority=HIGH, boost=" .. (okBoost and "OFF" or "no aplicado") .. ")"
+    else
+      return false, "kernel rechazo el cambio de prioridad"
+    end
+  end
+
+  function setOnlineRate(ms)
+    ms = tonumber(ms) or 60
+    if ms &lt; 20 then ms = 20 end
+    if ms &gt; 250 then ms = 250 end
+    state.onlineRateMs = ms
+    if detectionTimer and detectionTimer.Interval then
+      pcall(function() detectionTimer.Interval = ms end)
+    end
+    return true, ms
+  end
+
+  function diagnoseCurrent()
+    local n = getCpuCount()
+    local lines = { "=== DIAGNOSTICO ===",
+                    "Nucleos logicos: " .. n,
+                    "Online rate actual: " .. tostring(state.onlineRateMs or 60) .. " ms",
+                    "Ultima afinidad: " .. (state.cpuAffinityTarget or "(ninguna)") ..
+                      " mask=0x" .. string.format("%X", state.cpuAffinityMask or 0),
+                    "Ultimo delay: " .. (state.delayTarget or "(ninguno)") }
+    for _, proc in ipairs({ "war3.exe", "rgc.exe", "Atinad.exe", "Launcher.exe" }) do
+      if getProcessID(proc) then
+        local mask = getCurrentAffinity(proc)
+        lines[#lines+1] = proc .. " -&gt; afinidad actual mask=0x" .. string.format("%X", mask or 0)
+      else
+        lines[#lines+1] = proc .. " -&gt; no esta corriendo"
+      end
+    end
+    return table.concat(lines, "\n")
+  end
+end
+loadOptimizerModule()
+
+
+-- ============================================================================
+--  HOTKEYS
+-- ============================================================================
+local function bindHotkey(func, ...)
+  local args = { ... }
+  if #args == 1 and type(args[1]) == "table" then args = args[1] end
+  local hk = createHotkey(func, unpack(args))
+  table.insert(REFS.hotkeys, hk)
+  return hk
+end
+
+function registerHotkeys()
+  if state.hotkeysRegistered then return end
+
+  bindHotkey(function() toggleCheat("Minimap") end,     VK_MENU, VK_CONTROL, VK_M)
+  bindHotkey(function() toggleCheat("Illusions") end,   VK_MENU, VK_CONTROL, VK_I)
+  bindHotkey(function() toggleCheat("Wards") end,       VK_MENU, VK_CONTROL, VK_W)
+  bindHotkey(function() toggleCheat("Runes") end,       VK_MENU, VK_CONTROL, VK_N)
+  bindHotkey(function() toggleCheat("Units Heros") end, VK_MENU, VK_CONTROL, VK_U)
+  bindHotkey(function() toggleCheat("Signals") end,     VK_MENU, VK_CONTROL, VK_S)
+  bindHotkey(function() toggleCheat("Skills") end,      VK_MENU, VK_CONTROL, VK_K)
+  bindHotkey(function() toggleCheat("Fog") end,         VK_MENU, VK_CONTROL, VK_F)
+
+  bindHotkey(function()
+    if not state.clientHibernated then
+      local found, missing = hibernateAllClients()
+      if found == 0 and #missing &gt; 0 then
+        notifyToast("Launchers no encontrados: " .. table.concat(missing, ", "), state.theme.palette.amber[2])
+      end
+    end
+    activateAllCheats()
+    notifyToast("Todos los cheats ACTIVADOS", state.theme.palette.primary[2])
+  end, VK_MENU, VK_CONTROL, VK_A)
+
+  bindHotkey(function()
+    deactivateAllCheats()
+    notifyToast("Todo DESACTIVADO", state.theme.palette.danger[2])
+  end, VK_MENU, VK_CONTROL, VK_D)
+
+  bindHotkey(function()
+    local found, missing = hibernateAllClients()
+    if found &gt; 0 then notifyToast("Clientes hibernados (" .. found .. ")", state.theme.grad2)
+    else notifyToast("Ningún launcher encontrado", state.theme.palette.amber[2]) end
+  end, VK_MENU, VK_CONTROL, VK_H)
+
+  bindHotkey(function()
+    local found = resumeAllClients()
+    if found &gt; 0 then notifyToast("Clientes reanudados (" .. found .. ")", state.theme.palette.amber[2])
+    else notifyToast("Ningún launcher activo", state.theme.palette.amber[2]) end
+  end, VK_MENU, VK_CONTROL, VK_R)
+
+  bindHotkey(function() showMainGUI() end, VK_MENU, VK_CONTROL, VK_G)
+  bindHotkey(function()
+    -- SAFE27: Ctrl+Alt+P - toggle panel + optimizer (FIX bug)
+    -- El bug era: despues de ocultar con Ctrl+Alt+P, no se volvia a mostrar
+    -- Causa: la condicion `state.optimizerWasShown and state.optimizerForm`
+    -- estaba bien, pero state.optimizerForm se perdia en algunos casos
+    -- Fix: usar logica mas robusta y verificar el form antes de operar
+    if state.mainForm and state.mainForm.Visible then
+      -- ====== OCULTAR ======
+      -- Ocultar panel
+      state.mainForm.Visible = false
+      -- Ocultar optimizer si existe y esta visible
+      if state.optimizerForm and state.optimizerVisible then
+        state.optimizerForm.Visible = false
+        state.optimizerVisible = false
+      end
+      notifyToast("Panel oculto (Ctrl+Alt+P para mostrar)", state.theme.textFaint)
+    else
+      -- ====== MOSTRAR ======
+      -- Mostrar panel (recrear si fue destruido)
+      if state.mainForm then
+        state.mainForm.Visible = true
+        pcall(function() state.mainForm.BringToFront() end)
+      else
+        showMainGUI()
+      end
+      -- Mostrar optimizer si fue abierto antes y el form AUN EXISTE
+      -- (NO fue destruido nativamente)
+      if state.optimizerForm then
+        -- VERIFICAR que el form es valido antes de operar
+        local formValid = false
+        pcall(function()
+          if state.optimizerForm.Handle ~= 0 then
+            formValid = true
+          end
+        end)
+        if formValid then
+          pcall(function()
+            state.optimizerForm.Visible = true
+            state.optimizerForm.BringToFront()
+          end)
+          state.optimizerVisible = true
+        end
+      end
+      notifyToast("Panel mostrado" ..
+                  (state.optimizerForm and state.optimizerVisible and " (con optimizer)" or ""),
+                  state.theme.textFaint)
+    end
+  end, VK_MENU, VK_CONTROL, VK_P)
+
+  bindHotkey(function() cycleTheme() end, VK_MENU, VK_CONTROL, VK_T)
+
+  bindHotkey(function()
+    -- SAFE13: emergencia = cierre total sincronizado
+    notifyToast("MODO EMERGENCIA: cierre sincronizado", state.theme.palette.danger[2])
+    closeEverything("emergency")
+  end, VK_MENU, VK_CONTROL, VK_E)
+
+  -- HOTKEY ADMIN OCULTO: Ctrl+Alt+Shift+L  -&gt; alterna consola Lua (solo tu lo sabes)
+  bindHotkey(function() toggleLuaConsole() end, VK_SHIFT, VK_MENU, VK_CONTROL, VK_L)
+
+  -- Ctrl+Alt+O: abrir Optimizador de CPU/Delay/Online Rate (safe12)
+  bindHotkey(function() showOptimizerDialog() end, VK_MENU, VK_CONTROL, VK_O)
+
+  state.hotkeysRegistered = true
+end
+
+-- ============================================================================
+--  TIMER DE DETECCION AUTOMATICA
+-- ============================================================================
+local detectionTimer = createTimer(nil)
+detectionTimer.Interval = 2000
+detectionTimer.OnTimer = function()
+  local ok, ingame = pcall(isWar3InGame)
+  if not ok then return end
+  state.inGame = ingame
+
+  if state.inGame and not state.wasInGame then
+    state.wasInGame = true
+    pcall(function()
+      if state.lblSub then
+        state.lblSub.Caption = "Estado: ● EN JUEGO"
+        state.lblSub.Font.Color = state.theme.palette.primary[2]
+      end
+    end)
+    if state.cbAutoMeta and state.cbAutoMeta.checked then
+      createModernDialog("Mapa Iniciado - Activar Cheats",
+        "MAPA CARGADO. Activa los cheats AHORA (despues de que el mapa termino de cargar) para evitar deteccion del cliente.\n\nRecomendado: hibernar Launcher/Atinad/rgc + activar cheats.",
+        { {id="yes", caption="✓ Hibernar + Activar TODO", primary=true},
+          {id="cheats", caption="Solo activar cheats", primary=false},
+          {id="no", caption="Ahora no", primary=false},
+          {id="settings", caption="Configurar", primary=false} },
+        function(choice)
+          if choice == "yes" then
+            hibernateAllClients()
+            activateAllCheats()
+          elseif choice == "cheats" then
+            activateAllCheats()
+          elseif choice == "settings" then showMainGUI() end
+        end)
+    else
+      -- AVISO obligatorio incluso si autoMeta desactivado (requisito del FALTA AÑADIR)
+      notifyToast("MAPA CARGADO -&gt; activa cheats con Ctrl+Alt+A", state.theme.palette.primary[2])
+    end
+  end
+
+  if not state.inGame and state.wasInGame then
+    state.wasInGame = false
+    pcall(function()
+      if state.lblSub then
+        state.lblSub.Caption = "Estado: ○ EN LOBBY"
+        state.lblSub.Font.Color = state.theme.textDim
+      end
+    end)
+    -- AVISO FIN DE PARTIDA (requisito FALTA AÑADIR):
+    -- Si el usuario quiere interactuar con el cliente (lobby/menu), DEBE
+    -- desactivar TODOS los cheats ANTES de descongelar (resumir) procesos,
+    -- de lo contrario el cliente puede detectarle.
+    if state.cheatsActive or state.clientHibernated then
+      createModernDialog("Partida Finalizada",
+        "La partida termino.\n\n¿Vas a interactuar con el cliente (lobby/chat/sala)?\nSi es asi, DEBES desactivar los cheats ANTES de reanudar el cliente.\n\nElige una opcion:",
+        { {id="safe",   caption="✓ Desactivar TODO + Reanudar (seguro)", primary=true},
+          {id="disable",caption="Solo desactivar cheats (mantener congelado)", primary=false},
+          {id="keep",   caption="Mantener todo como esta", primary=false} },
+        function(choice)
+          if choice == "safe" then
+            deactivateAllCheats(); resumeAllClients()
+            notifyToast("Listo: cheats OFF y clientes reanudados", state.theme.palette.primary[2])
+          elseif choice == "disable" then
+            deactivateAllCheats()
+            notifyToast("Cheats desactivados (clientes siguen hibernados)", state.theme.palette.amber[2])
+          end
+        end)
+    end
+  end
+end
+
+-- ============================================================================
+--  GUARDIA AL CERRAR CHEAT ENGINE
+--  (Requisito FALTA AÑADIR: si el usuario cierra CE con cheats activos o
+--   clientes hibernados, avisarle y obligar a limpiar con Ctrl+Alt+D para
+--   no jugar sin proteccion del Cheat Engine).
+-- ============================================================================
+-- ============================================================================
+--  blockCEHotkeys() - SAFE23
+--  Bloquea TODOS los hotkeys del menu principal de Cheat Engine
+--  (File &gt; Save, Open, etc) desde Lua script.
+--  Recorre el menu recursivamente y pone ShortCut = 0 en cada item.
+-- ============================================================================
+local function blockCEHotkeys()
+  pcall(function()
+    local mf = getMainForm()
+    if not mf then return end
+    local menu = nil
+    pcall(function() menu = mf.Menu end)
+    if not menu then
+      pcall(function() menu = mf.MainMenu end)
+    end
+    if not menu then return end
+
+    -- SAFE24: deshabilitar ShortCut Y las acciones (no solo shortcuts)
+    local function disableAll(items)
+      if not items then return end
+      local count = 0
+      pcall(function() count = items.Count end)
+      if not count or count == 0 then return end
+      for i = 0, count - 1 do
+        local item = nil
+        pcall(function() item = items[i] end)
+        if item then
+          -- 1) Desactivar shortcut
+          pcall(function()
+            if item.ShortCut and item.ShortCut ~= 0 then
+              item.ShortCut = 0
+            end
+          end)
+          -- 2) Reemplazar OnClick con no-op (para que click no haga nada)
+          pcall(function()
+            if item.OnClick then
+              item.OnClick = function() end
+            end
+          end)
+          -- 3) Disabled visualmente
+          pcall(function()
+            if item.Enabled ~= nil then
+              item.Enabled = false
+            end
+          end)
+          -- 4) Recursar en subitems
+          local sub = nil
+          pcall(function() sub = item.Items end)
+          if sub then disableAll(sub) end
+        end
+      end
+    end
+    disableAll(menu.Items)
+  end)
+end
+
+-- ============================================================================
+--  installCEExitGuard() - SAFE24 RE-AGREGADO
+--  El usuario quiere el check de 'clientUp' (launchers corriendo) de vuelta.
+--  PROTECCION ANTI-LOOP: en el dialog "clean", killProcessAggressive() se llama
+--  DIRECTAMENTE para terminar el proceso, evitando el loop infinito.
+-- ============================================================================
+
+
+-- ============================================================================
+--  INICIALIZACION
+-- ============================================================================
+math.randomseed(os.time())
+setupConsoleHidden()        -- ocultar consola Lua y bloquear que aparezca sola
+registerHotkeys()
+blockCEHotkeys()           -- SAFE23: bloquear hotkeys del menu de CE
+-- SAFE12: instalar el Panel X-Guard 150ms despues de showMainGUI (necesita state.mainForm)
+local _xGuardTimer = createTimer(nil, false)
+_xGuardTimer.Interval = 150
+_xGuardTimer.OnTimer = function()
+  pcall(installPanelXGuard)
+  _xGuardTimer.destroy()
+end
+_xGuardTimer.Enabled = true
+detectionTimer.Enabled = true
+showMainGUI()
+notifyToast("MultiHack PRO v2 cargado - activa cheats DESPUES de cargar mapa (Ctrl+Alt+O = Optimizar CPU)", state.theme.grad2)
+</LuaScript>
+</nonTable>
